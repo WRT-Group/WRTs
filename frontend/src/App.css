@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "Maginer";
+  src: url("./fonts/Maginer.otf");
+}
+
+@font-face {
+  font-family: "Pixel";
+  src: url("./fonts/PublicPixel.ttf");
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
