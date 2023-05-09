@@ -12,7 +12,6 @@ import {
 import axios from "axios";
 
 import "./Signup.css";
-
 const Signup = () => {
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
