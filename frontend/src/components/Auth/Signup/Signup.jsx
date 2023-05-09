@@ -21,7 +21,12 @@ const Signup = () => {
   const [confPassword, setConfPassword] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (password !== confPassword) {
+      return alert("passwords don't match");
+    }
     const newUser = {
       fName,
       lName,
@@ -39,81 +44,80 @@ const Signup = () => {
     <MDBContainer fluid>
       <MDBRow className="d-flex justify-content-center align-items-center">
         <MDBCol lg="8">
-          <MDBCard
-            className="my-2 rounded-3 signup"
-            style={{ maxWidth: "600px" }}
-          >
+          <MDBCard className="my-2 signup" style={{ maxWidth: "600px" }}>
             <MDBCardImage
               src="../../../../assets/istockphoto-1298834196-170667a.jpg"
               className="w-100 rounded-top"
               alt="Sample photo"
             />
 
-            <MDBCardBody className="px-5">
+            <MDBCardBody className="px-0">
               <h3 className="mb-3 pb-md-0 px-md-2">Registration Info</h3>
+              <MDBContainer id="form-container">
+                <form onSubmit={(e) => handleSubmit(e)}>
+                  <MDBRow>
+                    <MDBCol md="6" className="py-0">
+                      <label>First Name</label>
+                      <MDBInput
+                        onChange={(e) => setFName(e.target.value)}
+                        wrapperClass="name mb-2"
+                        id="form2"
+                        type="text"
+                      />
+                    </MDBCol>
 
-              <MDBRow>
-                <MDBCol md="6" className="py-0">
-                  <MDBInput
-                    onChange={(e) => setFName(e.target.value)}
-                    wrapperClass="name mb-2"
-                    label="First Name"
-                    id="form2"
-                    type="text"
-                  />
-                </MDBCol>
+                    <MDBCol md="6" className="py-0">
+                      <label>Last Name</label>
 
-                <MDBCol md="6" className="py-0">
+                      <MDBInput
+                        onChange={(e) => setLName(e.target.value)}
+                        wrapperClass="mb-2"
+                        id="form3"
+                        type="text"
+                      />
+                    </MDBCol>
+                  </MDBRow>
+                  <label>Username</label>
+
                   <MDBInput
-                    onChange={(e) => setLName(e.target.value)}
+                    onChange={(e) => setUsername(e.target.value)}
                     wrapperClass="mb-2"
-                    label="Last Name"
-                    id="form3"
+                    id="form1"
                     type="text"
                   />
-                </MDBCol>
-              </MDBRow>
 
-              <MDBInput
-                onChange={(e) => setUsername(e.target.value)}
-                wrapperClass="mb-2"
-                label="Username"
-                id="form1"
-                type="text"
-              />
+                  <label>Email</label>
 
-              <MDBInput
-                onChange={(e) => setEmail(e.target.value)}
-                wrapperClass="mb-2"
-                label="Email"
-                id="form3"
-                type="text"
-              />
+                  <MDBInput
+                    onChange={(e) => setEmail(e.target.value)}
+                    wrapperClass="mb-2"
+                    id="form3"
+                    type="email"
+                  />
+                  <label>Password</label>
 
-              <MDBInput
-                onChange={(e) => setPassword(e.target.value)}
-                wrapperClass="mb-2"
-                label="Password"
-                id="form1"
-                type="text"
-              />
+                  <MDBInput
+                    onChange={(e) => setPassword(e.target.value)}
+                    wrapperClass="mb-2"
+                    minLength={6}
+                    id="form1"
+                    type="password"
+                  />
+                  <label>Confirm Password</label>
 
-              <MDBInput
-                onChange={(e) => setConfPassword(e.target.value)}
-                wrapperClass="mb-2"
-                label="Confirm Password"
-                id="form1"
-                type="text"
-              />
+                  <MDBInput
+                    onChange={(e) => setConfPassword(e.target.value)}
+                    wrapperClass="mb-3"
+                    minLength={6}
+                    id="form1"
+                    type="password"
+                  />
 
-              <MDBBtn
-                color="success"
-                className="mb-2"
-                size="lg"
-                onClick={handleSubmit}
-              >
-                Submit
-              </MDBBtn>
+                  <MDBBtn className="mt-2" id="submit" size="lg">
+                    Submit
+                  </MDBBtn>
+                </form>
+              </MDBContainer>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>

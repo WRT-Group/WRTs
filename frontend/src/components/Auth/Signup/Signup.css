@@ -1,4 +1,51 @@
 .signup {
   background-color: rgb(41, 41, 41);
   color: white;
+  padding: 20px;
+  padding-top: 12px;
+  border: 1px solid;
+  border-image: linear-gradient(135deg, #b400ff, #c614c6, #ed1679, #ff0066) 1;
+  color: rgb(199, 197, 197);
+}
+
+button#submit {
+  color: white;
+  float: right;
+  margin-right: 1rem;
+  width: 40%;
+  height: 6vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  background-size: 200% auto;
+  transition: 0.3s;
+}
+button#submit:hover {
+  background-position: right center;
+  color: whitesmoke;
+}
+button#submit {
+  background-image: linear-gradient(45deg, #b400ff, #c614c6, #ed1679, #ff0066);
+  border: none;
+}
+
+label {
+  padding: 0;
+  margin-left: -7px;
+}
+
+#form-container {
+  text-align: left;
+}
+
+.signup input[type] {
+  color: white;
+  border-radius: 6px;
+  background-color: #555555;
+  border: none;
+}
+
+.signup input:focus {
+  background-color: #555555;
 }
