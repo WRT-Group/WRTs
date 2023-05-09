@@ -13,6 +13,7 @@ body {
 }
 
 button#submit {
+  font-family: "Maginer";
   color: white;
   float: right;
   margin-right: 1rem;
