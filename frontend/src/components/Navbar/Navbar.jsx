@@ -22,6 +22,9 @@ const Navbar = () => {
               <li className="nav-item">
                 <Link className={`nav-link ${location==="/login" ? 'active' : ''} `} to="/login">Login</Link>
               </li>
+              <li className="nav-item">
+                <Link className={`nav-link ${location==="/contact" ? 'active' : ''} `} to="/contact">Contact Us</Link>
+              </li>
               <li className="nav-item dropdown">
                 <div className="nav-link dropdown-toggle" id="action-dropdown" data-bs-toggle="dropdown">Dropdown</div>
                 <ul className="dropdown-menu">
