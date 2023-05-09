@@ -78,3 +78,8 @@ a:hover {
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
 }
+p{
+  font-family: "Maginer";
+  font-size:small;
+  opacity: 0.8;
+}
