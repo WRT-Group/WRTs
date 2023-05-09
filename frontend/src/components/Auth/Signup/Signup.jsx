@@ -16,6 +16,9 @@ import Logo from "../../Logo/Logo";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../Navbar/Navbar";
 const Signup = () => {
+  const regexpUsername=/^.{4,}$/
+  const regexpPassword=/^.{8,}$/
+  const regexpEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/
   const navigate = useNavigate();
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
@@ -62,44 +65,49 @@ const Signup = () => {
                 <form onSubmit={(e) => handleSubmit(e)}>
                   <MDBRow>
                     <MDBCol md="6" className="py-0">
-                      <label>First Name</label>
+                      <label>First Name </label>
                       <MDBInput
                         onChange={(e) => setFName(e.target.value)}
                         wrapperClass="name mb-2"
                         id="form2"
                         type="text"
+                        placeholder="First Name *"
                       />
                     </MDBCol>
 
                     <MDBCol md="6" className="py-0">
-                      <label>Last Name</label>
+                      <label>Last Name </label>
 
                       <MDBInput
                         onChange={(e) => setLName(e.target.value)}
                         wrapperClass="mb-2"
                         id="form3"
                         type="text"
+                        placeholder="Last Name *"
                       />
                     </MDBCol>
                   </MDBRow>
-                  <label>Username</label>
+                  <label>Username </label>
 
                   <MDBInput
                     onChange={(e) => setUsername(e.target.value)}
                     wrapperClass="mb-2"
                     id="form1"
                     type="text"
+                    placeholder="Username123 *"
                   />
-
-                  <label>Email</label>
+                  {username.length>0 && <p>{regexpUsername.test(username) ? <p style={{color:"green"}}>Valid username</p> : <p style={{color:"#cc0022"}}>Invalid username</p>}</p>}<br/>
+                  <label>Email </label>
 
                   <MDBInput
                     onChange={(e) => setEmail(e.target.value)}
                     wrapperClass="mb-2"
                     id="form3"
                     type="email"
+                    placeholder="example@mail.com *"
                   />
-                  <label>Password</label>
+                  {email.length>0 && <p>{regexpEmail.test(email) ? <p style={{color:"green"}}>Valid Email</p> : <p style={{color:"#cc0022"}}>Invalid Email Format</p>}</p>}<br/>
+                  <label>Password </label>
 
                   <MDBInput
                     onChange={(e) => setPassword(e.target.value)}
@@ -107,8 +115,10 @@ const Signup = () => {
                     minLength={6}
                     id="form1"
                     type="password"
+                    placeholder="********"
                   />
-                  <label>Confirm Password</label>
+                  {password.length>0 && <p>{regexpPassword.test(password) ? <p style={{color:"green"}}>Valid Password</p> : <p style={{color:"#cc0022"}}>Password should greater than 8 characters</p>}</p>}<br/>
+                  <label>Confirm Password </label>
 
                   <MDBInput
                     onChange={(e) => setConfPassword(e.target.value)}
@@ -116,7 +126,9 @@ const Signup = () => {
                     minLength={6}
                     id="form1"
                     type="password"
+                    placeholder="********"
                   />
+                  {confPassword.length>0 && <p>{(confPassword.length>0 && confPassword===password) ? <p style={{color:"green"}}> Matched </p> : <p style={{color:"#cc0022"}}>Should match your current password</p>}</p>}<br/>
                   <MDBRow id="redirect">
                     <MDBCol>
                       <h6>
@@ -135,6 +147,7 @@ const Signup = () => {
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
+
       </MDBRow>
     </MDBContainer>
   );
