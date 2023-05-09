@@ -13,7 +13,9 @@ import axios from "axios";
 
 import "./Signup.css";
 import Logo from "../../Logo/Logo";
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
+  const navigate = useNavigate();
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
   const [username, setUsername] = useState("");
@@ -46,6 +48,7 @@ const Signup = () => {
         <MDBCol lg="6">
           <MDBCard className="my-2 signup" style={{ maxWidth: "600px" }}>
             <Logo />
+            <hr />
             <MDBCardBody className="px-0">
               <h3 className="mb-3 pb-md-0 px-md-2">Registration Info</h3>
               <MDBContainer id="form-container">
@@ -107,10 +110,19 @@ const Signup = () => {
                     id="form1"
                     type="password"
                   />
-
-                  <MDBBtn className="mt-2" id="submit" size="lg">
-                    Submit
-                  </MDBBtn>
+                  <MDBRow id="redirect">
+                    <MDBCol>
+                      <h6>
+                        Already have an account?{" "}
+                        <a onClick={() => navigate("/login")}>Log in</a>
+                      </h6>
+                    </MDBCol>
+                    <MDBCol>
+                      <MDBBtn className="mt-2" id="submit" size="lg">
+                        Submit
+                      </MDBBtn>
+                    </MDBCol>
+                  </MDBRow>
                 </form>
               </MDBContainer>
             </MDBCardBody>
