@@ -13,3 +13,9 @@ body{
 .card-body button{
     font-family: "Pixel"
 }
+.getStarted{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
