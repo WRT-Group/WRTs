@@ -38,9 +38,14 @@ const Signup = () => {
       email,
     };
 
-    axios.post("http://localhost:3001/user/signup", newUser, {
-      headers: { "Content-Type": "application/json" },
-    });
+    axios
+      .post("http://localhost:3001/user/signup", newUser, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((res) => {
+        window.localStorage.setItem("token", res.data.token);
+        navigate("/");
+      });
   };
   return (
     <MDBContainer fluid>
