@@ -12,7 +12,11 @@
   "dependencies": {
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
+<<<<<<< HEAD
+    "mdb-react-ui-kit": "^6.0.0",
+=======
     "framer-motion": "^10.12.9",
+>>>>>>> bf76bcb779cd5308e75cdb77a66f9ec7e7121c63
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.1"

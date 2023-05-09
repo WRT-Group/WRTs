@@ -7,10 +7,13 @@
     "start": "nodemon index.js"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "cors": "*",
     "dotenv": "^16.0.3",
     "express": "*",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "*",
+    "morgan": "^1.10.0",
     "nodemon": "*"
   }
 }
