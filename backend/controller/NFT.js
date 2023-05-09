@@ -9,7 +9,7 @@ const addNFTs=async(req,res)=>{
     res.json('created')
 }
 const edit=async(req,res)=>{
-    await model.updateOne({_id:req.params.id},{nftName:req.body.nftName,price:req.body.price})
+    await model.updateOne({_id:req.params.id},{nftName:req.body.nftName,price:req.body.price,image:req.body.image,description:req.body.description,owner:req.body.owner})
     res.json('updated')
 }
 module.exports={
