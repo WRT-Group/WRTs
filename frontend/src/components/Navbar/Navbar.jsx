@@ -1,8 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 
 const Navbar = () => {
+  const location=useLocation().pathname
+
   return (
     <div className='homepage'>
       <nav className="navbar navbar-expand-lg bg-body-tertiary rounded">
@@ -15,10 +17,10 @@ const Navbar = () => {
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" to="/">Home</Link>
+                <Link className={`nav-link ${location === '/getstarted' ? 'active' : ''}`} to="/getstarted">Get Started</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/getstarted">Get Started</Link>
+                <Link className={`nav-link ${location==="/login" ? 'active' : ''} `} to="/login">Login</Link>
               </li>
               <li className="nav-item dropdown">
                 <div className="nav-link dropdown-toggle" id="action-dropdown" data-bs-toggle="dropdown">Dropdown</div>
