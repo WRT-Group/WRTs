@@ -1,7 +1,9 @@
-import { Route, Routes } from 'react-router-dom'
-import Home from './components/Home/Home'
+import { useState } from 'react'
+import './App.css';
+import { Routes,Route } from 'react-router-dom';
 import './App.css'
 
+import Home from './components/Home/Home'
 import Signup from "./components/Auth/Signup/Signup"
 import Login from './components/Auth/Login/Login'
 
