@@ -1,3 +1,15 @@
 body{
     background-color: #3e3e3e;
 }
+
+.card-title{
+    font-family: "Pixel";
+}
+
+.card-text{
+    font-family: "Maginer";
+}
+
+.card-body button{
+    font-family: "Pixel"
+}
