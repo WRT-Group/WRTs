@@ -4,9 +4,12 @@ import './GetStarted.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
+import Navbar from "../Navbar/Navbar";
+
 const GetStarted=()=>{
     return(
-        <div >
+        <div>
+            <Navbar/>
             <div className="card" style={{backgroundColor:"#b400ff", color:"white" }}>
                 <div className="card-body">
                     <h1 className="card-title">Sign up now (it’s free!)</h1>
