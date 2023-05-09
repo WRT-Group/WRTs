@@ -12,6 +12,7 @@ import {
 import axios from "axios";
 
 import "./Signup.css";
+import Logo from "../../Logo/Logo";
 const Signup = () => {
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
@@ -42,8 +43,9 @@ const Signup = () => {
   return (
     <MDBContainer fluid>
       <MDBRow className="d-flex justify-content-center align-items-center">
-        <MDBCol lg="8">
+        <MDBCol lg="6">
           <MDBCard className="my-2 signup" style={{ maxWidth: "600px" }}>
+            <Logo />
             <MDBCardBody className="px-0">
               <h3 className="mb-3 pb-md-0 px-md-2">Registration Info</h3>
               <MDBContainer id="form-container">
