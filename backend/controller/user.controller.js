@@ -1,4 +1,4 @@
-const User = require("../model/User");
+const User = require("../model/User.model");
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -21,16 +21,17 @@ const signup = async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      NFTs: [],
     });
 
     await user.save();
 
     const token = jwt.sign(
       { userId: user._id, username: user.username },
-      process.env.JWT_SECRET,
+      process.env.token,
       { expiresIn: "1h" }
     );
-    
+
     return res.status(201).json({ token });
   } catch (err) {
     console.error(err);
