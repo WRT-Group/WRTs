@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "cors": "*",
+    "dotenv": "^16.0.3",
+    "express": "*",
+    "mongoose": "*",
+    "nodemon": "*"
+  }
+}
