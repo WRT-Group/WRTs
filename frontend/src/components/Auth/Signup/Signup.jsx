@@ -14,6 +14,7 @@ import axios from "axios";
 import "./Signup.css";
 import Logo from "../../Logo/Logo";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../../Navbar/Navbar";
 const Signup = () => {
   const navigate = useNavigate();
   const [fName, setFName] = useState("");
@@ -49,6 +50,7 @@ const Signup = () => {
   };
   return (
     <MDBContainer fluid>
+      <Navbar/>
       <MDBRow className="d-flex justify-content-center align-items-center">
         <MDBCol lg="6">
           <MDBCard className="my-2 signup" style={{ maxWidth: "600px" }}>
