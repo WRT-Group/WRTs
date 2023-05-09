@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const model=require('../model/model.js')
+const model=require('../model/NFT.js')
 
 const getAll= async(req,res)=>{
     const data=await model.find({}).lean();
