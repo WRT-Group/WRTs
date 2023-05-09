@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 connectDB();
 
-app.use("/", router);
+app.use(router);
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
