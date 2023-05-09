@@ -45,12 +45,6 @@ const Signup = () => {
       <MDBRow className="d-flex justify-content-center align-items-center">
         <MDBCol lg="8">
           <MDBCard className="my-2 signup" style={{ maxWidth: "600px" }}>
-            <MDBCardImage
-              src="../../../../assets/istockphoto-1298834196-170667a.jpg"
-              className="w-100 rounded-top"
-              alt="Sample photo"
-            />
-
             <MDBCardBody className="px-0">
               <h3 className="mb-3 pb-md-0 px-md-2">Registration Info</h3>
               <MDBContainer id="form-container">
