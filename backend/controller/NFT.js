@@ -6,6 +6,16 @@ const getAll = async (req, res) => {
   res.json(data);
 };
 
+const getByUser = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const NFTs = await NFT.find({ owner: id }).lean();
+    res.status(200).json(NFTs);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 const addNFT = async (req, res) => {
   try {
     const { nftName, price, owner, image, description } = req.body;
@@ -47,14 +57,15 @@ const search = (req, res) => {
     res.send(nft)
   );
 };
-const remove=async(req,res)=>{
-    await NFT.deleteOne({_id:req.params.id})
-    res.json('deleted')
-}
+const remove = async (req, res) => {
+  await NFT.deleteOne({ _id: req.params.id });
+  res.json("deleted");
+};
 module.exports = {
   getAll,
+  getByUser,
   addNFT,
   edit,
   search,
-  remove
+  remove,
 };
