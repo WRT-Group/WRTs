@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import OneNfts from "./OneNfts";
-import axios from 'axios'
 import './AllNfts.css'
+import { Context } from "../Context/Context";
+
 const AllNfts=()=>{
-    const [NFTdata,setNFTdata]=useState([])
-    const fetch=async()=>{
-        const res=await axios.get("http://localhost:3001/NFT/getAll")
-        setNFTdata(res.data)
-    }
-    useEffect(()=>{
-        fetch();
-    },[])
+    const { data }=useContext(Context)
+    
     return (
         <>
         <br />
@@ -18,7 +13,7 @@ const AllNfts=()=>{
         <br />
         <h1>Marketplace</h1><br/>
         <div className="all">
-            {NFTdata.map((one,i)=>{
+            {data.map((one,i)=>{
                 return <OneNfts key={i} one={one}/>
             })}
         </div>
