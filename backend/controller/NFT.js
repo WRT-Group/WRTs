@@ -19,7 +19,7 @@ const addNFT = async (req, res) => {
     });
 
     await newNFT.save();
-    // await User.updateOne({ _id: owner }, { $push: { NFTs: newNFT._id } });
+    await User.updateOne({ _id: owner }, { $push: { NFTs: newNFT._id } });
 
     res.status(201).json({ message: "NFT added successfully" });
   } catch (err) {
