@@ -60,7 +60,7 @@ const Signup = () => {
             <Logo />
             <hr />
             <MDBCardBody className="px-0">
-              <h3 className="mb-3 pb-md-0 px-md-2">Registration Info</h3>
+              <h3 className="mb-3 pb-md-0 px-md-2 hd">Registration Info</h3>
               <MDBContainer id="form-container">
                 <form onSubmit={(e) => handleSubmit(e)}>
                   <MDBRow>

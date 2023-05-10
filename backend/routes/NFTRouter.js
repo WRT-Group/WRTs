@@ -1,12 +1,12 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { getAll, addNFTs, edit, search }=require('../controller/NFT.js')
+const { getAll, addNFT, edit, search } = require("../controller/NFT.js");
 
-router.get('/getAll', getAll)
-router.get("/search", search)
+router.get("/getAll", getAll);
+router.get("/search", search);
 
-router.post('/post', addNFTs)
+router.post("/add", addNFT);
 
-router.put('edit/:id', edit)
+router.put("edit/:id", edit);
 
 module.exports = router;
