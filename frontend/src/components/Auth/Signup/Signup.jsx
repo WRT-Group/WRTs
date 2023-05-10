@@ -60,7 +60,7 @@ const Signup = () => {
             <Logo />
             <hr />
             <MDBCardBody className="px-0">
-              <h3 className="mb-3 pb-md-0 px-md-2">Registration Info</h3>
+              <h3 className="mb-3 pb-md-0 px-md-2 hd">Registration Info</h3>
               <MDBContainer id="form-container">
                 <form onSubmit={(e) => handleSubmit(e)}>
                   <MDBRow>
@@ -69,7 +69,7 @@ const Signup = () => {
                       <MDBInput
                         onChange={(e) => setFName(e.target.value)}
                         wrapperClass="name mb-2"
-                        id="form2"
+                        id="form1"
                         type="text"
                         placeholder="First Name *"
                       />
@@ -81,7 +81,7 @@ const Signup = () => {
                       <MDBInput
                         onChange={(e) => setLName(e.target.value)}
                         wrapperClass="mb-2"
-                        id="form3"
+                        id="form2"
                         type="text"
                         placeholder="Last Name *"
                       />
@@ -92,7 +92,7 @@ const Signup = () => {
                   <MDBInput
                     onChange={(e) => setUsername(e.target.value)}
                     wrapperClass="mb-2"
-                    id="form1"
+                    id="form3"
                     type="text"
                     placeholder="Username123 *"
                   />
@@ -102,7 +102,7 @@ const Signup = () => {
                   <MDBInput
                     onChange={(e) => setEmail(e.target.value)}
                     wrapperClass="mb-2"
-                    id="form3"
+                    id="form4"
                     type="email"
                     placeholder="example@mail.com *"
                   />
@@ -113,7 +113,7 @@ const Signup = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     wrapperClass="mb-2"
                     minLength={6}
-                    id="form1"
+                    id="form5"
                     type="password"
                     placeholder="********"
                   />
@@ -124,7 +124,7 @@ const Signup = () => {
                     onChange={(e) => setConfPassword(e.target.value)}
                     wrapperClass="mb-3"
                     minLength={6}
-                    id="form1"
+                    id="form6"
                     type="password"
                     placeholder="********"
                   />

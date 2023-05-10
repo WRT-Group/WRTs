@@ -39,4 +39,29 @@ const signup = async (req, res) => {
   }
 };
 
-module.exports = { signup };
+const login=async (req,res)=>{
+  const { user, pass }=req.body
+  const loggedUser=await User.findOne({username: user})
+    if(loggedUser){
+      if(await bcrypt.compare(pass,loggedUser.password)){
+        const token=jwt.sign({id: loggedUser._id},process.env.token)
+        res.send({
+          token: token,
+          id: loggedUser._id,
+          fName: loggedUser.fName,
+          lName: loggedUser.lName,
+          username: loggedUser.username,
+          email: loggedUser.email,
+          NFTs: loggedUser.NFTs
+        })
+      }
+      else{
+        res.send("incorrect password")
+      }
+    }
+    else{
+      res.send("cannot find user")
+    }
+}
+
+module.exports = { signup, login };

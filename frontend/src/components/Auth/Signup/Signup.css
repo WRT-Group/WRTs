@@ -3,6 +3,7 @@ body {
 }
 
 .signup {
+  font-family: "Maginer";
   background-color: rgb(41, 41, 41);
   color: white;
   padding: 20px;
@@ -54,6 +55,7 @@ label {
 
 .signup input:focus {
   background-color: #555555;
+  box-shadow: 0 0 0 0.26rem rgba(155, 77, 202, 0.25);
 }
 
 #redirect {
@@ -78,8 +80,7 @@ a:hover {
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
 }
-p{
-  font-family: "Maginer";
-  font-size:small;
+p {
+  font-size: small;
   opacity: 0.8;
 }

@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
-const Context = () => {
+export const Context=createContext()
+
+export const ContextProvider = ({children}) => {
+  const [currentUser,setCurrentUser]=useState({})
+
+  useEffect(()=>{
+    console.log(currentUser)
+  },[currentUser])
+
   return (
-    <div>
-      
-    </div>
+    <Context.Provider value={{currentUser,setCurrentUser}}>
+      {children}
+    </Context.Provider>
   );
 };
-
-export default Context;
