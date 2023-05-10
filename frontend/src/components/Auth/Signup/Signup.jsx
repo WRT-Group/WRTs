@@ -192,14 +192,9 @@ const Signup = () => {
                       </h6>
                     </MDBCol>
                     <MDBCol>
-                      <MDBBtn
-                        className="mt-2"
-                        disabled={disabled}
-                        id="submit"
-                        size="lg"
-                      >
+                      <button className="mt-2" disabled={disabled}>
                         Submit
-                      </MDBBtn>
+                      </button>
                     </MDBCol>
                   </MDBRow>
                 </form>
