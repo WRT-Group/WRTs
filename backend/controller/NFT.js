@@ -6,6 +6,12 @@ const getAll = async (req, res) => {
   res.json(data);
 };
 
+
+const getOne=async (req,res)=>{
+    const data=await NFT.find({_id:req.params.id});
+    res.json(data)
+}
+
 const getByUser = async (req, res) => {
   const id = req.params.id;
   try {
@@ -72,4 +78,5 @@ module.exports = {
   edit,
   search,
   remove,
+  getOne
 };

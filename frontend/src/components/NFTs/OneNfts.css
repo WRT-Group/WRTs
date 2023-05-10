@@ -7,14 +7,13 @@
     background: linear-gradient(0deg, rgba(40,44,52,1) 0%, rgba(17,0,32,.5) 100%);
     box-shadow: 0 7px 20px 5px #00000088;
     border-radius: .7rem;
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
     overflow: hidden;
     transition: .5s all;
+}
     
     
     
-    ::before{
+.nft ::before{
       position: fixed;
       content: "";
       box-shadow: 0 0 100px 40px #ffffff08;
@@ -23,19 +22,19 @@
       transform: rotate(-45deg);
       height: 60rem;
       transition: .7s all;
-    }
-    &:hover{
+}
+.nft:hover{
       border: 1px solid #ffffff44;
       box-shadow: 0 7px 50px 10px #000000aa;
       transform: scale(1.015);
       filter: brightness(1.3);
-      ::before{
+}
+.nft:hover ::before{
         filter: brightness(.5);
         top: -100%;
         left: 200%;
-      }
-    }
-  }
+}
+
   
 .bg{
     position: fixed;
@@ -128,4 +127,15 @@
           object-fit: cover;
           margin: 0;
 }
+.nft button {
+    font-family: "Maginer";
+    color: white;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    background-image: linear-gradient(45deg, #b400ff, #c614c6, #ed1679, #ff0066);
+    border-radius: 5px;
+    border: #a89ec9;
+  }
      

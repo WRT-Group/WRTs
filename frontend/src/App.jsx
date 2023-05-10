@@ -6,9 +6,11 @@ import Signup from "./components/Auth/Signup/Signup";
 import Login from "./components/Auth/Login/Login";
 import GetStarted from "./components/GetStarted/GetStarted";
 import AddNFT from "./components/MyNFTs/AddNFT/AddNFT";
+import BuyNFT from "./components/Buy/BuyNft";
 import Search from "./components/Search/Search";
 
 function App() {
+
   return (
     <>
       <AddNFT />
@@ -17,6 +19,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/getstarted" element={<GetStarted />} />
+        <Route path="/BuyNFT/:id" element={<BuyNFT/>}/>
         <Route path="/search" element={<Search/>}/>
       </Routes>
     </>
