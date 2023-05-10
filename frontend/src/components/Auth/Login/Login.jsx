@@ -43,6 +43,7 @@ const Login = () => {
       else{
         setCurrentUser(user.data)
         localStorage.setItem("currentUser",JSON.stringify(user.data))
+        navigate("/")
       }
     })
   }

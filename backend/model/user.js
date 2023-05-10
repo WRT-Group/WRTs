@@ -9,6 +9,7 @@ const userSchema = Mongoose.Schema(
     email: String,
     balance: Number,
     NFTs: Array,
+    isAdmin: Boolean
   },
   { timestamps: true }
 );

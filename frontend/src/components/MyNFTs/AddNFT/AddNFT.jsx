@@ -49,22 +49,22 @@ function AddNFT() {
         <Modal.Body>
           <form id="form-container" onSubmit={(e) => handleSubmit(e)}>
             <MDBCol md="10" className="mb-4">
-              <label>NFT Name</label>
+              <label className="add-nft-label">NFT Name</label>
               <MDBInput
                 className="mb-2 nft-input"
                 onChange={(e) => setName(e.target.value)}
               />
-              <label>Description</label>
+              <label className="add-nft-label">Description</label>
               <MDBTextArea
                 className="mb-2 nft-input"
                 onChange={(e) => setDescription(e.target.value)}
               />
-              <label>NFT Price</label>
+              <label className="add-nft-label">NFT Price</label>
               <MDBInput
                 className="mb-2 nft-input"
                 onChange={(e) => setPrice(e.target.value)}
               />
-              <label>Image Url</label>
+              <label className="add-nft-label">Image Url</label>
               <MDBInput
                 className="nft-input"
                 onChange={(e) => setImage(e.target.value)}
