@@ -1,18 +1,28 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./Login.css"
 import Navbar from '../../Navbar/Navbar';
-import { MDBBtn,MDBContainer,MDBCard,MDBCardBody,MDBRow,MDBCol,MDBInput} from "mdb-react-ui-kit";
+import { MDBContainer,MDBCard,MDBCardBody,MDBRow,MDBCol,MDBInput} from "mdb-react-ui-kit";
 import axios from "axios";
 
 import Logo from '../../Logo/Logo';
 import { Context } from '../../Context/Context';
+import RedAlert from '../../Alerts/RedAlert';
+import YellowAlert from '../../Alerts/YellowAlert';
 
 const Login = () => {
-  const { currentUser, setCurrentUser }=useContext(Context)
+  const { currentUser,setCurrentUser }=useContext(Context)
   const [username,setUsername]=useState("")
   const [password,setPassword]=useState("")
+  const [passwordInc,setPasswordInc]=useState(false)
+  const [usernameInc,setUsernameInc]=useState(false)
   const navigate=useNavigate()
+
+  useEffect(()=>{
+    if(currentUser){
+      navigate("/")
+    }
+  },[])
 
   const handleSubmit=(e)=>{
     e.preventDefault()
@@ -22,13 +32,31 @@ const Login = () => {
       pass: password
     }
     axios.post("http://localhost:3001/user/login",loguser).then(user=>{
-      setCurrentUser(user.data)
+      if(user.data==="incorrect password"){
+        setPasswordInc(true)
+        setTimeout(clearInc,2000)
+      }
+      else if(user.data==="cannot find user"){
+        setUsernameInc(true)
+        setTimeout(clearInc,2000)
+      }
+      else{
+        setCurrentUser(user.data)
+        localStorage.setItem("currentUser",JSON.stringify(user.data))
+      }
     })
+  }
+
+  const clearInc=()=>{
+    setUsernameInc(false)
+    setPasswordInc(false)
   }
 
   return (
     <MDBContainer fluid>
       <Navbar/>
+      {passwordInc && <RedAlert text={"Password Incorrect"} clearInc={clearInc}/>}
+      {usernameInc && <YellowAlert text={"User Not Found!"} clearInc={clearInc}/>}
       <MDBRow className="d-flex justify-content-center align-items-center">
         <MDBCol lg="6">
           <MDBCard className="my-2 login" style={{ maxWidth: "600px" }}>

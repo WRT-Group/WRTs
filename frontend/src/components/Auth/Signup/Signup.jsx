@@ -1,10 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
-  MDBBtn,
   MDBContainer,
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
   MDBRow,
   MDBCol,
   MDBInput,
@@ -17,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../Navbar/Navbar";
 import { Context } from "../../Context/Context";
 const Signup = () => {
-  const { setCurrentUser } = useContext(Context);
+  const { currentUser,setCurrentUser } = useContext(Context);
 
   const regexpUsername = /^.{4,}$/;
   const regexpPassword = /^.{8,}$/;
@@ -32,6 +30,12 @@ const Signup = () => {
   const [email, setEmail] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(currentUser){
+      navigate("/")
+    }
+  },[])
 
   const handleSubmit = (e) => {
     e.preventDefault();
