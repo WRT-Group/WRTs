@@ -38,17 +38,21 @@ const addNFT = async (req, res) => {
   }
 };
 const edit = async (req, res) => {
-  await NFT.updateOne(
-    { _id: req.params.id },
-    {
-      nftName: req.body.nftName,
-      price: req.body.price,
-      image: req.body.image,
-      description: req.body.description,
-      owner: req.body.owner,
-    }
-  );
-  res.json("updated");
+  try {
+    await NFT.updateOne(
+      { _id: req.params.id },
+      {
+        nftName: req.body.nftName,
+        price: req.body.price,
+        image: req.body.image,
+        description: req.body.description,
+      }
+    );
+    res.json("updated");
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 };
 
 const search = (req, res) => {
