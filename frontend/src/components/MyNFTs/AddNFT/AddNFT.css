@@ -39,3 +39,7 @@ button#submitNFT {
   color: white;
   background-color: #2e2e2e;
 }
+
+.nft-input {
+  font-family: "Maginer";
+}
