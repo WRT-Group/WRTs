@@ -1,6 +1,11 @@
-import React from "react";
+import React ,{useContext}from "react";
+import { Link } from "react-router-dom";
 import './OneNfts.css'
+import { Context } from "../Context/Context";
 const OneNfts=(props)=>{
+    const { currentUser }=useContext(Context)
+    console.log(currentUser)
+   
     return(
         
     <div className="nft">
@@ -18,6 +23,8 @@ const OneNfts=(props)=>{
         </div>
       </div>
     </div>
+    {currentUser.owner!==props.one._id && <button ><Link to={`/BuyNFT/${props.one._id}`}>Buy</Link></button>}<br />
+    <br />
   </div>
     )
 };

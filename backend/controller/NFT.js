@@ -6,6 +6,10 @@ const getAll = async (req, res) => {
   res.json(data);
 };
 
+const getOne=async (req,res)=>{
+    const data=await NFT.find({_id:req.params.id});
+    res.json(data)
+}
 const addNFT = async (req, res) => {
   try {
     const { nftName, price, owner, image, description } = req.body;
@@ -56,5 +60,6 @@ module.exports = {
   addNFT,
   edit,
   search,
-  remove
+  remove,
+  getOne
 };
