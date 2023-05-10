@@ -147,7 +147,6 @@ const Signup = () => {
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
-
       </MDBRow>
     </MDBContainer>
   );
