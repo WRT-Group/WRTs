@@ -44,6 +44,7 @@ const Navbar = () => {
             <Search />
           </div>
         </div>
+        <Link className={`nav-link ${location === '/profile' ? 'active' : ''}`} to="/profile">My Profile</Link>
       </nav>
     </div>
   );
