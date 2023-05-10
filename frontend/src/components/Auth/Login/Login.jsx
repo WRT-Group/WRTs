@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./Login.css"
 import Navbar from '../../Navbar/Navbar';
@@ -6,10 +6,25 @@ import { MDBBtn,MDBContainer,MDBCard,MDBCardBody,MDBRow,MDBCol,MDBInput} from "m
 import axios from "axios";
 
 import Logo from '../../Logo/Logo';
+import { Context } from '../../Context/Context';
 
 const Login = () => {
+  const { currentUser, setCurrentUser }=useContext(Context)
   const [username,setUsername]=useState("")
+  const [password,setPassword]=useState("")
   const navigate=useNavigate()
+
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    
+    const loguser={
+      user: username,
+      pass: password
+    }
+    axios.post("http://localhost:3001/user/login",loguser).then(user=>{
+      setCurrentUser(user.data)
+    })
+  }
 
   return (
     <MDBContainer fluid>
@@ -22,7 +37,7 @@ const Login = () => {
             <MDBCardBody className="px-0">
               <h3 className="mb-3 pb-md-0 px-md-2">Registration Info</h3>
               <MDBContainer id="form-container">
-                <form onSubmit={(e) => handleSubmit(e)}>
+                <form onSubmit={handleSubmit}>
                   <label>Username </label>
 
                   <MDBInput
@@ -30,7 +45,7 @@ const Login = () => {
                     wrapperClass="mb-2"
                     id="form1"
                     type="text"
-                    placeholder="Username"
+                    placeholder="Username or email"
                   />
 
                   <label>Password </label>
@@ -39,7 +54,7 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     wrapperClass="mb-2"
                     minLength={6}
-                    id="form1"
+                    id="form2"
                     type="password"
                     placeholder="********"
                   />
@@ -52,7 +67,7 @@ const Login = () => {
                       </h6>
                     </MDBCol>
                     <MDBCol>
-                      <MDBBtn className="mt-2" id="submit" size="lg">
+                      <MDBBtn className="mt-2" id="submit" size="lg" onClick={handleSubmit}>
                         Submit
                       </MDBBtn>
                     </MDBCol>
