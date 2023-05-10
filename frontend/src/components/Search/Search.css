@@ -1,0 +1,10 @@
+#searchbar{
+  font-family: "Maginer";
+  background-color: #3e3e3e;
+  color: #c614c6;
+}
+
+#searchbar:focus {
+  border-color: #9b4dca;
+  box-shadow: 0 0 0 0.2rem rgba(155, 77, 202, 0.25);
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Logo from '../Logo/Logo';
+import Search from '../Search/Search';
 
 const Navbar = () => {
   const location=useLocation().pathname
@@ -34,9 +35,7 @@ const Navbar = () => {
                 </ul>
               </li>
             </ul>
-            <form role="search">
-              <input className="form-control" id="searchbar" type="search" placeholder="Search" aria-label="Search"/>
-            </form>
+            <Search/>     
           </div>
         </div>
       </nav>
