@@ -4,8 +4,7 @@ import './OneNfts.css'
 import { Context } from "../Context/Context";
 const OneNfts=(props)=>{
     const { currentUser }=useContext(Context)
-    console.log(currentUser)
-   
+    
     return(
         
     <div className="nft">
