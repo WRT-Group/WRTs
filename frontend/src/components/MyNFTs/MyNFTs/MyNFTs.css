@@ -1,0 +1,11 @@
+.my-nfts {
+  display: flex;
+  flex-wrap: wrap;
+  user-select: none;
+  font-family: "Maginer";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #eee;
+  user-select: none;
+  margin: 1rem auto;
+}

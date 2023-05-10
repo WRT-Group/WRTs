@@ -1,6 +1,7 @@
 button#addNFT {
   background: transparent;
   border: none;
+  bottom: 0;
 }
 
 button#addNFT:hover {
@@ -42,4 +43,11 @@ button#submitNFT {
 
 .nft-input {
   font-family: "Maginer";
+  background-color: #555555;
+  border: none;
+}
+
+.nft-input:focus {
+  background-color: #555555;
+  box-shadow: 0 0 0 0.2rem rgba(155, 77, 202, 0.25);
 }

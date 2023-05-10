@@ -6,6 +6,16 @@ const getAll = async (req, res) => {
   res.json(data);
 };
 
+const getByUser = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const NFTs = await NFT.find({ owner: id }).lean();
+    res.status(200).json(NFTs);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 const addNFT = async (req, res) => {
   try {
     const { nftName, price, owner, image, description } = req.body;
@@ -28,17 +38,21 @@ const addNFT = async (req, res) => {
   }
 };
 const edit = async (req, res) => {
-  await NFT.updateOne(
-    { _id: req.params.id },
-    {
-      nftName: req.body.nftName,
-      price: req.body.price,
-      image: req.body.image,
-      description: req.body.description,
-      owner: req.body.owner,
-    }
-  );
-  res.json("updated");
+  try {
+    await NFT.updateOne(
+      { _id: req.params.id },
+      {
+        nftName: req.body.nftName,
+        price: req.body.price,
+        image: req.body.image,
+        description: req.body.description,
+      }
+    );
+    res.json("updated");
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 };
 
 const search = (req, res) => {
@@ -47,14 +61,15 @@ const search = (req, res) => {
     res.send(nft)
   );
 };
-const remove=async(req,res)=>{
-    await NFT.deleteOne({_id:req.params.id})
-    res.json('deleted')
-}
+const remove = async (req, res) => {
+  await NFT.deleteOne({ _id: req.params.id });
+  res.json("deleted");
+};
 module.exports = {
   getAll,
+  getByUser,
   addNFT,
   edit,
   search,
-  remove
+  remove,
 };
