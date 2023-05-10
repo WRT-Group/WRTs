@@ -8,7 +8,6 @@ const Home = () => {
   return (
     <>
       <Navbar/>
-      <h1>Marketplace</h1>
       <AllNfts/>
     </>
   );

@@ -12,11 +12,17 @@ const AllNfts=()=>{
         fetch();
     },[])
     return (
+        <>
+        <br />
+        <br />
+        <br />
+        <h1>Marketplace</h1><br/>
         <div className="all">
             {NFTdata.map((one,i)=>{
                 return <OneNfts key={i} one={one}/>
             })}
         </div>
+        </>
     )
 };
 export default AllNfts;

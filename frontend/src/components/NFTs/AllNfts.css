@@ -2,13 +2,17 @@
 .all{
     display: flex;
     flex-wrap: wrap;
-    margin: 0;
+    user-select:none;
     font-family:"Maginer";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #eee;
-    user-select: none;
-    margin: 5rem auto;
-    
-    
-  }
+    user-select:none;
+    margin: 1rem auto;  
+}
+
+h1{
+    font-family:"Maginer";
+    color: #eee;
+    text-align: center;
+}

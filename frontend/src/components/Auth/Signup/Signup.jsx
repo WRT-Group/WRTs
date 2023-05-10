@@ -96,7 +96,7 @@ const Signup = () => {
                     type="text"
                     placeholder="Username123 *"
                   />
-                  {username.length>0 && <p>{regexpUsername.test(username) ? <p style={{color:"green"}}>Valid username</p> : <p style={{color:"#cc0022"}}>Invalid username</p>}</p>}<br/>
+                  {username.length>0 && <span>{regexpUsername.test(username) ? <p style={{color:"green"}}>Valid username</p> : <p style={{color:"#cc0022"}}>Invalid username</p>}</span>}<br/>
                   <label>Email </label>
 
                   <MDBInput
@@ -106,7 +106,7 @@ const Signup = () => {
                     type="email"
                     placeholder="example@mail.com *"
                   />
-                  {email.length>0 && <p>{regexpEmail.test(email) ? <p style={{color:"green"}}>Valid Email</p> : <p style={{color:"#cc0022"}}>Invalid Email Format</p>}</p>}<br/>
+                  {email.length>0 && <span>{regexpEmail.test(email) ? <p style={{color:"green"}}>Valid Email</p> : <p style={{color:"#cc0022"}}>Invalid Email Format</p>}</span>}<br/>
                   <label>Password </label>
 
                   <MDBInput
@@ -117,7 +117,7 @@ const Signup = () => {
                     type="password"
                     placeholder="********"
                   />
-                  {password.length>0 && <p>{regexpPassword.test(password) ? <p style={{color:"green"}}>Valid Password</p> : <p style={{color:"#cc0022"}}>Password should greater than 8 characters</p>}</p>}<br/>
+                  {password.length>0 && <span>{regexpPassword.test(password) ? <p style={{color:"green"}}>Valid Password</p> : <p style={{color:"#cc0022"}}>Password should greater than 8 characters</p>}</span>}<br/>
                   <label>Confirm Password </label>
 
                   <MDBInput
@@ -128,7 +128,7 @@ const Signup = () => {
                     type="password"
                     placeholder="********"
                   />
-                  {confPassword.length>0 && <p>{(confPassword.length>0 && confPassword===password) ? <p style={{color:"green"}}> Matched </p> : <p style={{color:"#cc0022"}}>Should match your current password</p>}</p>}<br/>
+                  {confPassword.length>0 && <span>{(confPassword.length>0 && confPassword===password) ? <p style={{color:"green"}}> Matched </p> : <p style={{color:"#cc0022"}}>Should match your current password</p>}</span>}<br/>
                   <MDBRow id="redirect">
                     <MDBCol>
                       <h6>
