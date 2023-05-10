@@ -31,13 +31,13 @@ const Login = () => {
       <Navbar/>
       <MDBRow className="d-flex justify-content-center align-items-center">
         <MDBCol lg="6">
-          <MDBCard className="my-2 signup" style={{ maxWidth: "600px" }}>
+          <MDBCard className="my-2 login" style={{ maxWidth: "600px" }}>
             <Logo />
             <hr />
             <MDBCardBody className="px-0">
               <h3 className="mb-3 pb-md-0 px-md-2">Registration Info</h3>
-              <MDBContainer id="form-container">
-                <form onSubmit={handleSubmit}>
+              <MDBContainer id="login-form-container">
+                <form onSubmit={(e)=>handleSubmit(e)}>
                   <label>Username </label>
 
                   <MDBInput
@@ -67,9 +67,7 @@ const Login = () => {
                       </h6>
                     </MDBCol>
                     <MDBCol>
-                      <MDBBtn className="mt-2" id="submit" size="lg" onClick={handleSubmit}>
-                        Submit
-                      </MDBBtn>
+                      <button type='submit' id="submit">Submit</button>
                     </MDBCol>
                   </MDBRow>
                 </form>

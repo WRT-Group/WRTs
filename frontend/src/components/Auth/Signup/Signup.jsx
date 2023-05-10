@@ -61,7 +61,7 @@ const Signup = () => {
             <hr />
             <MDBCardBody className="px-0">
               <h3 className="mb-3 pb-md-0 px-md-2 hd">Registration Info</h3>
-              <MDBContainer id="form-container">
+              <MDBContainer id="signup-form-container">
                 <form onSubmit={(e) => handleSubmit(e)}>
                   <MDBRow>
                     <MDBCol md="6" className="py-0">
