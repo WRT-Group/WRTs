@@ -1,0 +1,14 @@
+
+.all{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    font-family:"Maginer";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #eee;
+    user-select: none;
+    margin: 5rem auto;
+    
+    
+  }
