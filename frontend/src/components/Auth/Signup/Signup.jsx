@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   MDBBtn,
   MDBContainer,
@@ -15,11 +15,15 @@ import "./Signup.css";
 import Logo from "../../Logo/Logo";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../Navbar/Navbar";
+import { Context } from "../../Context/Context";
 const Signup = () => {
-  const regexpUsername=/^.{4,}$/
-  const regexpPassword=/^.{8,}$/
-  const regexpEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  const navigate = useNavigate();
+  const { setCurrentUser } = useContext(Context);
+
+  const regexpUsername = /^.{4,}$/;
+  const regexpPassword = /^.{8,}$/;
+  const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const [disabled, setDisabled] = useState(false);
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
   const [username, setUsername] = useState("");
@@ -27,8 +31,11 @@ const Signup = () => {
   const [confPassword, setConfPassword] = useState("");
   const [email, setEmail] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setDisabled(true);
 
     if (password !== confPassword) {
       return alert("passwords don't match");
@@ -47,13 +54,21 @@ const Signup = () => {
         headers: { "Content-Type": "application/json" },
       })
       .then((res) => {
-        window.localStorage.setItem("token", res.data.token);
-        navigate("/");
+        if (res.data.message) alert(res.data.message);
+        else {
+          setCurrentUser(res.data);
+          navigate("/");
+        }
+        setDisabled(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setDisabled(false);
       });
   };
   return (
     <MDBContainer fluid>
-      <Navbar/>
+      <Navbar />
       <MDBRow className="d-flex justify-content-center align-items-center">
         <MDBCol lg="6">
           <MDBCard className="my-2 signup" style={{ maxWidth: "600px" }}>
@@ -96,7 +111,16 @@ const Signup = () => {
                     type="text"
                     placeholder="Username123 *"
                   />
-                  {username.length>0 && <span>{regexpUsername.test(username) ? <p style={{color:"green"}}>Valid username</p> : <p style={{color:"#cc0022"}}>Invalid username</p>}</span>}<br/>
+                  {username.length > 0 && (
+                    <span>
+                      {regexpUsername.test(username) ? (
+                        <p style={{ color: "green" }}>Valid username</p>
+                      ) : (
+                        <p style={{ color: "#cc0022" }}>Invalid username</p>
+                      )}
+                    </span>
+                  )}
+                  <br />
                   <label>Email </label>
 
                   <MDBInput
@@ -106,7 +130,16 @@ const Signup = () => {
                     type="email"
                     placeholder="example@mail.com *"
                   />
-                  {email.length>0 && <span>{regexpEmail.test(email) ? <p style={{color:"green"}}>Valid Email</p> : <p style={{color:"#cc0022"}}>Invalid Email Format</p>}</span>}<br/>
+                  {email.length > 0 && (
+                    <span>
+                      {regexpEmail.test(email) ? (
+                        <p style={{ color: "green" }}>Valid Email</p>
+                      ) : (
+                        <p style={{ color: "#cc0022" }}>Invalid Email Format</p>
+                      )}
+                    </span>
+                  )}
+                  <br />
                   <label>Password </label>
 
                   <MDBInput
@@ -117,7 +150,18 @@ const Signup = () => {
                     type="password"
                     placeholder="********"
                   />
-                  {password.length>0 && <span>{regexpPassword.test(password) ? <p style={{color:"green"}}>Valid Password</p> : <p style={{color:"#cc0022"}}>Password should greater than 8 characters</p>}</span>}<br/>
+                  {password.length > 0 && (
+                    <span>
+                      {regexpPassword.test(password) ? (
+                        <p style={{ color: "green" }}>Valid Password</p>
+                      ) : (
+                        <p style={{ color: "#cc0022" }}>
+                          Password should greater than 8 characters
+                        </p>
+                      )}
+                    </span>
+                  )}
+                  <br />
                   <label>Confirm Password </label>
 
                   <MDBInput
@@ -128,7 +172,18 @@ const Signup = () => {
                     type="password"
                     placeholder="********"
                   />
-                  {confPassword.length>0 && <span>{(confPassword.length>0 && confPassword===password) ? <p style={{color:"green"}}> Matched </p> : <p style={{color:"#cc0022"}}>Should match your current password</p>}</span>}<br/>
+                  {confPassword.length > 0 && (
+                    <span>
+                      {confPassword.length > 0 && confPassword === password ? (
+                        <p style={{ color: "green" }}> Matched </p>
+                      ) : (
+                        <p style={{ color: "#cc0022" }}>
+                          Should match your current password
+                        </p>
+                      )}
+                    </span>
+                  )}
+                  <br />
                   <MDBRow id="redirect">
                     <MDBCol>
                       <h6>
@@ -137,9 +192,9 @@ const Signup = () => {
                       </h6>
                     </MDBCol>
                     <MDBCol>
-                      <MDBBtn className="mt-2" id="submit" size="lg">
+                      <button className="mt-2" disabled={disabled}>
                         Submit
-                      </MDBBtn>
+                      </button>
                     </MDBCol>
                   </MDBRow>
                 </form>
