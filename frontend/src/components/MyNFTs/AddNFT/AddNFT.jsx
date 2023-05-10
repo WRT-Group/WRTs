@@ -26,9 +26,11 @@ function AddNFT() {
       owner: "owner_id", //  ! TODO: Once we figure out how we're storing user data revisit this
     };
 
-    axios.post("http://localhost:3001/NFT/add", newNFT, {
-      headers: { "Content-Type": "application/json" },
-    });
+    axios
+      .post("http://localhost:3001/NFT/add", newNFT, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((res) => alert(res.data.message));
   };
 
   return (
