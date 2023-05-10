@@ -44,9 +44,7 @@ function AddNFT() {
 
       <Modal show={show} onHide={handleClose} id="modal">
         <Modal.Header closeButton>
-          <Modal.Title style={{ fontFamily: "Pixel" }}>
-            Publish your NFT!
-          </Modal.Title>
+          <Modal.Title style={{fontFamily: "Pixel"}}>Publish your NFT!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form id="form-container" onSubmit={(e) => handleSubmit(e)}>
