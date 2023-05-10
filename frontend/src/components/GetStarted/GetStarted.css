@@ -10,9 +10,6 @@ body{
     font-family: "Maginer";
 }
 
-.card-body button{
-    font-family: "Pixel"
-}
 .getStarted{
   display: flex;
   flex-direction: row;
