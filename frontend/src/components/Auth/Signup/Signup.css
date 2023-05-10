@@ -3,6 +3,7 @@ body {
 }
 
 .signup {
+  font-family: "Maginer";
   background-color: rgb(41, 41, 41);
   color: white;
   padding: 20px;
@@ -78,8 +79,7 @@ a:hover {
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
 }
-p{
-  font-family: "Maginer";
-  font-size:small;
+p {
+  font-size: small;
   opacity: 0.8;
 }
