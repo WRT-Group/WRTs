@@ -47,10 +47,14 @@ const search = (req, res) => {
     res.send(nft)
   );
 };
-
+const remove=async(req,res)=>{
+    await NFT.deleteOne({_id:req.params.id})
+    res.json('deleted')
+}
 module.exports = {
   getAll,
   addNFT,
   edit,
   search,
+  remove
 };
