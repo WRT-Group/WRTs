@@ -83,3 +83,12 @@ p {
   font-size: small;
   opacity: 0.8;
 }
+
+.checkbox{
+  display: flex;
+  text-align: center;
+}
+#check {
+  width: 80px;
+  height: 20px;
+}
