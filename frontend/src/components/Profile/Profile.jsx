@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import './profile.css'
@@ -25,7 +24,7 @@ const Profile=()=>{
         })
     }
     const editProfile=async()=>{
-        await axios.put(`http://localhost:3001/user/${id}`,obj)
+        await axios.put(`http://localhost:3001/user/updateUser/${id}`,obj)
         setShow(!show)
     }
     useEffect(()=>{
