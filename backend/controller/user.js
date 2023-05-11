@@ -125,16 +125,12 @@ const removeUser = (req, res) => {
   User.findByIdAndRemove(id).then((user) => res.send(user));
 };
 
-//! TODO: ADMIN SEARCH CRASHES SERVER AND NEEDS FIX!!!
-const search = (req, res) => {
-  const { query } = req.query;
-  User.find({
-    $or: [
-      { fName: { $regex: new RegExp(query, "i") } },
-      { lName: { $regex: new RegExp(query, "i") } },
-    ],
-  }).then((users) => res.send(users));
-};
+const search=(req,res)=>{
+  const { query }=req.query
+  User.find({username: {$regex: new RegExp(query,"i")}})
+  .then(users=>res.send(users))
+}
+
 
 module.exports = {
   signup,

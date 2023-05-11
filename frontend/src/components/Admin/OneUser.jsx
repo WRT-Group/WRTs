@@ -29,18 +29,18 @@ const OneUser = ({id,fName,lName,username,email,isAdmin,isBanned,createdAt}) => 
     <tbody>
       <tr className='tr-container'>
         <td className='user-info'>
-          <Link to={`/profile/${id}`}>{`${fName} ${lName}`}</Link>
+          <Link to={`/profile/${id}`}>{username}</Link>
         </td>
         <td className='user-info'>{email}</td>
-        <td className='user-info'>{username}</td>
+        <td className='user-info'>{`${fName} ${lName}`}</td>
         <td className='user-info' style={isAdmin ? {color:"#19A7CE"} : {color: "white"}}>{String(isAdmin)}</td>
         <td className='user-info' style={isBanned ? {color:"red"} : {color: "white"}}>{String(isBanned)}</td>
         <td className='user-info'>{createdAt}</td>
         <td className='user-info'>
-          {<button className={`btn btn-primary ${isAdmin && "disabled"}`} onClick={makeAdmin}>Make Admin</button>}
+          <button className={`btn btn-primary ${isAdmin || isBanned && "disabled"}`} onClick={makeAdmin}>Make Admin</button>
           {!isBanned && <button className={`btn btn-danger ${isAdmin && "disabled"}`} onClick={ban}>Ban</button>}
           {isBanned && <button className="btn btn-danger" onClick={unban}>Unban</button>}
-          {!isAdmin && <button className='btn btn-danger' onClick={removeUser}>Remove</button>}
+          <button className={`btn btn-danger ${isAdmin && "disabled"}`} onClick={removeUser}>Remove</button>
         </td>
       </tr>
     </tbody>
