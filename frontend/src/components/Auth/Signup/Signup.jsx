@@ -16,6 +16,7 @@ import { Context } from "../../Context/Context";
 const Signup = () => {
   const { currentUser, setCurrentUser } = useContext(Context);
 
+  const regexFullName=/[a-z]/gi
   const regexpUsername = /^.{4,}$/;
   const regexpPassword = /^.{8,}$/;
   const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -39,7 +40,9 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setDisabled(true);
-
+    if(!regexFullName.test(fName) || !regexFullName.test(lName) || !regexpUsername.test(username) || !regexpEmail.test(email)){
+      return alert("you should put a real information")
+    }
     if (password !== confPassword) {
       return alert("passwords don't match");
     }
