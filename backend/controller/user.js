@@ -23,7 +23,8 @@ const signup = async (req, res) => {
       password: hashedPassword,
       NFTs: [],
       isAdmin: false,
-      balance: 0,
+      isBanned: false,
+      balance: 0
     });
 
     await user.save();
@@ -99,11 +100,14 @@ const getUserByOwner = async (req, res) => {
   }
 };
 
-module.exports = {
-  signup,
-  login,
-  getUsers,
-  getOneUser,
-  update,
-  getUserByOwner,
-};
+const banUser=()=>{
+  const { id }=req.params
+  User.findByIdAndUpdate(id,{isBanned: true}).then(user=>res.send(user))
+}
+
+const unbanUser=()=>{
+  const { id }=req.params
+  User.findByIdAndUpdate(id,{isBanned: false}).then(user=>res.send(user))
+}
+
+module.exports = { signup, login, getUsers, getOneUser, update, banUser, unbanUser, getUserByOwner };
