@@ -48,7 +48,8 @@ const Signup = () => {
       setInfoInc(true)
       setTimeout(clearInc,2000)
     if (!checkbox){
-      return alert('you should agree with our terms.')
+      setConfInc(true)
+      setTimeout(clearInc,2000)
     }
     else if (password !== confPassword) {
       setConfInc(true)

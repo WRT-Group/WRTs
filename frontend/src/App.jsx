@@ -11,6 +11,7 @@ import Profile from "./components/Profile/Profile";
 import Admin from "./components/Admin/Admin";
 import Navbar from "./components/Navbar/Navbar";
 import Banned from "./components/Banned/Banned";
+import ContactUs from "./components/ContactUs/ContactUs";
 
 function App() {
   const location=useLocation().pathname
@@ -27,6 +28,7 @@ function App() {
         <Route path="/profile/:id" element={<Profile/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/banned" element={<Banned/>}/>
+        <Route path="/contact" element={<ContactUs/>}/>
       </Routes>
     </>
   );

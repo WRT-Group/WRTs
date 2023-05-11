@@ -1,0 +1,38 @@
+.contact{
+    position: absolute;
+    width:50%;
+    left: 25%;
+    text-align: center;
+    font-family: "Maginer";
+    background-color: rgb(41, 41, 41);
+    color: white;
+    padding: 20px;
+    padding-top: 12px;
+    border: 1px solid;
+    border-image: linear-gradient(135deg, #b400ff, #c614c6, #ed1679, #ff0066) 1;
+    color: rgb(199, 197, 197);
+}
+
+.contact textarea{
+    background-color: #54575d;
+    width: 70%;
+    border-radius: 3px;
+}
+#button{
+    color: white;
+    font-size: 18px;
+    background-size: 200% auto;
+    transition: 0.3s;
+    background-image: linear-gradient(45deg, #b400ff, #c614c6, #ed1679, #ff0066);
+    border-radius: 10px;
+    border: none;
+}
+#button:hover{
+    background-position: right center;
+    color: whitesmoke;
+}
+.contact h1{
+    font-weight: 100;
+    padding: 20px;
+    font-size: larger;
+}
