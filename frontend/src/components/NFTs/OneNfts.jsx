@@ -1,12 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./OneNfts.css";
 import { Context } from "../Context/Context";
 import UpdateNFT from "../MyNFTs/UpdateNFT/UpdateNFT";
 import DeleteNFT from "../MyNFTs/DeleteNFT/DeleteNFT";
+import axios from "axios";
 
 const OneNfts = (props) => {
   const { currentUser } = useContext(Context);
+  const [owner, setOwner] = useState({});
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/user/owner/${props.one.owner}`)
+      .then(async (res) => setOwner(res.data));
+  }, []);
 
   const Button = () => {
     if (!currentUser) {
@@ -48,17 +56,16 @@ const OneNfts = (props) => {
       </div>
       {Button()}
       <hr />
-      <div className="creator">
-        <div className="wrapper">
-          <img
-            src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80"
-            alt="Creator"
-          />
+      {owner && (
+        <div className="creator">
+          <div className="wrapper">
+            <img src="{owner.image}" alt="Creator" />
+          </div>
+          <p>
+            <ins>Creation of</ins> {owner.username}
+          </p>
         </div>
-        <p>
-          <ins>Creation of</ins> Kiberbash
-        </p>
-      </div>
+      )}
     </div>
   );
 };
