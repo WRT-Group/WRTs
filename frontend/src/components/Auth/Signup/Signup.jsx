@@ -7,6 +7,7 @@ import {
   MDBCol,
   MDBInput,
 } from "mdb-react-ui-kit";
+import Dropzone from "react-dropzone";
 import axios from "axios";
 
 import "./Signup.css";
@@ -16,7 +17,7 @@ import { Context } from "../../Context/Context";
 const Signup = () => {
   const { currentUser, setCurrentUser } = useContext(Context);
 
-  const regexFullName=/[a-z]/gi
+  const regexFullName = /[a-z]/gi;
   const regexpUsername = /^.{4,}$/;
   const regexpPassword = /^.{8,}$/;
   const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -28,6 +29,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [image, setImage] = useState(null);
 
   const navigate = useNavigate();
 
@@ -39,25 +41,38 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(image);
     setDisabled(true);
-    if(!regexFullName.test(fName) || !regexFullName.test(lName) || !regexpUsername.test(username) || !regexpEmail.test(email)){
-      return alert("you should put a real information")
+    if (
+      !regexFullName.test(fName) ||
+      !regexFullName.test(lName) ||
+      !regexpUsername.test(username) ||
+      !regexpEmail.test(email)
+    ) {
+      return alert("you should put a real information");
     }
     if (password !== confPassword) {
       return alert("passwords don't match");
     }
+
+    const formData = new FormData();
+    formData.fName = fName;
+    formData.append("lName", lName);
+    formData.append("username", username);
+    formData.append("password", password);
+    formData.append("email", email);
+    formData.append("image", image);
     const newUser = {
       fName,
       lName,
       username,
       password,
-      confPassword,
       email,
     };
 
     axios
-      .post("http://localhost:3001/user/signup", newUser, {
-        headers: { "Content-Type": "application/json" },
+      .post("http://localhost:3001/user/signup", formData, {
+        headers: { "content-type": "multipart/form-data" },
       })
       .then((res) => {
         if (res.data.message) alert(res.data.message);
@@ -73,6 +88,11 @@ const Signup = () => {
         setDisabled(false);
       });
   };
+
+  const onDrop = (acceptedFiles) => {
+    setImage(acceptedFiles[0]);
+  };
+
   return (
     <MDBContainer fluid>
       <MDBRow className="d-flex justify-content-center align-items-center">
@@ -189,6 +209,16 @@ const Signup = () => {
                       )}
                     </span>
                   )}
+                  <label style={{ marginBottom: 8 }}>
+                    Drag and drop you profile picture here
+                  </label>
+                  <Dropzone onDrop={onDrop}>
+                    {({ getRootProps, getInputProps }) => (
+                      <div {...getRootProps()} id="dropzone">
+                        <input {...getInputProps()} />
+                      </div>
+                    )}
+                  </Dropzone>
                   <br />
                   <MDBRow id="redirect">
                     <MDBCol>
@@ -198,7 +228,11 @@ const Signup = () => {
                       </h6>
                     </MDBCol>
                     <MDBCol>
-                      <button className="mt-2" id="signup-button" disabled={disabled}>
+                      <button
+                        className="mt-2"
+                        id="signup-button"
+                        disabled={disabled}
+                      >
                         Submit
                       </button>
                     </MDBCol>
