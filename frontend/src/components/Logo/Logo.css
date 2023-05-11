@@ -1,0 +1,10 @@
+.navbar-brand{
+  color: white;
+  font-family: "Pixel";
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.navbar-brand:hover{
+  color: #ff0066;
+}
