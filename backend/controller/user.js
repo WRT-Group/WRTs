@@ -24,6 +24,7 @@ const signup = async (req, res) => {
       password: hashedPassword,
       NFTs: [],
       isAdmin: false,
+      isBanned: false,
       balance: 0
     });
 
@@ -83,4 +84,14 @@ const getUsers=async(req,res)=>{
   res.json(data)
 }
 
-module.exports = { signup, login, getUsers, getOneUser, update };
+const banUser=()=>{
+  const { id }=req.params
+  User.findByIdAndUpdate(id,{isBanned: true}).then(user=>res.send(user))
+}
+
+const unbanUser=()=>{
+  const { id }=req.params
+  User.findByIdAndUpdate(id,{isBanned: false}).then(user=>res.send(user))
+}
+
+module.exports = { signup, login, getUsers, getOneUser, update, banUser, unbanUser };
