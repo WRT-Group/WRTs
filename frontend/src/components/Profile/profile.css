@@ -1,8 +1,8 @@
 .profile{
     font-family: "Maginer";
     color: aliceblue;
-    width: 400px;
-    margin: 50px;
+    width: 410px;
+    margin: 30px;
     border: 1px solid #ffffff22;
     background-color: #282c34;
     background: linear-gradient(0deg, rgba(40,44,52,1) 0%, rgba(17,0,32,.5) 100%);
@@ -49,5 +49,6 @@ input{
 }
 .myprofile{
     width: 100%;
+    display: flex;
     flex-wrap: nowrap;
 }

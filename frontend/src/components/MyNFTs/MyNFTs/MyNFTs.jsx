@@ -17,9 +17,9 @@ const MyNFTs = () => {
     <>
       <div className="my-nfts">
         {userNFTs.map((e, i) => (
-          <>
+          <div className="one">
             <OneNfts key={i} one={e} />
-          </>
+          </div>
         ))}
       </div>
       <AddNFT />

@@ -78,8 +78,9 @@ const update=async(req,res)=>{
   res.json('updated')
 }
 
-const getUsers=(req,res)=>{
-  User.find().then(users=>res.send(users))
+const getUsers=async(req,res)=>{
+  const data= await User.find({}).lean()
+  res.json(data)
 }
 
 module.exports = { signup, login, getUsers, getOneUser, update };
