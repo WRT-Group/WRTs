@@ -6,11 +6,10 @@ import UpdateNFT from "../MyNFTs/UpdateNFT/UpdateNFT";
 import DeleteNFT from "../MyNFTs/DeleteNFT/DeleteNFT";
 
 const OneNfts = (props) => {
-  const location = useLocation().pathname;
   const { currentUser } = useContext(Context);
 
   const Button = () => {
-    if (location === "/profile") {
+    if (currentUser.id === props.one.owner) {
       return (
         <div className="buttons">
           <UpdateNFT nft={props.one} />

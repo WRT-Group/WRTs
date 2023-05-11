@@ -7,17 +7,16 @@ import OneNfts from "../../NFTs/OneNfts";
 import AddNFT from "../AddNFT/AddNFT";
 
 const MyNFTs = () => {
-  const { currentUser } = useContext(Context);
+  const { id } = useParams();
   const [userNFTs, setUserNFTs] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/NFT/${currentUser.id}`)
+      .get(`http://localhost:3001/NFT/${id}`)
       .then((res) => setUserNFTs(res.data))
       .catch((err) => console.log(err));
   }, []);
   return (
     <>
-      <Navbar />
       <div className="my-nfts">
         {userNFTs.map((e, i) => (
           <>
