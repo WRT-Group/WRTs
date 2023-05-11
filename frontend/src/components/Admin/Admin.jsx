@@ -16,14 +16,13 @@ const Admin = () => {
     if(!currentUser.isAdmin){
       navigate("/")
     }
-    axios.get("http://localhost:3001/user/getUsers").then(users=>setUsers(users.data))
   },[])
 
 
   return (
     <div>
       <Logo/>
-      <UserSearch />
+      <UserSearch setUsers={setUsers}/>
       <table>
         <thead>
           <tr>
