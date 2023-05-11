@@ -52,3 +52,8 @@ input{
     display: flex;
     flex-wrap: nowrap;
 }
+
+.profile h1{
+    font-family: "Pixel";
+    color: #ed1679;
+}

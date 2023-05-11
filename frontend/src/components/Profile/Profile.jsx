@@ -41,9 +41,9 @@ const Profile=()=>{
                     <h1>{oneUser.username}</h1>
                     <br/>
                     <br/>
-                    <h4>Full Name:{`${oneUser.fName} ${oneUser.lName}`}</h4>
+                    <h4>Full Name: {`${oneUser.fName} ${oneUser.lName}`}</h4>
                     <br/>
-                    <h4>E-mail:{oneUser.email}</h4>
+                    <h4>E-mail: <br></br>{oneUser.email}</h4>
                     <br/>
                     <br/>
                     <button onClick={()=>{
@@ -64,6 +64,10 @@ const Profile=()=>{
                     </div>}
                     <br/>
                 </div>}
+                <div>
+                    <h1 style={{fontFamily: "Pixel", color: "#B400FF"}}>My NFTs</h1>
+                    <MyNFTs/>
+                </div>
             </div>
             
         </div>

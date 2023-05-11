@@ -8,6 +8,11 @@
   src: url("./fonts/PublicPixel.ttf");
 }
 
+@font-face {
+  font-family: "Admin";
+  src: url("./fonts/Nunito-Medium.ttf");
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;

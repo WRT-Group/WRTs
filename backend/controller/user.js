@@ -100,14 +100,31 @@ const getUserByOwner = async (req, res) => {
   }
 };
 
-const banUser=()=>{
+const banUser=(req,res)=>{
   const { id }=req.params
   User.findByIdAndUpdate(id,{isBanned: true}).then(user=>res.send(user))
 }
 
-const unbanUser=()=>{
+const unbanUser=(req,res)=>{
   const { id }=req.params
   User.findByIdAndUpdate(id,{isBanned: false}).then(user=>res.send(user))
 }
 
-module.exports = { signup, login, getUsers, getOneUser, update, banUser, unbanUser, getUserByOwner };
+const makeAdmin=(req,res)=>{
+  const { id }=req.params
+  User.findByIdAndUpdate(id,{isAdmin: true}).then(user=>res.send(user))
+}
+
+const removeUser=(req,res)=>{
+  const { id }=req.params
+  User.findByIdAndRemove(id).then(user=>res.send(user))
+}
+
+//! TODO: ADMIN SEARCH CRASHES SERVER AND NEEDS FIX!!!
+const search=(req,res)=>{
+  const { query }=req.query
+  User.find({$or: [{fName: {$regex: new RegExp(query,"i")}},{lName: {$regex: new RegExp(query,"i")}}]})
+  .then(users=>res.send(users))
+}
+
+module.exports = { signup, login, getUsers, getOneUser, update, banUser, unbanUser, getUserByOwner, makeAdmin, removeUser, search };
