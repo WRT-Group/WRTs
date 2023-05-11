@@ -7,6 +7,7 @@ import {
   MDBCol,
   MDBInput,
 } from "mdb-react-ui-kit";
+import Dropzone from "react-dropzone";
 import axios from "axios";
 
 import "./Signup.css";
@@ -18,11 +19,11 @@ import YellowAlert from "../../Alerts/YellowAlert";
 const Signup = () => {
   const { currentUser, setCurrentUser } = useContext(Context);
 
-  const regexFullName=/[a-z]/gi
+  const regexFullName = /[a-z]/gi;
   const regexpUsername = /^.{4,}$/;
   const regexpPassword = /^.{8,}$/;
   const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+  const [checkbox,setCheckbox]=useState(false)
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
   const [username, setUsername] = useState("");
@@ -31,6 +32,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [infoInc,setInfoInc]=useState(false)
   const [confInc,setConfInc]=useState(false)
+  const [image, setImage] = useState(null);
 
   const navigate = useNavigate();
 
@@ -45,6 +47,8 @@ const Signup = () => {
     if(!regexFullName.test(fName) || !regexFullName.test(lName) || !regexpUsername.test(username) || !regexpEmail.test(email) || !regexpPassword.test(password)){
       setInfoInc(true)
       setTimeout(clearInc,2000)
+    if (!checkbox){
+      return alert('you should agree with our terms.')
     }
     else if (password !== confPassword) {
       setConfInc(true)
@@ -77,13 +81,17 @@ const Signup = () => {
           console.log(err);
           setDisabled(false);
         });
+      }
     }
-  };
-
+  }
   const clearInc=()=>{
     setConfInc(false)
     setInfoInc(false)
   }
+
+  const onDrop = (acceptedFiles) => {
+    setImage(acceptedFiles[0]);
+  };
 
   return (
     <MDBContainer fluid>
@@ -203,7 +211,23 @@ const Signup = () => {
                       )}
                     </span>
                   )}
+                  <label style={{ marginBottom: 8 }}>
+                    Drag and drop you profile picture here
+                  </label>
+                  <Dropzone onDrop={onDrop}>
+                    {({ getRootProps, getInputProps }) => (
+                      <div {...getRootProps()} id="dropzone">
+                        <input {...getInputProps()} />
+                      </div>
+                    )}
+                  </Dropzone>
                   <br />
+                  <div className="checkbox">
+                  <input type="checkbox" id="check" checked={checkbox} onChange={(e)=>setCheckbox(e.target.checked)}/>
+                  <label htmlFor="checkbox">I agree with the WRTs terms</label><br/>
+                  </div>
+                  <br/>
+                  <br/>
                   <MDBRow id="redirect">
                     <MDBCol>
                       <h6>
