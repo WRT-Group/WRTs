@@ -63,7 +63,10 @@ const OneNfts = (props) => {
           </div>
           <p>
             <ins>Creation of</ins>
-            <Link to={`/profile/${owner._id}`}> {owner.username}</Link>
+            <Link to={`/profile/${owner._id}`} className="nav-link">
+              {" "}
+              {owner.username}
+            </Link>
           </p>
         </div>
       )}
