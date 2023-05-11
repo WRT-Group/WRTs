@@ -31,7 +31,10 @@ function AddNFT() {
 
     axios
       .post("http://localhost:3001/NFT/add", newNFT, {
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: currentUser.token,
+        },
       })
       .then((res) => alert(res.data.message));
   };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
@@ -6,8 +6,11 @@ import axios from "axios";
 import { MDBCol, MDBInput, MDBTextArea } from "mdb-react-ui-kit";
 
 import "./UpdateNFT.css";
+import { Context } from "../../Context/Context";
 
 const UpdateNFT = ({ nft }) => {
+  const { currentUser } = useContext(Context);
+
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -29,7 +32,10 @@ const UpdateNFT = ({ nft }) => {
 
     axios
       .put(`http://localhost:3001/NFT/edit/${nft._id}`, newNFT, {
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: currentUser.token,
+        },
       })
       .then((res) => alert(res.data.message));
   };

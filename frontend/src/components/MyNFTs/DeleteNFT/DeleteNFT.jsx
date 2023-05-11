@@ -9,7 +9,9 @@ const DeleteNFT = ({ id }) => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:3001/NFT/delete/${id}/${currentUser.id}`)
+      .delete(`http://localhost:3001/NFT/delete/${id}/${currentUser.id}`, {
+        headers: { Authorization: currentUser.token },
+      })
       .catch((err) => console.log(err));
   };
   return (
