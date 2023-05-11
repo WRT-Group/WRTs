@@ -64,6 +64,10 @@ const Profile=()=>{
                     </div>}
                     <br/>
                 </div>}
+                <div>
+                    <h1>My NFTs</h1>
+                    <MyNFTs/>
+                </div>
             </div>
             
         </div>
