@@ -8,6 +8,7 @@ import GetStarted from "./components/GetStarted/GetStarted";
 import AddNFT from "./components/MyNFTs/AddNFT/AddNFT";
 import BuyNFT from "./components/Buy/BuyNft";
 import Search from "./components/Search/Search";
+import Profile from "./components/Profile/Profile";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/getstarted" element={<GetStarted />} />
         <Route path="/BuyNFT/:id" element={<BuyNFT/>}/>
         <Route path="/search" element={<Search/>}/>
+        <Route path="/profile/:id" element={<Profile/>}/>
       </Routes>
     </>
   );

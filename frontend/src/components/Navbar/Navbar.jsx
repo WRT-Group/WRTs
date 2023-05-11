@@ -3,11 +3,10 @@ import { Link, useLocation } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import Search from '../Search/Search';
 import { Context } from '../Context/Context';
-
+import '../Navbar/Navbar.css'
 const Navbar = () => {
   const location = useLocation().pathname
   const { currentUser,logout }=useContext(Context)
-
   return (
     <div className='homepage'>
       <nav className="navbar navbar-expand-lg bg-body-tertiary rounded">
@@ -42,6 +41,9 @@ const Navbar = () => {
               </li>
             </ul>
             <Search />
+            {currentUser && <Link to={`/profile/${currentUser.id}`}>
+            <img src='https://thumbs.dreamstime.com/b/nft-non-fungible-token-tokens-icon-covering-concept-high-tech-technology-symbol-logo-vector-225921227.jpg' alt='profile' className='pr' />
+            </Link>}
           </div>
         </div>
       </nav>
