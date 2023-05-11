@@ -67,4 +67,8 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { signup, login };
+const getUsers=(req,res)=>{
+  User.find().then(users=>res.send(users))
+}
+
+module.exports = { signup, login, getUsers };
