@@ -23,7 +23,8 @@ const signup = async (req, res) => {
       email,
       password: hashedPassword,
       NFTs: [],
-      isAdmin: false
+      isAdmin: false,
+      balance: 0
     });
 
     await user.save();

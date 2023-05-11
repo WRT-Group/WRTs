@@ -4,12 +4,9 @@ import './GetStarted.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
-import Navbar from "../Navbar/Navbar";
-
 const GetStarted=()=>{
     return(
         <div>
-            <Navbar/>
             <div className="getStarted">
                 <div className="card" style={{backgroundColor:"#b400ff", color:"white" ,width:"8800px"}}>
                     <img className="card-img-top" src="https://duet-cdn.vox-cdn.com/thumbor/0x0:2040x1360/750x500/filters:focal(1020x680:1021x681):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/23603505/VRG_Illo_5265_M_Li_NFT_explainer.jpg" rel="nft"/>

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./Login.css"
-import Navbar from '../../Navbar/Navbar';
 import { MDBContainer,MDBCard,MDBCardBody,MDBRow,MDBCol,MDBInput} from "mdb-react-ui-kit";
 import axios from "axios";
 
@@ -55,7 +54,6 @@ const Login = () => {
 
   return (
     <MDBContainer fluid>
-      <Navbar/>
       {passwordInc && <RedAlert text={"Password Incorrect"} clearInc={clearInc}/>}
       {usernameInc && <YellowAlert text={"User Not Found!"} clearInc={clearInc}/>}
       <MDBRow className="d-flex justify-content-center align-items-center">

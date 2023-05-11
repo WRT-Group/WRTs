@@ -5,8 +5,7 @@ import { useContext } from "react";
 import { Context } from "../../Context/Context";
 import OneNfts from "../../NFTs/OneNfts";
 import AddNFT from "../AddNFT/AddNFT";
-import Navbar from "../../Navbar/Navbar";
-import { useParams } from "react-router-dom";
+
 const MyNFTs = () => {
   const { id } = useParams();
   const [userNFTs, setUserNFTs] = useState([]);
