@@ -6,11 +6,10 @@ const getAll = async (req, res) => {
   res.json(data);
 };
 
-
-const getOne=async (req,res)=>{
-    const data=await NFT.find({_id:req.params.id});
-    res.json(data)
-}
+const getOne = async (req, res) => {
+  const data = await NFT.find({ _id: req.params.id });
+  res.json(data);
+};
 
 const getByUser = async (req, res) => {
   const id = req.params.id;
@@ -54,7 +53,7 @@ const edit = async (req, res) => {
         description: req.body.description,
       }
     );
-    res.json("updated");
+    res.json({ message: "updated" });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -78,5 +77,5 @@ module.exports = {
   edit,
   search,
   remove,
-  getOne
+  getOne,
 };

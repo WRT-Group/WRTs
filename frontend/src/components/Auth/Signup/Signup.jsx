@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../Navbar/Navbar";
 import { Context } from "../../Context/Context";
 const Signup = () => {
-  const { currentUser,setCurrentUser } = useContext(Context);
+  const { currentUser, setCurrentUser } = useContext(Context);
 
   const regexpUsername = /^.{4,}$/;
   const regexpPassword = /^.{8,}$/;
@@ -31,11 +31,11 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(currentUser){
-      navigate("/")
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
     }
-  },[])
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,6 +61,7 @@ const Signup = () => {
         if (res.data.message) alert(res.data.message);
         else {
           setCurrentUser(res.data);
+          window.localStorage.setItem("currentUser", JSON.stringify(res.data));
           navigate("/");
         }
         setDisabled(false);
@@ -196,7 +197,7 @@ const Signup = () => {
                       </h6>
                     </MDBCol>
                     <MDBCol>
-                      <button className="mt-2" disabled={disabled}>
+                      <button className="mt-2" id="signup-button" disabled={disabled}>
                         Submit
                       </button>
                     </MDBCol>

@@ -23,6 +23,7 @@ const signup = async (req, res) => {
       email,
       password: hashedPassword,
       NFTs: [],
+      isAdmin: false
     });
 
     await user.save();
@@ -57,6 +58,7 @@ const login = async (req, res) => {
         username: loggedUser.username,
         email: loggedUser.email,
         NFTs: loggedUser.NFTs,
+        isAdmin: loggedUser.isAdmin
       });
     } else {
       res.send("incorrect password");
@@ -74,4 +76,9 @@ const update=async(req,res)=>{
   await User.updateOne({_id:req.params.id},{fName:req.body.fName,lName:req.body.lName,username:req.body.username,email:req.body.email})
   res.json('updated')
 }
-module.exports = { signup, login ,getOneUser,update};
+
+const getUsers=(req,res)=>{
+  User.find().then(users=>res.send(users))
+}
+
+module.exports = { signup, login, getUsers, getOneUser, update };
