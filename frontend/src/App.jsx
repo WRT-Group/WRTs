@@ -10,12 +10,13 @@ import Search from "./components/Search/Search";
 import Profile from "./components/Profile/Profile";
 import Admin from "./components/Admin/Admin";
 import Navbar from "./components/Navbar/Navbar";
+import Banned from "./components/Banned/Banned";
 
 function App() {
   const location=useLocation().pathname
   return (
     <>
-      {location!=="/admin" && <Navbar/>}
+      {location!=="/admin" && location!=="/banned" && <Navbar/>}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
@@ -25,6 +26,7 @@ function App() {
         <Route path="/search" element={<Search/>}/>
         <Route path="/profile/:id" element={<Profile/>}/>
         <Route path="/admin" element={<Admin/>}/>
+        <Route path="/banned" element={<Banned/>}/>
       </Routes>
     </>
   );

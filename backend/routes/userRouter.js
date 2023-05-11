@@ -10,14 +10,14 @@ const {
   unbanUser,
   makeAdmin, 
   removeUser,
-  search 
+  search
 } = require("../controller/user");
 const authenticate = require("../middleware/authenticate.js");
 
 router.get("/getUsers", getUsers);
+router.get("/search", search)
 router.get("/getUser/:id", getOneUser);
 router.get("/owner/:id", getUserByOwner);
-router.get("/search", search)
 
 router.post("/signup", signup);
 router.post("/login", login);

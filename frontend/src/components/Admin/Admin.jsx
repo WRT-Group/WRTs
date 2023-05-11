@@ -27,9 +27,9 @@ const Admin = () => {
       <table>
         <thead>
           <tr>
-            <th className="column-container">Name</th>
-            <th className="column-container">Email</th>
             <th className="column-container">Username</th>
+            <th className="column-container">Email</th>
+            <th className="column-container">Name</th>
             <th className="column-container">Admin</th>
             <th className="column-container">Banned</th>
             <th className="column-container">Created At</th>

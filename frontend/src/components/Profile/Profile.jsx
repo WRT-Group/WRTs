@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import './profile.css'
