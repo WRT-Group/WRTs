@@ -249,7 +249,7 @@ const Signup = () => {
                   </label>
                   <Dropzone onDrop={onDrop}>
                     {({ getRootProps, getInputProps }) => (
-                      <div {...getRootProps()} id="dropzone">
+                      <div {...getRootProps()} className="dropzone">
                         <input {...getInputProps()} />
                       </div>
                     )}

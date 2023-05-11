@@ -1,5 +1,6 @@
 const NFT = require("../model/NFT.js");
 const User = require("../model/user.js");
+const cloudinary = require("cloudinary").v2;
 
 const getAll = async (req, res) => {
   const data = await NFT.find({}).lean();
@@ -24,12 +25,13 @@ const getByUser = async (req, res) => {
 const addNFT = async (req, res) => {
   try {
     const { nftName, price, owner, image, description } = req.body;
+    const imageUrl = await cloudinary.uploader.upload(image);
 
     const newNFT = new NFT({
       nftName,
       price,
       owner,
-      image,
+      image: imageUrl.secure_url,
       description,
     });
 

@@ -52,20 +52,39 @@
   padding: 2em;
 }
 
-.nav-link{
+.nav-link {
   color: white;
   font-family: "Maginer";
   font-size: 17px;
 }
 
-.nav-link:hover{
-  color: #b400ff
+.nav-link:hover {
+  color: #b400ff;
 }
 
-#action-dropdown{
+#action-dropdown {
   cursor: pointer;
 }
 
-#action-dropdown li{
+#action-dropdown li {
   color: black;
+}
+
+.dropzone {
+  margin: 0 auto;
+  width: 80%;
+  height: 24vh;
+  border: 1px solid rgba(155, 77, 202, 0.75);
+  border-radius: 12px;
+  background-image: url("../../../../assets/img-upload.png");
+  background-color: #3e3e3e;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  transition: 0.6s;
+}
+
+.dropzone:hover {
+  opacity: 1;
+  box-shadow: 0 0 0 0.26rem rgba(155, 77, 202, 0.25);
 }
