@@ -46,7 +46,7 @@ const Profile=()=>{
                     <h4>E-mail: <br></br>{oneUser.email}</h4>
                     <br/>
                     <br/>
-                    {(currentUser && currentUser.id===id) && <button onClick={()=>{
+                    {currentUser && currentUser.id===id && <button onClick={()=>{
                         setObj(oneUser)
                         setShow(!show)}}>Edit Profile</button>}
                     <br/>
