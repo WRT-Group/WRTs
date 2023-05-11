@@ -197,7 +197,7 @@ const Signup = () => {
                       </h6>
                     </MDBCol>
                     <MDBCol>
-                      <button className="mt-2" disabled={disabled}>
+                      <button className="mt-2" id="signup-button" disabled={disabled}>
                         Submit
                       </button>
                     </MDBCol>

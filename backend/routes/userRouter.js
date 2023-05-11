@@ -1,5 +1,7 @@
 const router = require("./NFTRouter");
-const { signup, login }=require("../controller/user")
+const { signup, login, getUsers }=require("../controller/user")
+
+router.get("/getUsers", getUsers)
 
 router.post("/signup", signup);
 router.post("/login", login)
