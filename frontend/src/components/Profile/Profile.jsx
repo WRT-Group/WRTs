@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import './profile.css'
 import MyNFTs from '../MyNFTs/MyNFTs/MyNFTs'
+import { Context } from "../Context/Context";
 const Profile=()=>{
-    
+    const {currentUser}=useContext(Context)
     const {id}=useParams()
     const [show,setShow]=useState(false)
     const [oneUser,setOneUser]=useState({})
+    console.log(oneUser)
     const [obj,setObj]=useState({})
    
     const getOneUser=async ()=>{
-        const res=await axios.get(`http://localhost:3001/user/${id}`)
+        const res=await axios.get(`http://localhost:3001/user/getUser/${id}`)
         setOneUser(res.data[0])
         setObj(oneUser)
     }
@@ -25,7 +27,7 @@ const Profile=()=>{
         })
     }
     const editProfile=async()=>{
-        await axios.put(`http://localhost:3001/user/${id}`,obj)
+        await axios.put(`http://localhost:3001/user/updateUser/${id}`,obj)
         setShow(!show)
     }
     useEffect(()=>{
@@ -45,17 +47,15 @@ const Profile=()=>{
                     <h4>E-mail: <br></br>{oneUser.email}</h4>
                     <br/>
                     <br/>
-                    <button onClick={()=>{
+                    {currentUser.id===id && <button onClick={()=>{
                         setObj(oneUser)
-                        setShow(!show)}}>Edit Profile</button>
+                        setShow(!show)}}>Edit Profile</button>}
                     <br/>
                     <br/>
                     {show && <div>
                         <input type="text" name="fName" value={obj.fName} placeholder="First Name" onChange={handleChange}/><br/>
                         <br/>
                         <input type="text" name="lName" value={obj.lName} placeholder="Last Name" onChange={handleChange}/><br/>
-                        <br/>
-                        <input type="text" name="username" value={obj.username} placeholder="username" onChange={handleChange}/><br/>
                         <br/>
                         <input type="text" name="email" value={obj.email} placeholder="example@mail.com" onChange={handleChange}/><br/>
                         <br/>

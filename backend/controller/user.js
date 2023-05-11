@@ -79,7 +79,6 @@ const update = async (req, res) => {
     {
       fName: req.body.fName,
       lName: req.body.lName,
-      username: req.body.username,
       email: req.body.email,
     }
   );
