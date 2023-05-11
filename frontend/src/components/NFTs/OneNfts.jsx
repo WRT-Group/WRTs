@@ -20,7 +20,7 @@ const OneNfts = (props) => {
     if (!currentUser) {
       return (
         <button className="buy-btn">
-          <Link to={`/BuyNFT/${props.one._id}`}>Buy</Link>
+          <Link to={`/login`}>Buy</Link>
         </button>
       );
     } else {
