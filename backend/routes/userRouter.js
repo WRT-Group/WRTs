@@ -1,4 +1,4 @@
-const router = require("./NFTRouter");
+const router=require("express").Router()
 
 const { signup, login, getUsers, getOneUser, update }=require("../controller/user")
 

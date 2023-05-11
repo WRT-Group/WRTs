@@ -4,7 +4,7 @@ const cors = require("cors");
 const app = express();
 const connectDB = require("./database/conenction");
 const NFTRouter = require("./routes/NFTRouter");
-const userRouter = require("./routes/userRouter")
+const userRouter=require("./routes/userRouter")
 const morgan = require("morgan");
 
 const port = 3001;
