@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./OneNfts.css";
 import { Context } from "../Context/Context";
 import UpdateNFT from "../MyNFTs/UpdateNFT/UpdateNFT";

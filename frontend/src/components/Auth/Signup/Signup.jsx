@@ -14,6 +14,8 @@ import "./Signup.css";
 import Logo from "../../Logo/Logo";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../Context/Context";
+import RedAlert from "../../Alerts/RedAlert";
+import YellowAlert from "../../Alerts/YellowAlert";
 const Signup = () => {
   const { currentUser, setCurrentUser } = useContext(Context);
 
@@ -21,16 +23,15 @@ const Signup = () => {
   const regexpUsername = /^.{4,}$/;
   const regexpPassword = /^.{8,}$/;
   const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
   const [checkbox,setCheckbox]=useState(false)
-
-  const [disabled, setDisabled] = useState(false);
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [infoInc,setInfoInc]=useState(false)
+  const [confInc,setConfInc]=useState(false)
   const [image, setImage] = useState(null);
 
   const navigate = useNavigate();
@@ -43,51 +44,50 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(image);
-    setDisabled(true);
+    if(!regexFullName.test(fName) || !regexFullName.test(lName) || !regexpUsername.test(username) || !regexpEmail.test(email) || !regexpPassword.test(password)){
+      setInfoInc(true)
+      setTimeout(clearInc,2000)
     if (!checkbox){
       return alert('you should agree with our terms.')
     }
-    if(!regexFullName.test(fName) || !regexFullName.test(lName) || !regexpUsername.test(username) || !regexpEmail.test(email)){
-      return alert("you should put a real information")
+    else if (password !== confPassword) {
+      setConfInc(true)
+      setTimeout(clearInc,2000)
     }
-    if (password !== confPassword) {
-      return alert("passwords don't match");
+    else{
+      const newUser = {
+        fName,
+        lName,
+        username,
+        password,
+        confPassword,
+        email,
+      };
+  
+      axios
+        .post("http://localhost:3001/user/signup", newUser, {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then((res) => {
+          if (res.data.message) alert(res.data.message);
+          else {
+            setCurrentUser(res.data);
+            window.localStorage.setItem("currentUser", JSON.stringify(res.data));
+            navigate("/");
+          }
+          setDisabled(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setDisabled(false);
+        });
+      }
     }
-
-    const formData = new FormData();
-    formData.fName = fName;
-    formData.append("lName", lName);
-    formData.append("username", username);
-    formData.append("password", password);
-    formData.append("email", email);
-    formData.append("image", image);
-    const newUser = {
-      fName,
-      lName,
-      username,
-      password,
-      email,
-    };
-
-    axios
-      .post("http://localhost:3001/user/signup", formData, {
-        headers: { "content-type": "multipart/form-data" },
-      })
-      .then((res) => {
-        if (res.data.message) alert(res.data.message);
-        else {
-          setCurrentUser(res.data);
-          window.localStorage.setItem("currentUser", JSON.stringify(res.data));
-          navigate("/");
-        }
-        setDisabled(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setDisabled(false);
-      });
-  };
+  }
+  const clearInc=()=>{
+    setConfInc(false)
+    setInfoInc(false)
+  }
 
   const onDrop = (acceptedFiles) => {
     setImage(acceptedFiles[0]);
@@ -95,6 +95,8 @@ const Signup = () => {
 
   return (
     <MDBContainer fluid>
+      {infoInc && <YellowAlert text={"Please Validate your information before submitting."} clearInc={clearInc}/>}
+      {confInc && <RedAlert text={"Passwords don't match."} clearInc={clearInc}/>}
       <MDBRow className="d-flex justify-content-center align-items-center">
         <MDBCol lg="6">
           <MDBCard className="my-2 signup" style={{ maxWidth: "600px" }}>
@@ -234,11 +236,7 @@ const Signup = () => {
                       </h6>
                     </MDBCol>
                     <MDBCol>
-                      <button
-                        className="mt-2"
-                        id="signup-button"
-                        disabled={disabled}
-                      >
+                      <button className="mt-2" id="signup-button">
                         Submit
                       </button>
                     </MDBCol>
