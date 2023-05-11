@@ -20,6 +20,6 @@ router.post("/add", addNFT);
 
 router.put("/edit/:id", edit);
 
-router.delete("/delete/:id", remove);
+router.delete("/delete/:id/:userId", remove);
 
 module.exports = router;

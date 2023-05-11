@@ -6,9 +6,10 @@ import axios from "axios";
 
 const DeleteNFT = ({ id }) => {
   const [clicked, setClicked] = useState(false);
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:3001/NFT/delete/${id}`)
+      .delete(`http://localhost:3001/NFT/delete/${id}/${currentUser.id}`)
       .catch((err) => console.log(err));
   };
   return (
