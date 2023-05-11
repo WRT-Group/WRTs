@@ -10,6 +10,7 @@ const userSchema = Mongoose.Schema(
     balance: Number,
     NFTs: Array,
     isAdmin: Boolean,
+    isBanned: Boolean,
     image: String
   },
   { timestamps: true }
