@@ -5,6 +5,7 @@ import Logo from '../Logo/Logo';
 import { useNavigate } from 'react-router-dom';
 import OneUser from './OneUser';
 import { Context } from '../Context/Context';
+import UserSearch from './UserSearch';
 
 const Admin = () => {
   const { currentUser }=useContext(Context)
@@ -18,9 +19,11 @@ const Admin = () => {
     axios.get("http://localhost:3001/user/getUsers").then(users=>setUsers(users.data))
   },[])
 
+
   return (
     <div>
       <Logo/>
+      <UserSearch />
       <table>
         <thead>
           <tr>

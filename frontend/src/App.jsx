@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 
 import Home from "./components/Home/Home";
@@ -12,9 +12,10 @@ import Admin from "./components/Admin/Admin";
 import Navbar from "./components/Navbar/Navbar";
 
 function App() {
+  const location=useLocation().pathname
   return (
     <>
-      <Navbar/>
+      {location!=="/admin" && <Navbar/>}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
