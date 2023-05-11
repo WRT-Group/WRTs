@@ -12,8 +12,6 @@ const {
   removeUser,
   search,
 } = require("../controller/user");
-const multer = require("multer");
-const upload = multer({ dest: "../assets" });
 const authenticate = require("../middleware/authenticate.js");
 
 router.get("/getUsers", getUsers);
@@ -21,7 +19,7 @@ router.get("/search", search);
 router.get("/getUser/:id", getOneUser);
 router.get("/owner/:id", getUserByOwner);
 
-router.post("/signup", upload.single("image"), signup);
+router.post("/signup", signup);
 router.post("/login", login);
 
 router.put("/updateUser/:id", update);

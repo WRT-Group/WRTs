@@ -23,15 +23,15 @@ const Signup = () => {
   const regexpUsername = /^.{4,}$/;
   const regexpPassword = /^.{8,}$/;
   const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const [checkbox,setCheckbox]=useState(false)
+  const [checkbox, setCheckbox] = useState(false);
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [infoInc,setInfoInc]=useState(false)
-  const [confInc,setConfInc]=useState(false)
+  const [infoInc, setInfoInc] = useState(false);
+  const [confInc, setConfInc] = useState(false);
   const [image, setImage] = useState(null);
 
   const navigate = useNavigate();
@@ -44,60 +44,92 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(!regexFullName.test(fName) || !regexFullName.test(lName) || !regexpUsername.test(username) || !regexpEmail.test(email) || !regexpPassword.test(password)){
-      setInfoInc(true)
-      setTimeout(clearInc,2000)
-    if (!checkbox){
-      setConfInc(true)
-      setTimeout(clearInc,2000)
-    }
-    else if (password !== confPassword) {
-      setConfInc(true)
-      setTimeout(clearInc,2000)
-    }
-    else{
-      const newUser = {
-        fName,
-        lName,
-        username,
-        password,
-        confPassword,
-        email,
-      };
-  
-      axios
-        .post("http://localhost:3001/user/signup", newUser, {
-          headers: { "Content-Type": "application/json" },
-        })
-        .then((res) => {
-          if (res.data.message) alert(res.data.message);
-          else {
-            setCurrentUser(res.data);
-            window.localStorage.setItem("currentUser", JSON.stringify(res.data));
-            navigate("/");
-          }
-          setDisabled(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          setDisabled(false);
-        });
+    if (
+      !regexFullName.test(fName) ||
+      !regexFullName.test(lName) ||
+      !regexpUsername.test(username) ||
+      !regexpEmail.test(email) ||
+      !regexpPassword.test(password)
+    ) {
+      console.log("if 1");
+      setInfoInc(true);
+      setTimeout(clearInc, 2000);
+      if (!checkbox) {
+        console.log("if 2");
+        setConfInc(true);
+        setTimeout(clearInc, 2000);
+      } else if (password !== confPassword) {
+        console.log("else if");
+        setConfInc(true);
+        setTimeout(clearInc, 2000);
+      } else {
+        console.log("else");
+        const newUser = {
+          fName,
+          lName,
+          username,
+          password,
+          image,
+          email,
+        };
+
+        axios
+          .post("http://localhost:3001/user/signup", newUser, {
+            headers: { "Content-Type": "application/json" },
+          })
+          .then((res) => {
+            if (res.data.message) alert(res.data.message);
+            else {
+              setCurrentUser(res.data);
+              window.localStorage.setItem(
+                "currentUser",
+                JSON.stringify(res.data)
+              );
+              navigate("/");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     }
-  }
-  const clearInc=()=>{
-    setConfInc(false)
-    setInfoInc(false)
-  }
+  };
+  const clearInc = () => {
+    setConfInc(false);
+    setInfoInc(false);
+  };
 
-  const onDrop = (acceptedFiles) => {
-    setImage(acceptedFiles[0]);
+  const onDrop = async (acceptedFiles) => {
+    const file = await convertToBase64(acceptedFiles[0]);
+    setImage(file);
+  };
+
+  const convertToBase64 = (file) => {
+    return new Promise((res, rej) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        res(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        rej(error);
+      };
+    });
   };
 
   return (
     <MDBContainer fluid>
-      {infoInc && <YellowAlert text={"Please Validate your information before submitting."} clearInc={clearInc}/>}
-      {confInc && <RedAlert text={"Passwords don't match."} clearInc={clearInc}/>}
+      {infoInc && (
+        <YellowAlert
+          text={"Please Validate your information before submitting."}
+          clearInc={clearInc}
+        />
+      )}
+      {confInc && (
+        <RedAlert text={"Passwords don't match."} clearInc={clearInc} />
+      )}
       <MDBRow className="d-flex justify-content-center align-items-center">
         <MDBCol lg="6">
           <MDBCard className="my-2 signup" style={{ maxWidth: "600px" }}>
@@ -224,11 +256,19 @@ const Signup = () => {
                   </Dropzone>
                   <br />
                   <div className="checkbox">
-                  <input type="checkbox" id="check" checked={checkbox} onChange={(e)=>setCheckbox(e.target.checked)}/>
-                  <label htmlFor="checkbox">I agree with the WRTs terms</label><br/>
+                    <input
+                      type="checkbox"
+                      id="check"
+                      checked={checkbox}
+                      onChange={(e) => setCheckbox(e.target.checked)}
+                    />
+                    <label htmlFor="checkbox">
+                      I agree with the WRTs terms
+                    </label>
+                    <br />
                   </div>
-                  <br/>
-                  <br/>
+                  <br />
+                  <br />
                   <MDBRow id="redirect">
                     <MDBCol>
                       <h6>
