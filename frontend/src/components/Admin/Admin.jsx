@@ -24,14 +24,14 @@ const Admin = () => {
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Username</th>
-            <th>Created At</th>
+            <th className="column-container">Name</th>
+            <th className="column-container">Email</th>
+            <th className="column-container">Username</th>
+            <th className="column-container">Created At</th>
           </tr>
         </thead>
       {users.map((e,index)=>{
-        return <OneUser key={index} fName={e.fName} lName={e.lName} email={e.email} username={e.username} createdAt={e.createdAt}/>
+        return <OneUser key={index} id={e._id} fName={e.fName} lName={e.lName} email={e.email} username={e.username} createdAt={e.createdAt}/>
       })}
       </table>
     </div>

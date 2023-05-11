@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { Context } from "../../Context/Context";
 import OneNfts from "../../NFTs/OneNfts";
 import AddNFT from "../AddNFT/AddNFT";
-import Navbar from "../../Navbar/Navbar";
+
 const MyNFTs = () => {
   const { currentUser } = useContext(Context);
   const [userNFTs, setUserNFTs] = useState([]);

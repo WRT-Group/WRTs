@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import '../NFTs/OneNfts.css'
-import Navbar from "../Navbar/Navbar";
 const BuyNFT=()=>{
     const {id}=useParams()
     console.log(id)
@@ -17,7 +16,6 @@ const BuyNFT=()=>{
     console.log(buyData)
     return (
         <>
-        <Navbar/>
         <div className="nft">
     {buyData.length>0 && <div className='main'>
       <img className='tokenImage' src={buyData[0].image} alt="NFT"/>

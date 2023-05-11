@@ -21,3 +21,13 @@ table {
 .btn-delete {
   background-color: #d90000;
 }
+
+.column-container{
+  font-family: "Pixel";
+  color: #b400ff;
+}
+
+.user-info{
+  font-family: "Maginer";
+  color: white;
+}
