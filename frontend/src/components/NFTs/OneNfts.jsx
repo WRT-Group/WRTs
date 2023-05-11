@@ -59,12 +59,11 @@ const OneNfts = (props) => {
       {owner && (
         <div className="creator">
           <div className="wrapper">
-            <img src="{owner.image}" alt="Creator" />
+            <img src={owner.image} alt="Creator" />
           </div>
           <p>
             <ins>Creation of</ins>
             <Link to={`/profile/${owner._id}`} className="nav-link">
-              {" "}
               {owner.username}
             </Link>
           </p>

@@ -8,12 +8,15 @@
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "cloudinary": "^1.36.4",
     "cors": "*",
     "dotenv": "^16.0.3",
     "express": "*",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "*",
     "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
     "nodemon": "*"
   }
 }
