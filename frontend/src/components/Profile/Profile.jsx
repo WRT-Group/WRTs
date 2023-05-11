@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
+import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import './profile.css'
 import MyNFTs from '../MyNFTs/MyNFTs/MyNFTs'
-
 const Profile=()=>{
     
     const {id}=useParams()
@@ -33,6 +33,7 @@ const Profile=()=>{
     },[show])
     return (
         <div>
+            <Navbar/>
             <div className="myprofile">
             {oneUser && <div className="profile">
                     <br/>
@@ -63,10 +64,6 @@ const Profile=()=>{
                     </div>}
                     <br/>
                 </div>}
-                <div>
-                    <h1>My NFTs</h1>
-                    <MyNFTs/>
-                </div>
             </div>
             
         </div>
