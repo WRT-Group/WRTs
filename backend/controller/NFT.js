@@ -34,7 +34,10 @@ const addNFT = async (req, res) => {
     });
 
     await newNFT.save();
-    await User.updateOne({ _id: owner }, { $push: { NFTs: newNFT._id } });
+    await User.updateOne(
+      { _id: owner },
+      { $push: { NFTs: newNFT._id.toString() } }
+    );
 
     res.status(201).json({ message: "NFT added successfully" });
   } catch (err) {
@@ -67,6 +70,10 @@ const search = (req, res) => {
   );
 };
 const remove = async (req, res) => {
+  await User.updateOne(
+    { _id: req.params.userId },
+    { $pull: { NFTs: req.params.id } }
+  );
   await NFT.deleteOne({ _id: req.params.id });
   res.json("deleted");
 };
