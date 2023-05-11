@@ -1,0 +1,53 @@
+.profile{
+    font-family: "Maginer";
+    color: aliceblue;
+    width: 400px;
+    margin: 50px;
+    border: 1px solid #ffffff22;
+    background-color: #282c34;
+    background: linear-gradient(0deg, rgba(40,44,52,1) 0%, rgba(17,0,32,.5) 100%);
+    box-shadow: 0 7px 20px 5px #00000088;
+    border-radius: .7rem;
+    overflow: hidden;
+    transition: .5s all;
+}
+.profile img{
+    
+    
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    overflow: hidden;
+    background-color: blue;
+}
+.profile button {
+    font-family: "Maginer";
+    color: white;
+    margin-right: 1rem;
+    width: 35%;
+    height: 6vh;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    background-size: 200% auto;
+    transition: 0.3s;
+    background-image: linear-gradient(45deg, #b400ff, #c614c6, #ed1679, #ff0066);
+    border: none;
+    border-radius: 8px;
+}
+
+input{
+    width: 70%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #54575d;
+}
+.myprofile{
+    width: 100%;
+    flex-wrap: nowrap;
+}

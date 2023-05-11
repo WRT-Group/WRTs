@@ -3,6 +3,7 @@ const User = require("../model/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
+
 const signup = async (req, res) => {
   try {
     const { fName, lName, username, email, password } = req.body;
@@ -66,9 +67,18 @@ const login = async (req, res) => {
     res.send("cannot find user");
   }
 };
+const getOneUser=async(req,res)=>{
+  const data=await User.find({_id:req.params.id});
+  res.json(data)
+}
+
+const update=async(req,res)=>{
+  await User.updateOne({_id:req.params.id},{fName:req.body.fName,lName:req.body.lName,username:req.body.username,email:req.body.email})
+  res.json('updated')
+}
 
 const getUsers=(req,res)=>{
   User.find().then(users=>res.send(users))
 }
 
-module.exports = { signup, login, getUsers };
+module.exports = { signup, login, getUsers, getOneUser, update };

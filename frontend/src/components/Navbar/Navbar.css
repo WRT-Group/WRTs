@@ -1,3 +1,18 @@
+.homepage {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.pr{
+  padding: 20px;
+  border-radius: 100%;
+  opacity: 0.8;
+  overflow: hidden;
+  width: 100px;
+}
+
 #logout-container{
   font-family: "Pixel";
 }
