@@ -33,7 +33,6 @@ const Profile=()=>{
     },[show])
     return (
         <div>
-            <Navbar/>
             <div className="myprofile">
             {oneUser && <div className="profile">
                     <br/>
