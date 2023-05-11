@@ -84,15 +84,6 @@ const UpdateNFT = ({ nft }) => {
             </Button>
           </form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button
-            style={{ fontFamily: "Maginer" }}
-            variant="secondary"
-            onClick={handleClose}
-          >
-            Close
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
