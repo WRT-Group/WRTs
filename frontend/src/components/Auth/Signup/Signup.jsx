@@ -21,6 +21,8 @@ const Signup = () => {
   const regexpPassword = /^.{8,}$/;
   const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+  const [checkbox,setCheckbox]=useState(false)
+
   const [disabled, setDisabled] = useState(false);
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
@@ -40,6 +42,9 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setDisabled(true);
+    if (!checkbox){
+      return alert('you should agree with our terms.')
+    }
     if(!regexFullName.test(fName) || !regexFullName.test(lName) || !regexpUsername.test(username) || !regexpEmail.test(email)){
       return alert("you should put a real information")
     }
@@ -190,6 +195,12 @@ const Signup = () => {
                     </span>
                   )}
                   <br />
+                  <div className="checkbox">
+                  <input type="checkbox" id="check" checked={checkbox} onChange={(e)=>setCheckbox(e.target.checked)}/>
+                  <label htmlFor="checkbox">I agree with the WRTs terms</label><br/>
+                  </div>
+                  <br/>
+                  <br/>
                   <MDBRow id="redirect">
                     <MDBCol>
                       <h6>
