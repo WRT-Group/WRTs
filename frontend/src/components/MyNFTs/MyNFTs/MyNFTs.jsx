@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./MyNFTs.css";
 import axios from "axios";
-import { useContext } from "react";
-import { Context } from "../../Context/Context";
 import OneNfts from "../../NFTs/OneNfts";
 import AddNFT from "../AddNFT/AddNFT";
 
