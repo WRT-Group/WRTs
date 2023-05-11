@@ -3,7 +3,6 @@ const User = require("../model/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-
 const signup = async (req, res) => {
   try {
     const { fName, lName, username, email, password } = req.body;
@@ -24,7 +23,7 @@ const signup = async (req, res) => {
       password: hashedPassword,
       NFTs: [],
       isAdmin: false,
-      balance: 0
+      balance: 0,
     });
 
     await user.save();
@@ -39,7 +38,7 @@ const signup = async (req, res) => {
       .json({ token, id: user._id, fName, lName, username, email, NFTs: [] });
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ message: "Something went wrong" });
+    return res.status(500).json(err);
   }
 };
 
@@ -59,7 +58,7 @@ const login = async (req, res) => {
         username: loggedUser.username,
         email: loggedUser.email,
         NFTs: loggedUser.NFTs,
-        isAdmin: loggedUser.isAdmin
+        isAdmin: loggedUser.isAdmin,
       });
     } else {
       res.send("incorrect password");
@@ -68,19 +67,43 @@ const login = async (req, res) => {
     res.send("cannot find user");
   }
 };
-const getOneUser=async(req,res)=>{
-  const data=await User.find({_id:req.params.id});
-  res.json(data)
-}
+const getOneUser = async (req, res) => {
+  const data = await User.find({ _id: req.params.id });
+  res.json(data);
+};
 
-const update=async(req,res)=>{
-  await User.updateOne({_id:req.params.id},{fName:req.body.fName,lName:req.body.lName,username:req.body.username,email:req.body.email})
-  res.json('updated')
-}
+const update = async (req, res) => {
+  await User.updateOne(
+    { _id: req.params.id },
+    {
+      fName: req.body.fName,
+      lName: req.body.lName,
+      username: req.body.username,
+      email: req.body.email,
+    }
+  );
+  res.json("updated");
+};
 
-const getUsers=async(req,res)=>{
-  const data= await User.find({}).lean()
-  res.json(data)
-}
+const getUsers = async (req, res) => {
+  const data = await User.find({}).lean();
+  res.json(data);
+};
 
-module.exports = { signup, login, getUsers, getOneUser, update };
+const getUserByOwner = async (req, res) => {
+  try {
+    const _id = req.params.id;
+    res.status(200).json(await User.findById({ _id }));
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
+module.exports = {
+  signup,
+  login,
+  getUsers,
+  getOneUser,
+  update,
+  getUserByOwner,
+};
