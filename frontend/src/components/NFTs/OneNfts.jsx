@@ -10,7 +10,7 @@ const OneNfts=(props)=>{
     <div className="nft">
     <div className='main'>
       <img className='tokenImage' src={props.one.image} alt="NFT"/>
-      <h2>{props.one.nftName} #42</h2>
+      <h2>{props.one.nftName}</h2>
       <p className='description'>{props.one.description}</p>
       <hr />
       <div className='tokenInfo'>
