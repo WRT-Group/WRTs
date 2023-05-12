@@ -1,6 +1,8 @@
 .my-nfts {
+  max-width: 700px;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  user-select: none;
   font-family: "Maginer";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

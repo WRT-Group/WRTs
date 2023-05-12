@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Dropzone from "react-dropzone";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams,Link } from "react-router-dom";
 import { motion } from "framer-motion"; 
 
 import { Context } from "../Context/Context";
@@ -10,9 +10,12 @@ import Spinner from "../Spinner/Spinner";
 import './profile.css'
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 import AddNFT from "../MyNFTs/AddNFT/AddNFT";
+import RedAlert from "../Alerts/RedAlert"
+import GreenAlert from "../Alerts/GreenAlert"
+import YellowAlert from "../Alerts/YellowAlert"
 
 const Profile=()=>{
-    const { currentUser, setCurrentUser, isLoading, setIsLoading }=useContext(Context)
+    const { currentUser, setCurrentUser, isLoading, setIsLoading, isGreen, setIsGreen, isRed, setIsRed, isYellow, setIsYellow }=useContext(Context)
     const location=useLocation().pathname
     const navigate=useNavigate()
     const {id}=useParams()
@@ -83,6 +86,9 @@ const Profile=()=>{
  
     return (
         <>
+        {isGreen && <GreenAlert text={"NFT Added Successfully!"}/>}
+        {isRed && <RedAlert/>}
+        {isYellow && <YellowAlert/>}
             <MDBRow style={{flexWrap: "nowrap"}} id="title"><h1 style={{fontFamily: "Pixel", color: "#B400FF", marginRight: 0}}>My NFTs</h1> <AddNFT /></MDBRow>
             
             <MDBRow id="profile">
@@ -100,8 +106,9 @@ const Profile=()=>{
                         <br/>
                         {currentUser && currentUser.id===id && <button onClick={()=>{
                             setObj(oneUser)
-                            setShow(!show)}}>Edit Profile</button>}
+                            setShow(!show)}}>Edit Profile</button>}<br/>
                         <br/>
+                        {currentUser && currentUser.id===id && <button className="btnChangePassword"><Link to="/changePassword">Change Password</Link></button>}
                         <br/>
                         {show && <motion.div  initial={{y: -40, opacity: 0}} animate={{y:0, opacity: 1}} exit={{y: -40, opacity: 0}} transition={{duration: 0.4}}>
                             <input type="text" name="fName" className="profile-input" value={obj.fName} placeholder="First Name" onChange={handleChange}/><br/>

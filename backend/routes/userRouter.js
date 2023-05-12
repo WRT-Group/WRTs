@@ -11,6 +11,7 @@ const {
   makeAdmin,
   removeUser,
   search,
+  changePassword,
 } = require("../controller/user");
 const authenticate = require("../middleware/authenticate.js");
 
@@ -26,7 +27,8 @@ router.put("/updateUser/:id", update);
 router.put("/ban/:id", banUser);
 router.put("/unban/:id", unbanUser);
 router.put("/makeAdmin/:id", makeAdmin);
-
+//change password route
+router.put("/changePassword/:id",changePassword)
 
 router.delete("/delete/:id", removeUser);
 
