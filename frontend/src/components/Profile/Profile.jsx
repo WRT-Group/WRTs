@@ -115,7 +115,7 @@ const Profile=()=>{
                 </div>}
                 <div>
                     <h1 style={{fontFamily: "Pixel", color: "#B400FF"}}>My NFTs</h1>
-                    <MyNFTs/>
+                    <MyNFTs id={id}/>
                 </div>
             </div>
             {isLoading && <Spinner/>}
