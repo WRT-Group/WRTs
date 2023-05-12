@@ -27,6 +27,7 @@ router.put("/ban/:id", banUser);
 router.put("/unban/:id", unbanUser);
 router.put("/makeAdmin/:id", makeAdmin);
 
+
 router.delete("/delete/:id", removeUser);
 
 module.exports = router;

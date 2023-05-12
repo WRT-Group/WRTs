@@ -123,7 +123,7 @@ const Profile=()=>{
                     </div>}
                     <br/>
               </MDBCol>
-                <MDBCol><MyNFTs id={id}/></MDBCol>
+              <MDBCol><MyNFTs id={id}/></MDBCol>
             {isLoading && <Spinner/>}
             </MDBRow>
         </>

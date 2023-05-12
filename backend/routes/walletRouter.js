@@ -1,5 +1,5 @@
 const router=require("express").Router()
-const { getWallets, getOne, add, deposit }=require("../controller/wallet")
+const { getWallets, add, deposit, buy }=require("../controller/wallet")
 
 router.get("/getWallets", getWallets)
 
