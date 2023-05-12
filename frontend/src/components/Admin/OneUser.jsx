@@ -37,7 +37,7 @@ const OneUser = ({id,fName,lName,username,email,isAdmin,isBanned,createdAt}) => 
         <td className='user-info' style={isBanned ? {color:"red"} : {color: "white"}}>{String(isBanned)}</td>
         <td className='user-info'>{createdAt}</td>
         <td className='user-info'>
-          <button className={`btn btn-primary ${isAdmin || isBanned && "disabled"}`} onClick={makeAdmin}>Make Admin</button>
+          <button className={`btn btn-primary ${(isAdmin || isBanned) && "disabled"}`} onClick={makeAdmin}>Make Admin</button>
           {!isBanned && <button className={`btn btn-danger ${isAdmin && "disabled"}`} onClick={ban}>Ban</button>}
           {isBanned && <button className="btn btn-danger" onClick={unban}>Unban</button>}
           <button className={`btn btn-danger ${isAdmin && "disabled"}`} onClick={removeUser}>Remove</button>

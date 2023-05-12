@@ -8,8 +8,9 @@ const Home = () => {
   const { loginSuccess, setLoginSuccess }=useContext(Context)
 
   useEffect(()=>{
-    console.log(loginSuccess)
-    setTimeout(()=>setLoginSuccess(false),2000)
+    if(loginSuccess){
+      setTimeout(()=>setLoginSuccess(false),2000)
+    }
   },[])
 
   return (

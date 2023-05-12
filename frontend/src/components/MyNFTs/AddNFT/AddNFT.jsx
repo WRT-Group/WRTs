@@ -20,7 +20,7 @@ function AddNFT() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newNFT = {
       nftName: name,
@@ -30,14 +30,14 @@ function AddNFT() {
       owner: currentUser.id,
     };
 
-    axios
+    await axios
       .post("http://localhost:3001/NFT/add", newNFT, {
         headers: {
           "Content-Type": "application/json",
           Authorization: currentUser.token,
         },
       })
-      .then((res) => alert(res.data.message));
+      window.location.reload()
   };
 
   const onDrop = async (acceptedFiles) => {
