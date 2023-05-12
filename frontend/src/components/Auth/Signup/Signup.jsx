@@ -44,21 +44,12 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      !regexFullName.test(fName) ||
-      !regexFullName.test(lName) ||
-      !regexpUsername.test(username) ||
-      !regexpEmail.test(email) ||
-      !regexpPassword.test(password)
-    ) {
+    if (!regexFullName.test(fName) || !regexFullName.test(lName) || !regexpUsername.test(username) || !regexpEmail.test(email) || !regexpPassword.test(password) || !checkbox){
       console.log("if 1");
       setInfoInc(true);
       setTimeout(clearInc, 2000);
-      if (!checkbox) {
-        console.log("if 2");
-        setConfInc(true);
-        setTimeout(clearInc, 2000);
-      } else if (password !== confPassword) {
+    }
+    else if (password !== confPassword) {
         console.log("else if");
         setConfInc(true);
         setTimeout(clearInc, 2000);
@@ -92,7 +83,6 @@ const Signup = () => {
             console.log(err);
           });
       }
-    }
   };
   const clearInc = () => {
     setConfInc(false);

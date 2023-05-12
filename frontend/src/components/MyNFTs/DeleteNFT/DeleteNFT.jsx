@@ -7,12 +7,13 @@ import axios from "axios";
 const DeleteNFT = ({ id }) => {
   const [clicked, setClicked] = useState(false);
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  const handleDelete = () => {
-    axios
+  const handleDelete = async () => {
+    await axios
       .delete(`http://localhost:3001/NFT/delete/${id}/${currentUser.id}`, {
         headers: { Authorization: currentUser.token },
       })
       .catch((err) => console.log(err));
+      window.location.reload()
   };
   return (
     <>

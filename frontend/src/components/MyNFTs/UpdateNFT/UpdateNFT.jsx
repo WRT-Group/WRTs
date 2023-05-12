@@ -21,7 +21,7 @@ const UpdateNFT = ({ nft }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newNFT = {
@@ -31,14 +31,14 @@ const UpdateNFT = ({ nft }) => {
       description: description || nft.description,
     };
 
-    axios
+    await axios
       .put(`http://localhost:3001/NFT/edit/${nft._id}`, newNFT, {
         headers: {
           "Content-Type": "application/json",
           Authorization: currentUser.token,
         },
       })
-      .then((res) => alert(res.data.message));
+      window.location.reload()
   };
 
   const onDrop = async (acceptedFiles) => {
