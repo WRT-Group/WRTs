@@ -4,7 +4,9 @@ button#addNFT {
   bottom: 0;
   position: relative;
   margin-top: 0.4rem;
+  margin-left: 12rem;
   float: left;
+  width: 4vw;
 }
 
 button#addNFT:hover {

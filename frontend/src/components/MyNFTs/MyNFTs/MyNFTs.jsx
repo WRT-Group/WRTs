@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import OneNfts from "../../NFTs/OneNfts";
-import AddNFT from "../AddNFT/AddNFT";
 import { useParams } from "react-router-dom";
 import "./MyNFTs.css";
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 
 const MyNFTs = () => {
   const { id } = useParams();
-  const [userNFTs, setUserNFTs] = useState([]);
+  const [userNFTs, setUserNFTs] = useState({});
   const [rows, setRows] = useState([])
+
+  const fetchData = async () => {
+   const res = await axios
+                        .get(`http://localhost:3001/NFT/owner/${id}`)
+                        .catch((err) => console.log(err));
+    setUserNFTs(res.data);
+    fillRows()
+  }
+
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/NFT/owner/${id}`)
-      .then((res) => {
-        setUserNFTs(res.data);
-        fillRows()
-      })
-      .catch((err) => console.log(err));
+    fetchData()
   }, []);
 
   const fillRows = () => {
+    console.log(userNFTs)
     let arr = []
     for (let i = 0; i < userNFTs.length; i += 2) {
       arr.push(
@@ -38,8 +41,6 @@ const MyNFTs = () => {
     setRows(arr)
   }
   return (
-    <>
-      {/* <AddNFT /> */}
       <div className="my-nfts">
         {rows}
         {/* {userNFTs.map((e, i) => (
@@ -48,7 +49,6 @@ const MyNFTs = () => {
           </div>
         ))} */}
       </div>
-    </>
   );
 };
 

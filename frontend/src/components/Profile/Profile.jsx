@@ -73,7 +73,7 @@ const Profile=()=>{
       
     return (
         <>
-            <MDBRow style={{flexWrap: "nowrap"}}><h1 style={{fontFamily: "Pixel", color: "#B400FF"}}>My NFTs</h1> <AddNFT /></MDBRow>
+            <MDBRow style={{flexWrap: "nowrap"}} id="title"><h1 style={{fontFamily: "Pixel", color: "#B400FF", marginRight: 0}}>My NFTs</h1> <AddNFT /></MDBRow>
             
             <MDBRow id="profile">
                 <MDBCol md={4} className="myprofile">
@@ -112,7 +112,9 @@ const Profile=()=>{
                         <br/>
                     </div>}
                     </MDBCol>
-                    <MDBCol><MyNFTs/></MDBCol>
+                    <MDBCol>
+                        <MyNFTs />
+                    </MDBCol>
                         
                 
                 {isLoading && <Spinner/>}
