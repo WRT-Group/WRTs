@@ -100,9 +100,9 @@ const Profile=()=>{
                         <br/>
                         {currentUser && currentUser.id===id && <button onClick={()=>{
                             setObj(oneUser)
-                            setShow(!show)}}>Edit Profile</button>}
+                            setShow(!show)}}>Edit Profile</button>}<br/>
                         <br/>
-                        {currentUser && currentUser.id===id && <button><Link to="/changePassword">Change Password</Link></button>}
+                        {currentUser && currentUser.id===id && <button className="btnChangePassword"><Link to="/changePassword">Change Password</Link></button>}
                         <br/>
                         {show && <motion.div  initial={{y: -40, opacity: 0}} animate={{y:0, opacity: 1}} exit={{y: -40, opacity: 0}} transition={{duration: 0.4}}>
                             <input type="text" name="fName" className="profile-input" value={obj.fName} placeholder="First Name" onChange={handleChange}/><br/>
