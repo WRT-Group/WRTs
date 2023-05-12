@@ -34,7 +34,7 @@ const Profile=()=>{
         getOneUser()
     },[show,id])
     return (
-        <div>
+        
             <div className="myprofile">
             {oneUser && <div className="profile">
                     <br/>
@@ -69,7 +69,7 @@ const Profile=()=>{
                 </div>
             </div>
             
-        </div>
+        
     )
 }
 export default Profile;
