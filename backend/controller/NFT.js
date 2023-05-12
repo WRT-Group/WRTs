@@ -87,8 +87,11 @@ const remove = async (req, res) => {
 
 const buy=async(req,res)=>{
   const { nftId, price, sellerid ,buyerid }=req.body
+  console.log(sellerid)
     const seller=await User.findOne({_id: sellerid})
     const buyer=await User.findOne({_id: buyerid})
+    console.log(seller)
+    console.log(buyer)
     const sellerBalance=seller.balance
     const buyerBalance=buyer.balance
 
