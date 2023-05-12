@@ -7,21 +7,18 @@ import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 
 const MyNFTs = (props) => {
   const { id } = useParams();
-  const [userNFTs, setUserNFTs] = useState({});
+  const [userNFTs, setUserNFTs] = useState([]);
   const [rows, setRows] = useState([])
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/NFT/owner/${id}`)
-      .then((res) => {
-        setUserNFTs(res.data);
-        fillRows()
-      })
-      .catch((err) => console.log(err));
-
+    fillRows()
   }, [props.id]);
 
-  const fillRows = () => {
+  const fillRows = async () => {
+   const res = await axios
+      .get(`http://localhost:3001/NFT/owner/${id}`)
+      .catch((err) => console.log(err));
+    setUserNFTs(res.data) 
     console.log(userNFTs)
     let arr = []
     for (let i = 0; i < userNFTs.length; i += 2) {
@@ -41,14 +38,13 @@ const MyNFTs = (props) => {
   }
 
   return (
-      <div className="my-nfts">
-        {rows}
-        {/* {userNFTs.map((e, i) => (
-          <div style={{padding: "10px"}} key={i}>
+      <MDBRow className="my-nfts flex-wrap row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+        {userNFTs.map((e, i) => (
+          <MDBCol key={i} sm={6} md={4} lg={3} className="mb-3">
             <OneNfts one={e} />
-          </div>
-        ))} */}
-      </div>
+          </MDBCol>
+        ))}
+      </MDBRow>
   );
 };
 
