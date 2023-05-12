@@ -33,7 +33,7 @@ const Profile=()=>{
     const getOneUser=async ()=>{
         setIsLoading(true)
         const res=await axios.get(`http://localhost:3001/user/getUser/${id}`)
-        setOneUser(res.data[0])
+        setOneUser(res.data)
         setObj(oneUser)
         setIsLoading(false)
     }
