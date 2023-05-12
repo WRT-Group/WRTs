@@ -9,6 +9,7 @@ const {
   remove,
   getOne,
   getByUser,
+  buy
 } = require("../controller/NFT.js");
 const authenticate = require("../middleware/authenticate.js");
 
@@ -20,6 +21,7 @@ router.get("/getOne/:id", getOne);
 router.post("/add", authenticate, addNFT);
 
 router.put("/edit/:id", authenticate, edit);
+router.put("/purchase", buy)
 
 router.delete("/delete/:id/:userId", authenticate, remove);
 
