@@ -8,6 +8,8 @@ import { Context } from "../Context/Context";
 import MyNFTs from '../MyNFTs/MyNFTs/MyNFTs'
 import Spinner from "../Spinner/Spinner";
 import './profile.css'
+import { MDBCol, MDBRow } from "mdb-react-ui-kit";
+import AddNFT from "../MyNFTs/AddNFT/AddNFT";
 
 const Profile=()=>{
     const { currentUser, setCurrentUser, isLoading, setIsLoading }=useContext(Context)
@@ -70,49 +72,53 @@ const Profile=()=>{
       };
       
     return (
-        <div>
-            <div className="myprofile">
-            {oneUser && <div className="profile">
-                    <br/>
-                    <img src={oneUser.image} alt="nft" />
-                    <h1>{oneUser.username}</h1>
-                    <br/>
-                    <br/>
-                    <h4>Full Name: {`${oneUser.fName} ${oneUser.lName}`}</h4>
-                    <br/>
-                    <h4>E-mail: <br></br>{oneUser.email}</h4>
-                    <br/>
-                    <br/>
-                    {currentUser && currentUser.id===id && <button onClick={()=>{
-                        setObj(oneUser)
-                        setShow(!show)}}>Edit Profile</button>}
-                    <br/>
-                    <br/>
-                    {show && <motion.div  initial={{y: -40, opacity: 0}} animate={{y:0, opacity: 1}} exit={{y: -40, opacity: 0}} transition={{duration: 0.4}}>
-                        <input type="text" name="fName" className="profile-input" value={obj.fName} placeholder="First Name" onChange={handleChange}/><br/>
+        <>
+            <MDBRow style={{flexWrap: "nowrap"}}><h1 style={{fontFamily: "Pixel", color: "#B400FF"}}>My NFTs</h1> <AddNFT /></MDBRow>
+            
+            <MDBRow id="profile">
+                <MDBCol md={4} className="myprofile">
+                {oneUser && <div className="profile">
                         <br/>
-                        <input type="text" name="lName" className="profile-input" value={obj.lName} placeholder="Last Name" onChange={handleChange}/><br/>
+                        <img src={oneUser.image} alt="nft" />
+                        <h1>{oneUser.username}</h1>
                         <br/>
-                        <input type="text" name="email" className="profile-input" value={obj.email} placeholder="example@mail.com" onChange={handleChange}/><br/>
                         <br/>
-                        <Dropzone id="profile-dropzone" onDrop={onDrop}>
-                            {({ getRootProps, getInputProps }) => (
-                                <div {...getRootProps()} className="dropzone">
-                                    <input {...getInputProps()} />
-                                </div>
-                            )}
-                        </Dropzone>
-                        <button id="profile-submit" onClick={()=>editProfile()}>Update</button>
-                    </motion.div>}
-                    <br/>
-                </div>}
-                <div>
-                    <h1 style={{fontFamily: "Pixel", color: "#B400FF"}}>My NFTs</h1>
-                    <MyNFTs/>
-                </div>
-            </div>
-            {isLoading && <Spinner/>}
-        </div>
+                        <h4>Full Name: {`${oneUser.fName} ${oneUser.lName}`}</h4>
+                        <br/>
+                        <h4>E-mail: <br></br>{oneUser.email}</h4>
+                        <br/>
+                        <br/>
+                        {currentUser && currentUser.id===id && <button onClick={()=>{
+                            setObj(oneUser)
+                            setShow(!show)}}>Edit Profile</button>}
+                        <br/>
+                        <br/>
+                        {show && <motion.div  initial={{y: -40, opacity: 0}} animate={{y:0, opacity: 1}} exit={{y: -40, opacity: 0}} transition={{duration: 0.4}}>
+                            <input type="text" name="fName" className="profile-input" value={obj.fName} placeholder="First Name" onChange={handleChange}/><br/>
+                            <br/>
+                            <input type="text" name="lName" className="profile-input" value={obj.lName} placeholder="Last Name" onChange={handleChange}/><br/>
+                            <br/>
+                            <input type="text" name="email" className="profile-input" value={obj.email} placeholder="example@mail.com" onChange={handleChange}/><br/>
+                            <br/>
+                            <Dropzone id="profile-dropzone" onDrop={onDrop}>
+                                {({ getRootProps, getInputProps }) => (
+                                    <div {...getRootProps()} className="dropzone">
+                                        <input {...getInputProps()} />
+                                    </div>
+                                )}
+                            </Dropzone>
+                            <button id="profile-submit" onClick={()=>editProfile()}>Update</button>
+                        </motion.div>}
+                        <br/>
+                    </div>}
+                    </MDBCol>
+                    <MDBCol><MyNFTs/></MDBCol>
+                        
+                
+                {isLoading && <Spinner/>}
+            </MDBRow>
+        </>
+        
     )
 }
 export default Profile;

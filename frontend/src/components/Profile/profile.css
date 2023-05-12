@@ -1,7 +1,6 @@
 .profile{
     font-family: "Maginer";
     color: aliceblue;
-    width: 410px;
     margin: 30px;
     border: 1px solid #ffffff22;
     background-color: #282c34;
@@ -51,11 +50,7 @@ input{
     box-sizing: border-box;
     background-color: #54575d;
 }
-.myprofile{
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-}
+
 
 .profile h1{
     font-family: "Pixel";
@@ -68,4 +63,11 @@ input{
 
 #profile-submit{
     margin-top: 20px;
+}
+
+#profile {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }

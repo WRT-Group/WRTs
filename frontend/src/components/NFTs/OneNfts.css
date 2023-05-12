@@ -75,7 +75,7 @@
   margin: 0.5rem 0;
   color: #a89ec9;
   text-align: center;
-  max-width: 60%;
+  max-width: 100%;
   max-height: fit-content;
 }
 .nft > .main > .tokenInfo {
