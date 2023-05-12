@@ -2,6 +2,9 @@ button#addNFT {
   background: transparent;
   border: none;
   bottom: 0;
+  position: relative;
+  margin-top: 0.4rem;
+  float: left;
 }
 
 button#addNFT:hover {

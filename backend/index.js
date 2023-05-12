@@ -5,8 +5,8 @@ const app = express();
 const connectDB = require("./database/conenction");
 const NFTRouter = require("./routes/NFTRouter");
 const userRouter = require("./routes/userRouter");
+const walletRouter=require("./routes/walletRouter")
 const morgan = require("morgan");
-const bodyParser = require("body-parser");
 const cloudinary = require("cloudinary").v2;
 
 const port = 3001;
@@ -25,6 +25,7 @@ connectDB();
 
 app.use("/NFT", NFTRouter);
 app.use("/user", userRouter);
+app.use("/wallet", walletRouter)
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

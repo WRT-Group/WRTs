@@ -5,6 +5,7 @@ import Search from '../Search/Search';
 import { Context } from '../Context/Context';
 import "./Navbar.css"
 import Balance from '../Balance/Balance';
+import PFP from '../PFP/PFP';
 
 const Navbar = () => {
   const location = useLocation().pathname
@@ -41,10 +42,8 @@ const Navbar = () => {
               <div className="nav-item" style={{marginRight: "30px"}}>
                 <Link className={`nav-link`} to="/" onClick={logout}>Logout</Link>
               </div>}
-            <Search />
-            {currentUser && <Link to={`/profile/${currentUser.id}`}>
-            <img src={currentUser.image} alt='profile' className='pr'/>
-            </Link>}
+            {location==="/" && <Search />}
+            <PFP/>
           </div>
         </div>
       </nav>

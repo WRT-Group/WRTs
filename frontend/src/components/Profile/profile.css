@@ -1,7 +1,6 @@
 .profile{
     font-family: "Maginer";
     color: aliceblue;
-    width: 410px;
     margin: 30px;
     border: 1px solid #ffffff22;
     background-color: #282c34;
@@ -11,9 +10,8 @@
     overflow: hidden;
     transition: .5s all;
 }
+
 .profile img{
-    
-    
     margin-top: 20px;
     width: 200px;
     height: 200px;
@@ -21,6 +19,7 @@
     overflow: hidden;
     background-color: blue;
 }
+
 .profile button {
     font-family: "Maginer";
     color: white;
@@ -37,6 +36,10 @@
     border-radius: 8px;
 }
 
+.profile button:hover{
+    background-position: right center;
+}
+
 input{
     width: 70%;
     padding: 12px 20px;
@@ -47,13 +50,24 @@ input{
     box-sizing: border-box;
     background-color: #54575d;
 }
-.myprofile{
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-}
+
 
 .profile h1{
     font-family: "Pixel";
     color: #ed1679;
+}
+
+.profile-input{
+    color: white
+}
+
+#profile-submit{
+    margin-top: 20px;
+}
+
+#profile {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }

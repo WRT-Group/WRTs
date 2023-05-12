@@ -14,7 +14,7 @@ const authenticate = require("../middleware/authenticate.js");
 
 router.get("/getAll", getAll);
 router.get("/search", search);
-router.get("/:id", getByUser);
+router.get("/owner/:id", getByUser);
 router.get("/getOne/:id", getOne);
 
 router.post("/add", authenticate, addNFT);
