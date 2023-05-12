@@ -49,12 +49,17 @@ const addNFT = async (req, res) => {
 };
 const edit = async (req, res) => {
   try {
+    let imageUrl = await NFT.findOne({ _id: req.params.id });
+    if (req.body.image) {
+      imageUrl = await cloudinary.uploader.upload(req.body.image);
+    }
+
     await NFT.updateOne(
       { _id: req.params.id },
       {
         nftName: req.body.nftName,
         price: req.body.price,
-        image: req.body.image,
+        image: imageUrl.secure_url || imageUrl.image,
         description: req.body.description,
       }
     );
