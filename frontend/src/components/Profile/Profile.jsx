@@ -55,6 +55,9 @@ const Profile=()=>{
         window.location.reload()
         setIsLoading(false)
     }
+    useEffect(()=>{
+        getOneUser()
+    },[show,id])
 
     const onDrop = async (acceptedFiles) => {
         setIsLoading(true)
@@ -77,7 +80,7 @@ const Profile=()=>{
           };
         });
       };
-      
+ 
     return (
         <>
             <MDBRow style={{flexWrap: "nowrap"}}><h1 style={{fontFamily: "Pixel", color: "#B400FF"}}>My NFTs</h1> <AddNFT /></MDBRow>
@@ -118,14 +121,14 @@ const Profile=()=>{
                         </motion.div>}
                         <br/>
                     </div>}
-                    </MDBCol>
-                    <MDBCol><MyNFTs/></MDBCol>
-                        
-                
-                {isLoading && <Spinner/>}
+                    <br/>
+                </div>}
+              </MDBCol>
+                <MDBCol><MyNFTs id={id}/></MDBCol>
+            </div>
+            {isLoading && <Spinner/>}
             </MDBRow>
         </>
-        
     )
 }
 export default Profile;

@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import "./MyNFTs.css";
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 
-const MyNFTs = () => {
+const MyNFTs = (props) => {
   const { id } = useParams();
   const [userNFTs, setUserNFTs] = useState([]);
   const [rows, setRows] = useState([])
@@ -18,7 +18,8 @@ const MyNFTs = () => {
         fillRows()
       })
       .catch((err) => console.log(err));
-  }, []);
+
+  }, [props.id]);
 
   const fillRows = () => {
     let arr = []
@@ -37,6 +38,7 @@ const MyNFTs = () => {
     }
     setRows(arr)
   }
+
   return (
     <>
       {/* <AddNFT /> */}
