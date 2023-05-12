@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./OneNfts.css";
 import { Context } from "../Context/Context";
 import UpdateNFT from "../MyNFTs/UpdateNFT/UpdateNFT";
@@ -9,6 +9,7 @@ import axios from "axios";
 const OneNfts = (props) => {
   const { currentUser } = useContext(Context);
   const [owner, setOwner] = useState({});
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios
@@ -33,9 +34,7 @@ const OneNfts = (props) => {
         );
       } else {
         return (
-          <button className="buy-btn">
-            <Link to={`/BuyNFT/${props.one._id}`}>Buy</Link>
-          </button>
+          <button className="buy-btn" onClick={()=>navigate(`/BuyNFT/${props.one._id}`)}><span>Purchase</span></button>
         );
       }
     }

@@ -127,17 +127,46 @@
   object-fit: cover;
   margin: 0;
 }
-.nft .buy-btn {
+.nft .buy-btn  {
   font-family: "Maginer";
   color: white;
   width: 50%;
   justify-content: center;
   align-items: center;
   font-size: 18px;
+  background-size: 180% auto;
   background-image: linear-gradient(45deg, #b400ff, #c614c6, #ed1679, #ff0066);
   border-radius: 5px;
   border: #a89ec9;
   margin-bottom: 8px;
+  transition: 0.6s;
+}
+
+.nft .buy-btn:hover {
+  background-position: right center;
+  color: whitesmoke;
+}
+
+.nft .buy-btn span {
+  font-family: "Admin";
+  transition: 0.4s;
+}
+
+.nft .buy-btn:hover span {
+  cursor: pointer;
+  font-weight: bold;
+  background-image: linear-gradient(45deg, #440061, #1b004e, #44001f, #7c0032);
+
+  /* Set the background size and repeat properties. */
+  background-size: 100%;
+  background-repeat: repeat;
+
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
 }
 
 .buttons {
