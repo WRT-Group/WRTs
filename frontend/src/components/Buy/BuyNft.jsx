@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 
-import "../NFTs/OneNfts.css";
+import './Buy.css'
+
 const BuyNFT = () => {
   const { id } = useParams();
   console.log(id);
@@ -18,14 +19,23 @@ const BuyNFT = () => {
   console.log(buyData);
   return (
     <>
-      <div className="nft">
+      <div className= "nft-box">
         {buyData.length > 0 && (
-          <div className="main">
-            <img className="tokenImage" src={buyData[0].image} alt="NFT" />
+          <div className="allinfo">
+            <br />
+            <br />
+            <img className="image" src={buyData[0].image} alt="NFT" />
+            <br />
+            <br />
+            <div className="info1">
+            <br />
+            <br />
             <h2 style={{ color: "white" }}>{buyData[0].nftName} #42</h2>
+            <br />
+            <br />
             <p className="description">{buyData[0].description}</p>
             <hr />
-            <div className="tokenInfo">
+            <div className="info">
               <div className="price">
                 <ins>◘{buyData[0].price} ETH</ins>
               </div>
@@ -33,6 +43,9 @@ const BuyNFT = () => {
                 <ins>◷ {moment(buyData.created_at).format("MMM Do YY")}</ins>
               </div>
             </div>
+            <button>Buy</button>
+            </div>
+            
           </div>
         )}
         <br />

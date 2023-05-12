@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import "./Home.css"
 import AllNfts from '../NFTs/AllNfts';
+import GreenAlert from '../Alerts/GreenAlert';
+import { Context } from '../Context/Context';
 
 const Home = () => {
+  const { loginSuccess, setLoginSuccess }=useContext(Context)
+
+  useEffect(()=>{
+    console.log(loginSuccess)
+    setTimeout(()=>setLoginSuccess(false),2000)
+  },[])
 
   return (
     <>
+      {loginSuccess && <GreenAlert text={"Logged in."}/>}
       <AllNfts/>
     </>
   );
