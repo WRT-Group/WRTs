@@ -14,7 +14,6 @@ const signup = async (req, res) => {
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
     if (existingUser) {
       return res
-        .status(400)
         .json({ message: "Username or email already exists" });
     }
 
@@ -67,7 +66,8 @@ const login = async (req, res) => {
         isAdmin: loggedUser.isAdmin,
         isBanned: loggedUser.isBanned,
         balance: loggedUser.balance,
-        createdAt: loggedUser.createdAt
+        createdAt: loggedUser.createdAt,
+        image: loggedUser.image
       });
     } else {
       res.send("incorrect password");
@@ -82,15 +82,21 @@ const getOneUser = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  await User.updateOne(
-    { _id: req.params.id },
-    {
-      fName: req.body.fName,
-      lName: req.body.lName,
-      email: req.body.email,
-    }
-  );
-  res.json("updated");
+  const { id }=req.params
+  const { fName, lName, email, image }=req.body
+  var updateData={
+    fName: fName,
+    lName: lName,
+    email: email
+  }
+
+  if(image){
+    const imageUrl=await cloudinary.uploader.upload(image)
+    updateData.image=imageUrl.secure_url
+  }
+
+  await User.findByIdAndUpdate(id,updateData)
+  User.findById(id).then(user=>res.send(user))
 };
 
 const getUsers = async (req, res) => {

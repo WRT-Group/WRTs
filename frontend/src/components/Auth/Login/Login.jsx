@@ -40,10 +40,15 @@ const Login = () => {
         setTimeout(clearInc,2000)
       }
       else{
-        setCurrentUser(user.data)
-        localStorage.setItem("currentUser",JSON.stringify(user.data))
-        navigate("/")
-        setLoginSuccess(true)
+        if(user.data.isBanned){
+          navigate("/banned")
+        }
+        else{
+          setCurrentUser(user.data)
+          localStorage.setItem("currentUser",JSON.stringify(user.data))
+          navigate("/")
+          setLoginSuccess(true)
+        }
       }
     })
   }

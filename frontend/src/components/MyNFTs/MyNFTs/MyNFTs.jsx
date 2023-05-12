@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./MyNFTs.css";
 import axios from "axios";
 import OneNfts from "../../NFTs/OneNfts";
 import AddNFT from "../AddNFT/AddNFT";
 import { useParams } from "react-router-dom";
+import "./MyNFTs.css";
 
 const MyNFTs = () => {
   const { id } = useParams();
