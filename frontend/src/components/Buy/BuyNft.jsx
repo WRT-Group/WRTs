@@ -17,6 +17,7 @@ const BuyNFT = () => {
   const { id } = useParams();
   const navigate=useNavigate()
   const [buyData, setBuyData] = useState(null);
+  const [userNFTs, setUserNFTs] = useState(null);
   const [owner, setOwner] = useState({});
   const [show, setShow] = useState(false);
 
@@ -45,7 +46,16 @@ const BuyNFT = () => {
       })
       .catch(err => console.log(err))
     }
-  }, [buyData])
+    if (owner) {
+      axios
+      .get(`http://localhost:3001/NFT/owner/${owner._id}`)
+      .then((res) => {
+        setOwner(res.data);
+        setIsLoading(false)
+      })
+      .catch(err => console.log(err))
+    }
+  }, [buyData, owner])
 
 
   const handleSubmit=()=>{
