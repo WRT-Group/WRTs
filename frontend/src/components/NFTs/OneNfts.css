@@ -10,6 +10,8 @@
   );
   box-shadow: 0 7px 20px 5px #00000088;
   border-radius: 0.7rem;
+  min-height: 560px;
+  max-height: 600px;
   overflow: hidden;
   transition: 0.5s all;
 }
@@ -69,9 +71,12 @@
   object-fit: cover;
   align-items: center;
 }
-.nft > .main > .description {
+.nft .main .description {
   margin: 0.5rem 0;
   color: #a89ec9;
+  text-align: center;
+  max-width: 100%;
+  max-height: fit-content;
 }
 .nft > .main > .tokenInfo {
   display: flex;

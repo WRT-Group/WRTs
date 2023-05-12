@@ -10,6 +10,7 @@ import PFP from '../PFP/PFP';
 const Navbar = () => {
   const location = useLocation().pathname
   const { currentUser,logout }=useContext(Context)
+  
   return (
     <div className='homepage'>
       <nav className="navbar navbar-expand-lg bg-body-tertiary rounded">
