@@ -9,7 +9,7 @@ import Dropzone from "react-dropzone";
 import { Context } from "../../Context/Context";
 
 function AddNFT() {
-  const { currentUser } = useContext(Context);
+  const { currentUser, setIsLoading, setIsGreen, setIsRed, setIsYellow } = useContext(Context);
 
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
@@ -22,6 +22,7 @@ function AddNFT() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true)
     const newNFT = {
       nftName: name,
       price,
@@ -37,7 +38,9 @@ function AddNFT() {
           Authorization: currentUser.token,
         },
       })
-      window.location.reload()
+      setIsGreen(true)
+      setTimeout(()=>{setIsGreen(false);window.location.reload()},2000)
+      setIsLoading(false)  
   };
 
   const onDrop = async (acceptedFiles) => {
