@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const Context=createContext()
 
@@ -13,12 +13,6 @@ export const ContextProvider = ({children}) => {
     setCurrentUser(null)
     localStorage.removeItem("currentUser")
   }
-
-  useEffect(()=>{
-    if(currentUser){
-      console.log(currentUser.image)
-    }
-  },[currentUser])
 
   return (
     <Context.Provider value={{currentUser,setCurrentUser,logout,data,setData,loginSuccess,setLoginSuccess,isLoading,setIsLoading}}>

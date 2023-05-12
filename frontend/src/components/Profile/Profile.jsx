@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Dropzone from "react-dropzone";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion"; 
 
 import { Context } from "../Context/Context";
@@ -11,6 +11,8 @@ import './profile.css'
 
 const Profile=()=>{
     const { currentUser, setCurrentUser, isLoading, setIsLoading }=useContext(Context)
+    const location=useLocation().pathname
+    const navigate=useNavigate()
     const {id}=useParams()
     const [show,setShow]=useState(false)
     const [oneUser,setOneUser]=useState({})
@@ -18,7 +20,12 @@ const Profile=()=>{
     const [image,setImage]=useState(null)
     
     useEffect(()=>{
-        getOneUser()
+        if(location==="/profile/undefined"){
+            navigate("/")
+        }
+        else{
+            getOneUser()
+        }
     },[])
 
     const getOneUser=async ()=>{
@@ -41,7 +48,7 @@ const Profile=()=>{
     const editProfile=async()=>{
         setIsLoading(true)
         const updateUser=await axios.put(`http://localhost:3001/user/updateUser/${id}`,{...obj,image})
-        setCurrentUser(updateUser)
+        setCurrentUser(updateUser.data)
         setShow(!show)
         window.location.reload()
         setIsLoading(false)
