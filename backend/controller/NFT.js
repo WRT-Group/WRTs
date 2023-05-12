@@ -8,7 +8,7 @@ const getAll = async (req, res) => {
 };
 
 const getOne = async (req, res) => {
-  const data = await NFT.findOne({ _id: req.params.id });
+  const data = await NFT.findById({ _id: req.params.id });
   res.json(data);
 };
 

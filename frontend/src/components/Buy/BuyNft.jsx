@@ -16,16 +16,14 @@ const BuyNFT = () => {
   const { currentUser, isLoading, setIsLoading }=useContext(Context)
   const { id } = useParams();
   const navigate=useNavigate()
-  const [buyData, setBuyData] = useState({});
+  const [buyData, setBuyData] = useState(null);
   const [owner, setOwner] = useState({});
   const [show, setShow] = useState(false);
 
   const getOne = async () => {
-    const res = await axios.get(`http://localhost:3001/NFT/getOne/${id}`)
-    setBuyData(res.data)
-    //  axios
-    //   .get(`http://localhost:3001/user/getUser/${buyData.owner}`)
-    //   .then((res) => setOwner(res.data));
+    console.log("fetching")
+     await axios.get(`http://localhost:3001/NFT/getOne/${id}`).then((res) => setBuyData(res.data))
+
   };
   useEffect(() => {
     setIsLoading(false)
@@ -34,12 +32,15 @@ const BuyNFT = () => {
         navigate("/")
       }
     }
-    getOne();
-    console.log(buyData,id)
+    getOne()
   }, []);
 
   useEffect(() => {
-    console.log(buyData, id);
+    if (buyData) {
+      axios
+      .get(`http://localhost:3001/user/getUser/${buyData.owner}`)
+      .then((res) => setOwner(res.data)).catch(err => console.log(err))
+    }
   }, [buyData])
 
 

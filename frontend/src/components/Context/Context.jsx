@@ -10,7 +10,7 @@ export const ContextProvider = ({children}) => {
   const [isLoading,setIsLoading]=useState(false)
 
   useEffect(()=>{
-    console.log(currentUser)
+    // console.log(currentUser)
   },[])
   
   const logout=()=>{
