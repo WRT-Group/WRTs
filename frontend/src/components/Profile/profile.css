@@ -52,9 +52,10 @@ input{
 }
 
 
-.profile h1{
+#title h1{
     font-family: "Pixel";
     color: #ed1679;
+    width: 8vw;
 }
 
 .profile-input{

@@ -10,4 +10,6 @@
   user-select: none;
   margin: 1rem 2rem;
   padding: 2rem;
+  margin-top: 0;
+  padding-top: 0;
 }
