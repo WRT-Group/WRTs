@@ -8,13 +8,13 @@ import axios from "axios";
 
 const OneNfts = (props) => {
   const { currentUser, setIsLoading } = useContext(Context);
-  const [owner, setOwner] = useState({});
+  const [owner, setOwner] = useState({image: "", username: "da"});
   const navigate = useNavigate()
 
   useEffect(() => {
     axios
       .get(`http://localhost:3001/user/owner/${props.one.owner}`)
-      .then(async (res) => setOwner(res.data));
+      .then((res) => setOwner(res.data));
   }, []);
 
   const Button = () => {
