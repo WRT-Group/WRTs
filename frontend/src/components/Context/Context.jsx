@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 export const Context=createContext()
 
@@ -9,6 +9,10 @@ export const ContextProvider = ({children}) => {
   const [loginSuccess,setLoginSuccess]=useState(false)
   const [isLoading,setIsLoading]=useState(false)
 
+  useEffect(()=>{
+    console.log(currentUser)
+  },[])
+  
   const logout=()=>{
     setCurrentUser(null)
     localStorage.removeItem("currentUser")
