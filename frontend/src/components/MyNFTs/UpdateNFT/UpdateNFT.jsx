@@ -10,7 +10,7 @@ import "./UpdateNFT.css";
 import { Context } from "../../Context/Context";
 
 const UpdateNFT = ({ nft }) => {
-  const { currentUser } = useContext(Context);
+  const { currentUser, setIsLoading } = useContext(Context);
 
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
@@ -21,9 +21,9 @@ const UpdateNFT = ({ nft }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    setIsLoading(true)
     e.preventDefault();
-
     const newNFT = {
       nftName: name || nft.nftName,
       price: price || nft.price,
@@ -31,14 +31,15 @@ const UpdateNFT = ({ nft }) => {
       description: description || nft.description,
     };
 
-    axios
+    await axios
       .put(`http://localhost:3001/NFT/edit/${nft._id}`, newNFT, {
         headers: {
           "Content-Type": "application/json",
           Authorization: currentUser.token,
         },
       })
-      .then((res) => alert(res.data.message));
+      setIsLoading(false)
+      window.location.reload()
   };
 
   const onDrop = async (acceptedFiles) => {

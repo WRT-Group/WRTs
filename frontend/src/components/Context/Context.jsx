@@ -7,18 +7,19 @@ export const ContextProvider = ({children}) => {
   const user=JSON.parse(localStorage.getItem("currentUser"))
   const [currentUser,setCurrentUser]=useState(user || null)
   const [loginSuccess,setLoginSuccess]=useState(false)
+  const [isLoading,setIsLoading]=useState(false)
 
   useEffect(()=>{
-    console.log(user)
-  },[currentUser])
-
+    console.log(currentUser)
+  },[])
+  
   const logout=()=>{
     setCurrentUser(null)
     localStorage.removeItem("currentUser")
   }
 
   return (
-    <Context.Provider value={{currentUser,setCurrentUser,logout,data,setData,loginSuccess,setLoginSuccess}}>
+    <Context.Provider value={{currentUser,setCurrentUser,logout,data,setData,loginSuccess,setLoginSuccess,isLoading,setIsLoading}}>
       {children}
     </Context.Provider>
   );

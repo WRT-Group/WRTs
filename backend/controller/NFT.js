@@ -8,7 +8,7 @@ const getAll = async (req, res) => {
 };
 
 const getOne = async (req, res) => {
-  const data = await NFT.find({ _id: req.params.id });
+  const data = await NFT.findOne({ _id: req.params.id });
   res.json(data);
 };
 
@@ -84,6 +84,25 @@ const remove = async (req, res) => {
   await NFT.deleteOne({ _id: req.params.id });
   res.json("deleted");
 };
+
+const buy=async(req,res)=>{
+  const { nftId, price, sellerid ,buyerid }=req.body
+    const seller=await User.findOne({_id: sellerid})
+    const buyer=await User.findOne({_id: buyerid})
+    const sellerBalance=seller.balance
+    const buyerBalance=buyer.balance
+
+    const updatedSellerBalance=sellerBalance+price
+    await User.findByIdAndUpdate(sellerid, {balance: updatedSellerBalance, $pull:{NFTs: nftId}})
+
+    const updatedBuyerBalance=buyerBalance-price
+    await User.findByIdAndUpdate(buyerid,{balance: updatedBuyerBalance, $push:{NFTs: nftId }})
+
+    await NFT.findByIdAndUpdate(nftId,{owner: buyerid})
+
+    return res.send("Purchase Successful!")
+}
+
 module.exports = {
   getAll,
   getByUser,
@@ -92,4 +111,5 @@ module.exports = {
   search,
   remove,
   getOne,
+  buy
 };

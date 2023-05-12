@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./OneNfts.css";
 import { Context } from "../Context/Context";
 import UpdateNFT from "../MyNFTs/UpdateNFT/UpdateNFT";
@@ -7,21 +7,20 @@ import DeleteNFT from "../MyNFTs/DeleteNFT/DeleteNFT";
 import axios from "axios";
 
 const OneNfts = (props) => {
-  const { currentUser } = useContext(Context);
-  const [owner, setOwner] = useState({});
+  const { currentUser, setIsLoading } = useContext(Context);
+  const [owner, setOwner] = useState({image: "", username: "da"});
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios
       .get(`http://localhost:3001/user/owner/${props.one.owner}`)
-      .then(async (res) => setOwner(res.data));
+      .then((res) => setOwner(res.data));
   }, []);
 
   const Button = () => {
     if (!currentUser) {
       return (
-        <button className="buy-btn">
-          <Link to={`/login`}>Buy</Link>
-        </button>
+        <button className="buy-btn" onClick={()=>navigate(`/login`)}><span>Purchase</span></button>
       );
     } else {
       if (currentUser.id === props.one.owner) {
@@ -33,17 +32,15 @@ const OneNfts = (props) => {
         );
       } else {
         return (
-          <button className="buy-btn">
-            <Link to={`/BuyNFT/${props.one._id}`}>Buy</Link>
-          </button>
+          <button className="buy-btn" onClick={()=>{setIsLoading(true);navigate(`/BuyNFT/${props.one._id}`)}}><span>Purchase</span></button>
         );
       }
     }
   };
 
   return (
-    <div className="nft">
-      <div className="main">
+    <div className="nft" >
+      <div className="main" onClick={currentUser ? ()=>navigate(`/BuyNFT/${props.one._id}`) : ()=>navigate(`/login`)}>
         <img className="tokenImage" src={props.one.image} alt="NFT" />
         <h2>{props.one.nftName}</h2>
         <p className="description">{props.one.description}</p>

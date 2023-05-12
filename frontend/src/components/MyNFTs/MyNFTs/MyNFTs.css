@@ -1,7 +1,12 @@
 .my-nfts {
   max-width: 700px;
   display: flex;
+<<<<<<< HEAD
   flex-wrap: wrap;
+=======
+  flex-direction: row;
+  flex-wrap: nowrap;
+>>>>>>> 836053e6fc7e085204ab641d9bbcc0816779f3e9
   user-select: none;
   font-family: "Maginer";
   -webkit-font-smoothing: antialiased;
@@ -10,8 +15,6 @@
   user-select: none;
   margin: 1rem 2rem;
   padding: 2rem;
-}
-
-.one{
-  padding: 10px;
+  margin-top: 0;
+  padding-top: 0;
 }
