@@ -38,9 +38,9 @@ const MyNFTs = (props) => {
   }
 
   return (
-      <MDBRow className="my-nfts flex-wrap row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+      <MDBRow >
         {userNFTs.map((e, i) => (
-          <MDBCol key={i} sm={6} md={4} lg={3} className="mb-3">
+          <MDBCol key={i}  >
             <OneNfts one={e} />
           </MDBCol>
         ))}
