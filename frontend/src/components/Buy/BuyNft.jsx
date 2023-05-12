@@ -26,7 +26,6 @@ const BuyNFT = () => {
 
   };
   useEffect(() => {
-    setIsLoading(false)
     if(currentUser){
       if(currentUser.NFTs.includes(id)){
         navigate("/")
@@ -36,10 +35,15 @@ const BuyNFT = () => {
   }, []);
 
   useEffect(() => {
+    setIsLoading(true)
     if (buyData) {
       axios
       .get(`http://localhost:3001/user/getUser/${buyData.owner}`)
-      .then((res) => setOwner(res.data)).catch(err => console.log(err))
+      .then((res) => {
+        setOwner(res.data);
+        setIsLoading(false)
+      })
+      .catch(err => console.log(err))
     }
   }, [buyData])
 
@@ -56,7 +60,7 @@ const BuyNFT = () => {
 
   return (
     <>
-        {buyData && (
+        {buyData && owner && (
           <MDBContainer>
             <MDBRow>
               <MDBCol className="column" md={4}>
@@ -95,6 +99,9 @@ const BuyNFT = () => {
             {isLoading && <Spinner/>}
           </MDBContainer>
         )}
+        <MDBRow style={{width: "100%", height: "100vh", border: "1px solid red"}}>
+            
+        </MDBRow>
     </>
   );
 };
