@@ -20,9 +20,7 @@ const OneNfts = (props) => {
   const Button = () => {
     if (!currentUser) {
       return (
-        <button className="buy-btn">
-          <Link to={`/login`}>Buy</Link>
-        </button>
+        <button className="buy-btn" onClick={()=>navigate(`/login`)}><span>Purchase</span></button>
       );
     } else {
       if (currentUser.id === props.one.owner) {
