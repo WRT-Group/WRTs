@@ -51,7 +51,15 @@ const BuyNFT = () => {
       sellerid: owner._id,
       buyerid: currentUser.id
     }
-    axios.put("http://localhost:3001/NFT/purchase",purchaseRequest).then((res) => console.log(err)).catch(err => console.log)
+    axios.put("http://localhost:3001/NFT/purchase",purchaseRequest)
+    .then(res=>{
+      if(res.data==="no funds"){
+        alert("no funds")
+      }
+      else{
+        alert("purchase successful")
+      }
+    })
   }
 
   return (

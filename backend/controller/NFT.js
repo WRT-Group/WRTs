@@ -87,23 +87,24 @@ const remove = async (req, res) => {
 
 const buy=async(req,res)=>{
   const { nftId, price, sellerid ,buyerid }=req.body
-  console.log(sellerid)
-    const seller=await User.findOne({_id: sellerid})
-    const buyer=await User.findOne({_id: buyerid})
-    console.log(seller)
-    console.log(buyer)
-    const sellerBalance=seller.balance
-    const buyerBalance=buyer.balance
+  const seller=await User.findOne({_id: sellerid})
+  const buyer=await User.findOne({_id: buyerid})
+  const sellerBalance=seller.balance
+  const buyerBalance=buyer.balance
 
-    const updatedSellerBalance=sellerBalance+price
-    await User.findByIdAndUpdate(sellerid, {balance: updatedSellerBalance, $pull:{NFTs: nftId}})
+  if(buyerBalance<price){
+    return res.send("no funds")
+  }
 
-    const updatedBuyerBalance=buyerBalance-price
-    await User.findByIdAndUpdate(buyerid,{balance: updatedBuyerBalance, $push:{NFTs: nftId }})
+  const updatedSellerBalance=sellerBalance+price
+  await User.findByIdAndUpdate(sellerid, {balance: updatedSellerBalance, $pull:{NFTs: nftId}})
 
-    await NFT.findByIdAndUpdate(nftId,{owner: buyerid})
+  const updatedBuyerBalance=buyerBalance-price
+  await User.findByIdAndUpdate(buyerid,{balance: updatedBuyerBalance, $push:{NFTs: nftId }})
 
-    return res.send("Purchase Successful!")
+  await NFT.findByIdAndUpdate(nftId,{owner: buyerid})
+
+  return res.send("Purchase Successful!")
 }
 
 module.exports = {

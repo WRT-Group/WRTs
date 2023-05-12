@@ -8,9 +8,12 @@ export const ContextProvider = ({children}) => {
   const [currentUser,setCurrentUser]=useState(user || null)
   const [loginSuccess,setLoginSuccess]=useState(false)
   const [isLoading,setIsLoading]=useState(false)
+  const [isRed,setIsRed]=useState(false)
+  const [isYellow,setIsYellow]=useState(false)
+  const [isGreen,setIsGreen]=useState(false)
 
   useEffect(()=>{
-    // console.log(currentUser)
+    console.log(currentUser)
   },[])
   
   const logout=()=>{
@@ -19,7 +22,7 @@ export const ContextProvider = ({children}) => {
   }
 
   return (
-    <Context.Provider value={{currentUser,setCurrentUser,logout,data,setData,loginSuccess,setLoginSuccess,isLoading,setIsLoading}}>
+    <Context.Provider value={{currentUser,setCurrentUser,logout,data,setData,loginSuccess,setLoginSuccess,isLoading,setIsLoading,isRed,setIsRed,isYellow,setIsYellow,isGreen,setIsGreen}}>
       {children}
     </Context.Provider>
   );
