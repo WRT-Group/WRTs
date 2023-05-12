@@ -10,7 +10,7 @@ import RedAlert from '../../Alerts/RedAlert';
 import YellowAlert from '../../Alerts/YellowAlert';
 
 const Login = () => {
-  const { currentUser,setCurrentUser }=useContext(Context)
+  const { currentUser,setCurrentUser, setLoginSuccess }=useContext(Context)
   const [username,setUsername]=useState("")
   const [password,setPassword]=useState("")
   const [passwordInc,setPasswordInc]=useState(false)
@@ -43,6 +43,7 @@ const Login = () => {
         setCurrentUser(user.data)
         localStorage.setItem("currentUser",JSON.stringify(user.data))
         navigate("/")
+        setLoginSuccess(true)
       }
     })
   }

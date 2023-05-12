@@ -4,6 +4,7 @@ import Logo from '../Logo/Logo';
 import Search from '../Search/Search';
 import { Context } from '../Context/Context';
 import "./Navbar.css"
+import Balance from '../Balance/Balance';
 
 const Navbar = () => {
   const location = useLocation().pathname
@@ -29,14 +30,7 @@ const Navbar = () => {
               <li className="nav-item">
                 <Link className={`nav-link ${location === "/contact" ? 'active' : ''} `} to="/contact">Contact Us</Link>
               </li>
-              <li className="nav-item dropdown">
-                <div className="nav-link dropdown-toggle" id="action-dropdown" data-bs-toggle="dropdown">Dropdown</div>
-                <ul className="dropdown-menu">
-                  <li><Link className="dropdown-item" to="/action">Action</Link></li>
-                  <li><Link className="dropdown-item" to="/action">Action</Link></li>
-                  <li><Link className="dropdown-item" to="/action">Action</Link></li>
-                </ul>
-              </li>
+              {currentUser && <Balance/>}
             </ul>
               {currentUser && currentUser.isAdmin && 
               <div className="nav-item" style={{marginRight: "30px"}}>
