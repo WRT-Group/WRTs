@@ -76,11 +76,11 @@ const Signup = () => {
             window.localStorage.setItem("currentUser", JSON.stringify(res.data));
             navigate("/");
           }
-          setDisabled(false);
+          
         })
         .catch((err) => {
           console.log(err);
-          setDisabled(false);
+
         });
       }
     }
