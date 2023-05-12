@@ -1,0 +1,7 @@
+.pr{
+  padding: 20px;
+  border-radius: 100%;
+  opacity: 0.8;
+  overflow: hidden;
+  width: 100px;
+}

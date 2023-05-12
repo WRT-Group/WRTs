@@ -16,8 +16,10 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../../Context/Context";
 import RedAlert from "../../Alerts/RedAlert";
 import YellowAlert from "../../Alerts/YellowAlert";
+import Spinner from "../../Spinner/Spinner";
+
 const Signup = () => {
-  const { currentUser, setCurrentUser } = useContext(Context);
+  const { currentUser, setCurrentUser, isLoading, setIsLoading } = useContext(Context);
 
   const regexFullName = /[a-z]/gi;
   const regexpUsername = /^.{4,}$/;
@@ -32,6 +34,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [infoInc, setInfoInc] = useState(false);
   const [confInc, setConfInc] = useState(false);
+  const [userExists,setUserExists]=useState(false)
   const [image, setImage] = useState(null);
 
   const navigate = useNavigate();
@@ -40,21 +43,20 @@ const Signup = () => {
     if (currentUser) {
       navigate("/");
     }
-  }, []);
+    setIsLoading(false)
+  },[]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!regexFullName.test(fName) || !regexFullName.test(lName) || !regexpUsername.test(username) || !regexpEmail.test(email) || !regexpPassword.test(password) || !checkbox){
-      console.log("if 1");
       setInfoInc(true);
       setTimeout(clearInc, 2000);
     }
     else if (password !== confPassword) {
-        console.log("else if");
         setConfInc(true);
         setTimeout(clearInc, 2000);
       } else {
-        console.log("else");
+        setIsLoading(true)
         const newUser = {
           fName,
           lName,
@@ -69,7 +71,11 @@ const Signup = () => {
             headers: { "Content-Type": "application/json" },
           })
           .then((res) => {
-            if (res.data.message) alert(res.data.message);
+            
+            if (res.data.message){setIsLoading(false);setUserExists(true);window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });setTimeout(()=>setUserExists(false),2000)}
             else {
               setCurrentUser(res.data);
               window.localStorage.setItem(
@@ -77,6 +83,7 @@ const Signup = () => {
                 JSON.stringify(res.data)
               );
               navigate("/");
+              setIsLoading(false)
             }
           })
           .catch((err) => {
@@ -87,11 +94,14 @@ const Signup = () => {
   const clearInc = () => {
     setConfInc(false);
     setInfoInc(false);
+    setUserExists(false)
   };
 
   const onDrop = async (acceptedFiles) => {
+    setIsLoading(true)
     const file = await convertToBase64(acceptedFiles[0]);
     setImage(file);
+    setIsLoading(false)
   };
 
   const convertToBase64 = (file) => {
@@ -111,15 +121,16 @@ const Signup = () => {
 
   return (
     <MDBContainer fluid>
+      {userExists && <YellowAlert text={"Username Already Exists."} clearInc={clearInc}/>}
       {infoInc && (
         <YellowAlert
-          text={"Please Validate your information before submitting."}
-          clearInc={clearInc}
+        text={"Please Validate your information before submitting."}
+        clearInc={clearInc}
         />
-      )}
+        )}
       {confInc && (
         <RedAlert text={"Passwords don't match."} clearInc={clearInc} />
-      )}
+        )}
       <MDBRow className="d-flex justify-content-center align-items-center">
         <MDBCol lg="6">
           <MDBCard className="my-2 signup" style={{ maxWidth: "600px" }}>
@@ -161,14 +172,14 @@ const Signup = () => {
                     id="form3"
                     type="text"
                     placeholder="Username123 *"
-                  />
+                    />
                   {username.length > 0 && (
                     <span>
                       {regexpUsername.test(username) ? (
                         <p style={{ color: "green" }}>Valid username</p>
-                      ) : (
-                        <p style={{ color: "#cc0022" }}>Invalid username</p>
-                      )}
+                        ) : (
+                          <p style={{ color: "#cc0022" }}>Invalid username</p>
+                          )}
                     </span>
                   )}
                   <br />
@@ -185,9 +196,9 @@ const Signup = () => {
                     <span>
                       {regexpEmail.test(email) ? (
                         <p style={{ color: "green" }}>Valid Email</p>
-                      ) : (
-                        <p style={{ color: "#cc0022" }}>Invalid Email Format</p>
-                      )}
+                        ) : (
+                          <p style={{ color: "#cc0022" }}>Invalid Email Format</p>
+                          )}
                     </span>
                   )}
                   <br />
@@ -200,13 +211,13 @@ const Signup = () => {
                     id="form5"
                     type="password"
                     placeholder="********"
-                  />
+                    />
                   {password.length > 0 && (
                     <span>
                       {regexpPassword.test(password) ? (
                         <p style={{ color: "green" }}>Valid Password</p>
-                      ) : (
-                        <p style={{ color: "#cc0022" }}>
+                        ) : (
+                          <p style={{ color: "#cc0022" }}>
                           Password should greater than 8 characters
                         </p>
                       )}
@@ -222,13 +233,13 @@ const Signup = () => {
                     id="form6"
                     type="password"
                     placeholder="********"
-                  />
+                    />
                   {confPassword.length > 0 && (
                     <span>
-                      {confPassword.length > 0 && confPassword === password ? (
+                      {confPassword.length > 0 && password.length>7  && confPassword === password ? (
                         <p style={{ color: "green" }}> Matched </p>
-                      ) : (
-                        <p style={{ color: "#cc0022" }}>
+                        ) : (
+                          <p style={{ color: "#cc0022" }}>
                           Should match your current password
                         </p>
                       )}
@@ -251,7 +262,7 @@ const Signup = () => {
                       id="check"
                       checked={checkbox}
                       onChange={(e) => setCheckbox(e.target.checked)}
-                    />
+                      />
                     <label htmlFor="checkbox">
                       I agree with the WRTs terms
                     </label>
@@ -278,6 +289,7 @@ const Signup = () => {
           </MDBCard>
         </MDBCol>
       </MDBRow>
+      {isLoading && <Spinner/>}
     </MDBContainer>
   );
 };

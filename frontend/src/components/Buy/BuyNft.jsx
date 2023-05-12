@@ -1,22 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 
 import './Buy.css'
+import { Context } from "../Context/Context";
+import Spinner from "../Spinner/Spinner";
 
 const BuyNFT = () => {
+  const { currentUser, isLoading, setIsLoading }=useContext(Context)
   const { id } = useParams();
-  console.log(id);
   const [buyData, setBuyData] = useState([]);
+  const navigate=useNavigate()
   const getOne = async () => {
     const res = await axios.get(`http://localhost:3001/NFT/getOne/${id}`);
     setBuyData(res.data);
+    setIsLoading(false)
   };
   useEffect(() => {
+    if(currentUser){
+      if(currentUser.NFTs.includes(id)){
+        navigate("/")
+      }
+    }
     getOne();
   }, []);
-  console.log(buyData);
+
   return (
     <>
       <div className= "nft-box">
@@ -30,7 +39,7 @@ const BuyNFT = () => {
             <div className="info1">
             <br />
             <br />
-            <h2 style={{ color: "white" }}>{buyData[0].nftName} #42</h2>
+            <h2 style={{ color: "white" }}>{buyData[0].nftName}</h2>
             <br />
             <br />
             <p className="description">{buyData[0].description}</p>
@@ -50,6 +59,7 @@ const BuyNFT = () => {
         )}
         <br />
       </div>
+      {isLoading && <Spinner/>}
     </>
   );
 };

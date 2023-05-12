@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import axios from "axios";
+import { Context } from "../../Context/Context";
 import Button from "react-bootstrap/Button";
 
 import "./DeleteNFT.css";
-import axios from "axios";
 
 const DeleteNFT = ({ id }) => {
   const [clicked, setClicked] = useState(false);
+  const { setIsLoading }=useContext(Context)
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const handleDelete = async () => {
+    setIsLoading(true)
     await axios
       .delete(`http://localhost:3001/NFT/delete/${id}/${currentUser.id}`, {
         headers: { Authorization: currentUser.token },
       })
       .catch((err) => console.log(err));
+      setIsLoading(false)
       window.location.reload()
   };
   return (

@@ -1,28 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import "./Admin.css"
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Context } from '../Context/Context';
 
 const OneUser = ({id,fName,lName,username,email,isAdmin,isBanned,createdAt}) => {
 
+  const { setIsLoading }=useContext(Context)
+
   const ban=async ()=>{
+    setIsLoading(true)
     await axios.put(`http://localhost:3001/user/ban/${id}`)
     window.location.reload()
+    setIsLoading(false)
   }
 
   const unban=async ()=>{
+    setIsLoading(true)
     await axios.put(`http://localhost:3001/user/unban/${id}`)
     window.location.reload()
+    setIsLoading(false)
   }
 
   const makeAdmin=async ()=>{
+    setIsLoading(true)
     await axios.put(`http://localhost:3001/user/makeAdmin/${id}`)
     window.location.reload()
+    setIsLoading(false)
   }
 
   const removeUser=async ()=>{
+    setIsLoading(true)
     await axios.delete(`http://localhost:3001/user/delete/${id}`)
     window.location.reload()
+    setIsLoading(false)
   }
 
   return (
