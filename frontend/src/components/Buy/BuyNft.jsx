@@ -13,7 +13,7 @@ import './Buy.css'
 
 
 const BuyNFT = () => {
-  const { currentUser, isLoading, setIsLoading }=useContext(Context)
+  const { currentUser, setCurrentUser, isLoading, setIsLoading }=useContext(Context)
   const { id } = useParams();
   const navigate=useNavigate()
   const [buyData, setBuyData] = useState(null);
@@ -62,6 +62,9 @@ const BuyNFT = () => {
       }
       else{
         alert("purchase successful")
+        axios.get(`http://localhost:3001/user/getUser/${currentUser.id}`).then(res=>setCurrentUser(res.data))
+        navigate("/")
+        window.location.reload()
       }
     })
   }

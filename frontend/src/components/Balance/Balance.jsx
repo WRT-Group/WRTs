@@ -56,7 +56,7 @@ const Balance = () => {
   return (
     <>
       <li className="nav-item">
-        <div className="nav-link" id="balance-button" onClick={handleShow}>Balance: {balance}</div>
+        <div className="nav-link" id="balance-button" onClick={handleShow}>Balance: {balance} ETH</div>
       </li>
 
       <Modal show={show} onHide={handleClose} id="modal">
