@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Dropzone from "react-dropzone";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion"; 
 
 import { Context } from "../Context/Context";
@@ -13,6 +13,8 @@ import AddNFT from "../MyNFTs/AddNFT/AddNFT";
 
 const Profile=()=>{
     const { currentUser, setCurrentUser, isLoading, setIsLoading }=useContext(Context)
+    const location=useLocation().pathname
+    const navigate=useNavigate()
     const {id}=useParams()
     const [show,setShow]=useState(false)
     const [oneUser,setOneUser]=useState({})
@@ -20,7 +22,12 @@ const Profile=()=>{
     const [image,setImage]=useState(null)
     
     useEffect(()=>{
-        getOneUser()
+        if(location==="/profile/undefined"){
+            navigate("/")
+        }
+        else{
+            getOneUser()
+        }
     },[])
 
     const getOneUser=async ()=>{
@@ -43,11 +50,14 @@ const Profile=()=>{
     const editProfile=async()=>{
         setIsLoading(true)
         const updateUser=await axios.put(`http://localhost:3001/user/updateUser/${id}`,{...obj,image})
-        setCurrentUser(updateUser)
+        setCurrentUser(updateUser.data)
         setShow(!show)
         window.location.reload()
         setIsLoading(false)
     }
+    useEffect(()=>{
+        getOneUser()
+    },[show,id])
 
     const onDrop = async (acceptedFiles) => {
         setIsLoading(true)
@@ -70,7 +80,7 @@ const Profile=()=>{
           };
         });
       };
-      
+ 
     return (
         <>
             <MDBRow style={{flexWrap: "nowrap"}} id="title"><h1 style={{fontFamily: "Pixel", color: "#B400FF", marginRight: 0}}>My NFTs</h1> <AddNFT /></MDBRow>
@@ -111,16 +121,14 @@ const Profile=()=>{
                         </motion.div>}
                         <br/>
                     </div>}
-                    </MDBCol>
-                    <MDBCol>
-                        <MyNFTs />
-                    </MDBCol>
-                        
-                
-                {isLoading && <Spinner/>}
+                    <br/>
+                </div>}
+              </MDBCol>
+                <MDBCol><MyNFTs id={id}/></MDBCol>
+            </div>
+            {isLoading && <Spinner/>}
             </MDBRow>
         </>
-        
     )
 }
 export default Profile;

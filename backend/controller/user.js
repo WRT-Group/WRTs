@@ -61,6 +61,7 @@ const login = async (req, res) => {
         fName: loggedUser.fName,
         lName: loggedUser.lName,
         username: loggedUser.username,
+        image:loggedUser.image,
         email: loggedUser.email,
         NFTs: loggedUser.NFTs,
         isAdmin: loggedUser.isAdmin,
