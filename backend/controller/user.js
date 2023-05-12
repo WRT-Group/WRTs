@@ -78,7 +78,8 @@ const login = async (req, res) => {
   }
 };
 const getOneUser = async (req, res) => {
-  const data = await User.find({ _id: req.params.id });
+  console.log(req.params.id)
+  const data = await User.findById({ _id: req.params.id });
   res.json(data);
 };
 
