@@ -9,16 +9,14 @@ export const ContextProvider = ({children}) => {
   const [loginSuccess,setLoginSuccess]=useState(false)
   const [isLoading,setIsLoading]=useState(false)
 
+  useEffect(()=>{
+    console.log(currentUser)
+  },[])
+  
   const logout=()=>{
     setCurrentUser(null)
     localStorage.removeItem("currentUser")
   }
-
-  useEffect(()=>{
-    if(currentUser){
-      console.log(currentUser.image)
-    }
-  },[currentUser])
 
   return (
     <Context.Provider value={{currentUser,setCurrentUser,logout,data,setData,loginSuccess,setLoginSuccess,isLoading,setIsLoading}}>
