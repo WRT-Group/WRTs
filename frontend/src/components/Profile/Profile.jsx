@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Dropzone from "react-dropzone";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams,Link } from "react-router-dom";
 import { motion } from "framer-motion"; 
 
 import { Context } from "../Context/Context";
@@ -102,6 +102,7 @@ const Profile=()=>{
                             setObj(oneUser)
                             setShow(!show)}}>Edit Profile</button>}
                         <br/>
+                        {currentUser && currentUser.id===id && <button><Link to="/changePassword">Change Password</Link></button>}
                         <br/>
                         {show && <motion.div  initial={{y: -40, opacity: 0}} animate={{y:0, opacity: 1}} exit={{y: -40, opacity: 0}} transition={{duration: 0.4}}>
                             <input type="text" name="fName" className="profile-input" value={obj.fName} placeholder="First Name" onChange={handleChange}/><br/>

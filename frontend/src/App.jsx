@@ -12,6 +12,7 @@ import Admin from "./components/Admin/Admin";
 import Navbar from "./components/Navbar/Navbar";
 import Banned from "./components/Banned/Banned";
 import ContactUs from "./components/ContactUs/ContactUs";
+import ChangePassword from "./components/ChangePassword/ChangePassword";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/banned" element={<Banned/>}/>
         <Route path="/contact" element={<ContactUs/>}/>
+        <Route path="/changePassword" element={<ChangePassword/>}/>
       </Routes>
     </>
   );
