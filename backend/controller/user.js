@@ -6,9 +6,10 @@ const bcrypt = require("bcrypt");
 const cloudinary = require("cloudinary").v2;
 
 const signup = async (req, res) => {
+  console.log("signing up")
   try {
-    const { fName, lName, username, email, password } = req.body;
-    const image = await cloudinary.uploader.upload(req.file.path);
+    const { fName, lName, username, email, password, image } = req.body;
+    const imageUrl = await cloudinary.uploader.upload(image);
 
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
     if (existingUser) {
@@ -23,7 +24,7 @@ const signup = async (req, res) => {
       lName,
       username,
       email,
-      image: image.secure_url,
+      image: imageUrl.secure_url,
       password: hashedPassword,
       NFTs: [],
       isAdmin: false,
@@ -128,12 +129,12 @@ const removeUser = (req, res) => {
   User.findByIdAndRemove(id).then((user) => res.send(user));
 };
 
-const search=(req,res)=>{
-  const { query }=req.query
-  User.find({username: {$regex: new RegExp(query,"i")}})
-  .then(users=>res.send(users))
-}
-
+const search = (req, res) => {
+  const { query } = req.query;
+  User.find({ username: { $regex: new RegExp(query, "i") } }).then((users) =>
+    res.send(users)
+  );
+};
 
 module.exports = {
   signup,

@@ -5,6 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import "./AddNFT.css";
 import { MDBCol, MDBInput, MDBTextArea } from "mdb-react-ui-kit";
 import axios from "axios";
+import Dropzone from "react-dropzone";
 import { Context } from "../../Context/Context";
 
 function AddNFT() {
@@ -13,7 +14,7 @@ function AddNFT() {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [description, setDescription] = useState("");
 
   const handleClose = () => setShow(false);
@@ -37,6 +38,26 @@ function AddNFT() {
         },
       })
       .then((res) => alert(res.data.message));
+  };
+
+  const onDrop = async (acceptedFiles) => {
+    const file = await convertToBase64(acceptedFiles[0]);
+    setImage(file);
+  };
+
+  const convertToBase64 = (file) => {
+    return new Promise((res, rej) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        res(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        rej(error);
+      };
+    });
   };
 
   return (
@@ -69,11 +90,16 @@ function AddNFT() {
                 className="mb-2 nft-input"
                 onChange={(e) => setPrice(e.target.value)}
               />
-              <label className="add-nft-label">Image Url</label>
-              <MDBInput
-                className="nft-input"
-                onChange={(e) => setImage(e.target.value)}
-              />
+              <label className="add-nft-label">
+                Drag and drop your NFT image here
+              </label>
+              <Dropzone onDrop={onDrop}>
+                {({ getRootProps, getInputProps }) => (
+                  <div {...getRootProps()} className="dropzone">
+                    <input {...getInputProps()} />
+                  </div>
+                )}
+              </Dropzone>
             </MDBCol>
             <Button
               variant="primary"

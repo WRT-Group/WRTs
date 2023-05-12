@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
 import { MDBCol, MDBInput, MDBTextArea } from "mdb-react-ui-kit";
+import Dropzone from "react-dropzone";
 
 import "./UpdateNFT.css";
 import { Context } from "../../Context/Context";
@@ -15,7 +16,7 @@ const UpdateNFT = ({ nft }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -26,7 +27,7 @@ const UpdateNFT = ({ nft }) => {
     const newNFT = {
       nftName: name || nft.nftName,
       price: price || nft.price,
-      image: image || nft.image,
+      image: image || "",
       description: description || nft.description,
     };
 
@@ -38,6 +39,26 @@ const UpdateNFT = ({ nft }) => {
         },
       })
       .then((res) => alert(res.data.message));
+  };
+
+  const onDrop = async (acceptedFiles) => {
+    const file = await convertToBase64(acceptedFiles[0]);
+    setImage(file);
+  };
+
+  const convertToBase64 = (file) => {
+    return new Promise((res, rej) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        res(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        rej(error);
+      };
+    });
   };
 
   return (
@@ -74,11 +95,13 @@ const UpdateNFT = ({ nft }) => {
                 onChange={(e) => setPrice(e.target.value)}
               />
               <label>Image Url</label>
-              <MDBInput
-                defaultValue={nft.image}
-                className="nft-input"
-                onChange={(e) => setImage(e.target.value)}
-              />
+              <Dropzone onDrop={onDrop}>
+                {({ getRootProps, getInputProps }) => (
+                  <div {...getRootProps()} className="dropzone">
+                    <input {...getInputProps()} />
+                  </div>
+                )}
+              </Dropzone>
             </MDBCol>
             <Button
               variant="primary"
