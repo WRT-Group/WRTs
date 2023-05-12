@@ -39,8 +39,8 @@ const OneNfts = (props) => {
   };
 
   return (
-    <div className="nft">
-      <div className="main">
+    <div className="nft" >
+      <div className="main" onClick={currentUser ? ()=>navigate(`/BuyNFT/${props.one._id}`) : ()=>navigate(`/login`)}>
         <img className="tokenImage" src={props.one.image} alt="NFT" />
         <h2>{props.one.nftName}</h2>
         <p className="description">{props.one.description}</p>
