@@ -1,8 +1,20 @@
-import React, { useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import './contact.css'
+import { Context } from '../Context/Context';
+import { useNavigate } from 'react-router-dom';
+
 const ContactUs = () => {
   const form = useRef();
+  const { currentUser }=useContext(Context)
+
+  const navigate=useNavigate()
+
+  useEffect(()=>{
+    if(!currentUser){
+      navigate("/login")
+    }
+  })
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -10,6 +22,7 @@ const ContactUs = () => {
     emailjs.sendForm('service_8owuap9', 'template_lv9gpqd', form.current, 'YqrJYxdef2lQOvZ2N')
       .then((result) => {
           console.log(result.text);
+          navigate("/")
       }, (error) => {
           console.log(error.text);
       });
@@ -19,12 +32,10 @@ const ContactUs = () => {
     <div className='contact'>
         <h1>WRTs team love to hear from you!</h1>
         <form ref={form} onSubmit={sendEmail}>
-            <label>Username:</label><br />
-            <input type="text" name="user_name" required/><br />
-            <label>Email:</label><br />
-            <input type="email" name="email" required/><br />
+            <input type="hidden" name="user_name" value={currentUser.username} style={{position: "absolute"}}/><br />
+            <input type="hidden" name="email" value={currentUser.email} style={{position: "absolute"}}/><br />
             <label>Message:</label><br />
-            <textarea name="message" required width={500}/><br />
+            <textarea name="message" rows={6} cols={50} required/><br />
             <input type="submit" value="Send Message" id="button"/>
         </form>
     </div>

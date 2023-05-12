@@ -6,6 +6,7 @@ export const ContextProvider = ({children}) => {
   const [data,setData]=useState([])
   const user=JSON.parse(localStorage.getItem("currentUser"))
   const [currentUser,setCurrentUser]=useState(user || null)
+  const [loginSuccess,setLoginSuccess]=useState(false)
 
   useEffect(()=>{
     console.log(user)
@@ -17,7 +18,7 @@ export const ContextProvider = ({children}) => {
   }
 
   return (
-    <Context.Provider value={{currentUser,setCurrentUser,logout,data,setData}}>
+    <Context.Provider value={{currentUser,setCurrentUser,logout,data,setData,loginSuccess,setLoginSuccess}}>
       {children}
     </Context.Provider>
   );

@@ -64,6 +64,9 @@ const login = async (req, res) => {
         email: loggedUser.email,
         NFTs: loggedUser.NFTs,
         isAdmin: loggedUser.isAdmin,
+        isBanned: loggedUser.isBanned,
+        balance: loggedUser.balance,
+        createdAt: loggedUser.createdAt
       });
     } else {
       res.send("incorrect password");
