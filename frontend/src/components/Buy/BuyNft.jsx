@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import { motion } from "framer-motion";
 import Modal from "react-bootstrap/Modal"
-
-import './Buy.css'
+import { Context } from "../Context/Context";
+import Spinner from "../Spinner/Spinner";
 import { MDBCol, MDBContainer, MDBRow } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
 
+import './Buy.css'
+
+
 const BuyNFT = () => {
+  const { currentUser, isLoading, setIsLoading }=useContext(Context)
   const { id } = useParams();
+  const navigate=useNavigate()
   const [buyData, setBuyData] = useState(null);
   const [owner, setOwner] = useState({});
   const [show, setShow] = useState(false);
@@ -20,8 +25,14 @@ const BuyNFT = () => {
      axios
       .get(`http://localhost:3001/user/owner/${buyData.owner}`)
       .then(async (res) => setOwner(res.data));
+    setIsLoading(false)
   };
   useEffect(() => {
+    if(currentUser){
+      if(currentUser.NFTs.includes(id)){
+        navigate("/")
+      }
+    }
     getOne();
   }, []);
 
@@ -63,6 +74,7 @@ const BuyNFT = () => {
               </Modal.Header>
               <Modal.Body><img className="fullscreen-img" src={buyData.image} /></Modal.Body>
             </Modal>
+            {isLoading && <Spinner/>}
           </MDBContainer>
         )}
     </>

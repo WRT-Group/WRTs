@@ -5,10 +5,13 @@ import { Context } from '../Context/Context';
 
 const Search = () => {
   const [query,setQuery]=useState("")
-  const { setData }=useContext(Context)
+  const { setData, setIsLoading }=useContext(Context)
+
+  //TODO: if data is the same don't show a spinner
 
   useEffect(()=>{
-    axios.get(`http://localhost:3001/NFT/search?query=${query}`).then(data=>setData(data.data))
+    setIsLoading(true)
+    axios.get(`http://localhost:3001/NFT/search?query=${query}`).then(data=>{setData(data.data);setIsLoading(false)})
   },[query])
 
   return (

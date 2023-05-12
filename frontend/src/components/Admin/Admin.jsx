@@ -6,9 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import OneUser from './OneUser';
 import { Context } from '../Context/Context';
 import UserSearch from './UserSearch';
+import Spinner from '../Spinner/Spinner';
 
 const Admin = () => {
-  const { currentUser }=useContext(Context)
+  const { currentUser, isLoading }=useContext(Context)
   const [users,setUsers]=useState([])
   const navigate=useNavigate()
 
@@ -38,6 +39,7 @@ const Admin = () => {
         return <OneUser key={index} id={e._id} fName={e.fName} lName={e.lName} email={e.email} username={e.username} isAdmin={e.isAdmin} isBanned={e.isBanned} createdAt={e.createdAt}/>
       })}
       </table>
+      {isLoading && <Spinner/>}
     </div>
   );
 };

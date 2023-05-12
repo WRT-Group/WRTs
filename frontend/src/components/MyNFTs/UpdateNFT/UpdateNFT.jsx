@@ -10,7 +10,7 @@ import "./UpdateNFT.css";
 import { Context } from "../../Context/Context";
 
 const UpdateNFT = ({ nft }) => {
-  const { currentUser } = useContext(Context);
+  const { currentUser, setIsLoading } = useContext(Context);
 
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
@@ -22,8 +22,8 @@ const UpdateNFT = ({ nft }) => {
   const handleShow = () => setShow(true);
 
   const handleSubmit = async (e) => {
+    setIsLoading(true)
     e.preventDefault();
-
     const newNFT = {
       nftName: name || nft.nftName,
       price: price || nft.price,
@@ -38,6 +38,7 @@ const UpdateNFT = ({ nft }) => {
           Authorization: currentUser.token,
         },
       })
+      setIsLoading(false)
       window.location.reload()
   };
 

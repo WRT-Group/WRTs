@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Context } from '../Context/Context';
 import axios from 'axios';
 
 import "./Admin.css"
 
 const UserSearch = ({setUsers}) => {
   const [query,setQuery]=useState("")
+  const { setIsLoading}=useContext(Context)
 
   useEffect(()=>{
-    axios.get(`http://localhost:3001/user/search?query=${query}`).then(users=>setUsers(users.data))
+    setIsLoading(true)
+    axios.get(`http://localhost:3001/user/search?query=${query}`).then(users=>{setUsers(users.data);setIsLoading(false)})
   },[query])
 
   return (
