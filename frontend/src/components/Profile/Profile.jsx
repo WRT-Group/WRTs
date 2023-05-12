@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import './profile.css'
 import MyNFTs from '../MyNFTs/MyNFTs/MyNFTs'
 import { Context } from "../Context/Context";
+import Navbar from "../Navbar/Navbar";
 const Profile=()=>{
     const {currentUser}=useContext(Context)
     const {id}=useParams()
@@ -31,7 +32,7 @@ const Profile=()=>{
     }
     useEffect(()=>{
         getOneUser()
-    },[show])
+    },[show,id])
     return (
         <div>
             <div className="myprofile">
@@ -64,7 +65,7 @@ const Profile=()=>{
                 </div>}
                 <div>
                     <h1 style={{fontFamily: "Pixel", color: "#B400FF"}}>My NFTs</h1>
-                    <MyNFTs/>
+                    <MyNFTs id={id}/>
                 </div>
             </div>
             

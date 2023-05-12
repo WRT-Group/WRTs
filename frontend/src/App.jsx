@@ -13,11 +13,12 @@ import Navbar from "./components/Navbar/Navbar";
 import Banned from "./components/Banned/Banned";
 import ContactUs from "./components/ContactUs/ContactUs";
 
+
 function App() {
   const location=useLocation().pathname
   return (
     <>
-      {location!=="/admin" && location!=="/banned" && <Navbar/>}
+      {location!=="/admin" && location!=="/banned" &&  <Navbar/>}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />

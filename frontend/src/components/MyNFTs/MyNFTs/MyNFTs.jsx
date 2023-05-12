@@ -5,7 +5,7 @@ import OneNfts from "../../NFTs/OneNfts";
 import AddNFT from "../AddNFT/AddNFT";
 import { useParams } from "react-router-dom";
 
-const MyNFTs = () => {
+const MyNFTs = (props) => {
   const { id } = useParams();
   const [userNFTs, setUserNFTs] = useState([]);
   useEffect(() => {
@@ -13,7 +13,7 @@ const MyNFTs = () => {
       .get(`http://localhost:3001/NFT/${id}`)
       .then((res) => setUserNFTs(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [props.id]);
   return (
     <>
       <div className="my-nfts">

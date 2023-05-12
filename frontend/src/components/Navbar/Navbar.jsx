@@ -9,6 +9,7 @@ import Balance from '../Balance/Balance';
 const Navbar = () => {
   const location = useLocation().pathname
   const { currentUser,logout }=useContext(Context)
+  
   return (
     <div className='homepage'>
       <nav className="navbar navbar-expand-lg bg-body-tertiary rounded">
@@ -42,7 +43,7 @@ const Navbar = () => {
               </div>}
             <Search />
             {currentUser && <Link to={`/profile/${currentUser.id}`}>
-            <img src='https://thumbs.dreamstime.com/b/nft-non-fungible-token-tokens-icon-covering-concept-high-tech-technology-symbol-logo-vector-225921227.jpg' alt='profile' className='pr' />
+            <img src={currentUser.image} alt='profile' className='pr'/>
             </Link>}
           </div>
         </div>

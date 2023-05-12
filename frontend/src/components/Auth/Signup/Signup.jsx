@@ -33,7 +33,7 @@ const Signup = () => {
   const [infoInc, setInfoInc] = useState(false);
   const [confInc, setConfInc] = useState(false);
   const [image, setImage] = useState(null);
-
+  console.log(checkbox)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,20 +44,10 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      !regexFullName.test(fName) ||
-      !regexFullName.test(lName) ||
-      !regexpUsername.test(username) ||
-      !regexpEmail.test(email) ||
-      !regexpPassword.test(password)
-    ) {
+    if (!regexFullName.test(fName) || !regexFullName.test(lName) || !regexpUsername.test(username) || !regexpEmail.test(email) || !regexpPassword.test(password) || !checkbox) {
       console.log("if 1");
       setInfoInc(true);
       setTimeout(clearInc, 2000);
-      if (!checkbox) {
-        console.log("if 2");
-        setConfInc(true);
-        setTimeout(clearInc, 2000);
       } else if (password !== confPassword) {
         console.log("else if");
         setConfInc(true);
@@ -93,7 +83,7 @@ const Signup = () => {
           });
       }
     }
-  };
+ 
   const clearInc = () => {
     setConfInc(false);
     setInfoInc(false);
