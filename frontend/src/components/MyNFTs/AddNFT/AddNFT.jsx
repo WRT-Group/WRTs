@@ -9,7 +9,7 @@ import Dropzone from "react-dropzone";
 import { Context } from "../../Context/Context";
 
 function AddNFT() {
-  const { currentUser, setIsLoading, setIsGreen, refreshUser, setIsRed, setIsYellow } = useContext(Context);
+  const { currentUser, setIsLoading, setIsGreen, refreshUser, setAlertText } = useContext(Context);
 
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
@@ -39,6 +39,11 @@ function AddNFT() {
         },
       }).then((res) => refreshUser(JSON.stringify({...currentUser, NFTs: res.data.NFTs})))
       setIsGreen(true)
+      setAlertText("NFT added successfully")
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      })
       setTimeout(()=>{setIsGreen(false);window.location.reload()},1200)
       setIsLoading(false)  
   };

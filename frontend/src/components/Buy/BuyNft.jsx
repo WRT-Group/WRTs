@@ -94,6 +94,10 @@ const BuyNFT = () => {
       else{
         setAlertText("Purchase successful. Redirecting...")
         setIsGreen(true) 
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        })
         refreshUser(JSON.stringify({...currentUser, NFTs: res.data.updatedUser.NFTs, balance: res.data.updatedUser.balance}))
         setTimeout(() => {
           setIsGreen(false)

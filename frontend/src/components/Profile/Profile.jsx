@@ -15,7 +15,7 @@ import GreenAlert from "../Alerts/GreenAlert"
 import YellowAlert from "../Alerts/YellowAlert"
 
 const Profile=()=>{
-    const { currentUser, setCurrentUser, isLoading, setIsLoading, isGreen, setIsGreen, isRed, setIsRed, isYellow, setIsYellow }=useContext(Context)
+    const { refreshUser, currentUser, setCurrentUser, isLoading, setIsLoading, isGreen, setIsGreen, isRed, setIsRed, isYellow, setIsYellow, alertText, setAlertText }=useContext(Context)
     const location=useLocation().pathname
     const navigate=useNavigate()
     const {id}=useParams()
@@ -25,9 +25,14 @@ const Profile=()=>{
     const [image,setImage]=useState(null)
     
     useEffect(()=>{
-        setIsYellow(true)
         if(location==="/profile/undefined"){
-            navigate("/")
+            setAlertText("Unknown User")
+            setIsYellow(true)
+            setIsLoading(false)
+            setTimeout(() => {
+                setIsYellow(false)
+                navigate("/")
+            }, 2000)
         }
         else{
             getOneUser()
@@ -56,14 +61,23 @@ const Profile=()=>{
         const updateUser=await axios.put(`http://localhost:3001/user/updateUser/${id}`,{...obj,image},{
             headers: {Authorization: currentUser.token}
         })
-        setCurrentUser(updateUser.data)
+        setAlertText("Your data was updated successfully")
+        refreshUser(JSON.stringify({...currentUser,...updateUser.data}))
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
         setShow(!show)
-        window.location.reload()
+        setIsGreen(true)
         setIsLoading(false)
+        setTimeout(() => {
+            setIsGreen(false)
+            window.location.reload()
+        }, 1200)
     }
     useEffect(()=>{
         getOneUser()
-    },[show,id])
+    },[id])
 
     const onDrop = async (acceptedFiles) => {
         setIsLoading(true)
@@ -89,10 +103,8 @@ const Profile=()=>{
  
     return (
         <>
-        {/* {isGreen && <GreenAlert text={"NFT Added Successfully!"}/>}
-        {isRed && <RedAlert/>} */}
-        <YellowAlert text={"Unknow wallet"} />
-        {/* {isYellow && <YellowAlert/>} */}
+        {isGreen && <GreenAlert text={alertText}/>}
+        {isYellow && <YellowAlert text={alertText}/>}
             <MDBRow style={{flexWrap: "nowrap"}} id="title"><h1 style={{fontFamily: "Pixel", color: "#B400FF", marginRight: 0}}>My NFTs</h1> <AddNFT /></MDBRow>
             
             <MDBRow id="profile">
