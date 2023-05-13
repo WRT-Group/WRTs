@@ -8,6 +8,8 @@ import { Context } from "../Context/Context";
 import Spinner from "../Spinner/Spinner";
 import { MDBCol, MDBContainer, MDBRow } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
+import GreenAlert from '../Alerts/GreenAlert';
+import RedAlert from '../Alerts/RedAlert';
 
 import './Buy.css'
 import MyNFTs from "../MyNFTs/MyNFTs/MyNFTs";
@@ -15,7 +17,7 @@ import OneNfts from "../NFTs/OneNfts";
 
 
 const BuyNFT = () => {
-  const { currentUser, isLoading, setIsLoading, refreshUser }=useContext(Context)
+  const { currentUser, isLoading, setIsLoading, refreshUser, setAlertText, isGreen, setIsGreen, isRed, setIsRed, alertText  }=useContext(Context)
   const { id } = useParams();
   const navigate=useNavigate()
   const [buyData, setBuyData] = useState(null);
@@ -83,19 +85,29 @@ const BuyNFT = () => {
     })
     .then(res=>{
       if(res.data==="no funds"){
-        alert("no funds")
+        setAlertText("Insufficient funds.")
+        setIsRed(true)
+        setTimeout(() => {
+          setIsRed(false)
+        }, 2000)
       }
       else{
-        alert("purchase successful")
+        setAlertText("Purchase successful. Redirecting...")
+        setIsGreen(true) 
         refreshUser(JSON.stringify({...currentUser, NFTs: res.data.updatedUser.NFTs, balance: res.data.updatedUser.balance}))
-        navigate("/")
-        window.location.reload()
+        setTimeout(() => {
+          setIsGreen(false)
+          navigate("/");
+          window.location.reload();
+        }, 1200)
       }
     })
   }
 
   return (
-    <>
+    <>  
+        {isGreen && <GreenAlert text={alertText} />}
+        {isRed && <RedAlert text={alertText} />}
         {buyData && owner && (
           <MDBContainer>
             <MDBRow>

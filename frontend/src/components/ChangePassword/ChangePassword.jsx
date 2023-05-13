@@ -3,8 +3,12 @@ import { Context } from "../Context/Context";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import './ChangePassword.css'
+import GreenAlert from '../Alerts/GreenAlert';
+import RedAlert from '../Alerts/RedAlert';
+
+
 const ChangePassword=()=>{
-    const {currentUser,logout}=useContext(Context)
+    const {currentUser,logout, isGreen, isRed, setIsGreen, setIsRed, alertText, setAlertText}=useContext(Context)
     const [newPassword,setNewPassword]=useState("")
     const [confPassword,setConfPassword]=useState("")
 
@@ -14,14 +18,29 @@ const ChangePassword=()=>{
             await axios.put(`http://localhost:3001/user/changePassword/${currentUser._id}`,{password:newPassword},{
                 headers: {Authorization: currentUser.token}
             })
+            setAlertText("Password updated successfully!")
+            setIsGreen(true)
+            setTimeout(() => {
+                setIsGreen(false)
+                logout();
+                navigate('/login');
+            })
         }
         else{
-            return alert("you should confirm your new password")
+            setAlertText("You should confirm your new password")
+            setIsRed(true)
+            setTimeout(() => {
+                setIsRed(false)
+            }, 2000)
         }
 
     }
     return (
-        <div className="change">
+        <>
+            {isRed && <RedAlert text={alertText} />}
+            {isGreen && <GreenAlert text={alertText} />}
+            <div className="change">
+            
             <br/>
             <br/>
             <h3>Change your password:</h3>
@@ -29,10 +48,10 @@ const ChangePassword=()=>{
             <input type="password" name="confPassword" placeholder="confirm new password" onChange={(e)=>setConfPassword(e.target.value)} required/><br/>
             <button onClick={()=>{
                 changePassword();
-                logout();
-                navigate('/login')
                 }}>Submit</button>
         </div>
+        </>
+        
     )
     
 }
