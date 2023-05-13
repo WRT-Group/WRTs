@@ -96,7 +96,7 @@ const Profile=()=>{
                 {oneUser && <div className="profile">
                         <br/>
                         <img src={oneUser.image} alt="nft" />
-                        <h1>{oneUser.username}</h1>
+                        <h1 style={{fontFamily:"Pixel" , color:"#ed1679"}}>{oneUser.username}</h1>
                         <br/>
                         <br/>
                         <h4>Full Name: {`${oneUser.fName} ${oneUser.lName}`}</h4>
