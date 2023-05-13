@@ -30,7 +30,7 @@ const Login = () => {
       user: username,
       pass: password
     }
-    axios.post("http://localhost:3001/user/login",loguser).then(user=>{
+    axios.post(`${import.meta.env.VITE_URL}/user/login`,loguser).then(user=>{
       if(user.data==="incorrect password"){
         setPasswordInc(true)
         setTimeout(clearInc,2000)

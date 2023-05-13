@@ -24,7 +24,7 @@ const BuyNFT = () => {
   const [show, setShow] = useState(false);
 
   const getOne = async () => {
-     await axios.get(`http://localhost:3001/NFT/getOne/${id}`).then((res) => setBuyData(res.data))
+     await axios.get(`${import.meta.env.VITE_URL}/NFT/getOne/${id}`).then((res) => setBuyData(res.data))
   };
   
   useEffect(() => {
@@ -49,7 +49,7 @@ const BuyNFT = () => {
     if (buyData && !owner) {
       console.log(buyData.owner)
       axios
-      .get(`http://localhost:3001/user/getUser/${buyData.owner}`)
+      .get(`${import.meta.env.VITE_URL}/user/getUser/${buyData.owner}`)
       .then((res) => {
         setOwner(res.data);
       })
@@ -58,7 +58,7 @@ const BuyNFT = () => {
     if (owner) {
       console.log(owner)
       axios
-      .get(`http://localhost:3001/NFT/owner/${owner._id}`)
+      .get(`${import.meta.env.VITE_URL}/NFT/owner/${owner._id}`)
       .then((res) => {
         setOwnerNFTs(res.data);
         setIsLoading(false)
@@ -78,7 +78,7 @@ const BuyNFT = () => {
       buyerid: currentUser._id
     }
     console.log(currentUser)
-    axios.put("http://localhost:3001/NFT/purchase",purchaseRequest,{
+    axios.put(`${import.meta.env.VITE_URL}/NFT/purchase`,purchaseRequest,{
       headers: {"Authorization": currentUser.token}
     })
     .then(res=>{

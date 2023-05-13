@@ -9,7 +9,7 @@ const Search = () => {
 
   useEffect(()=>{
     setIsLoading(true)
-    axios.get(`http://localhost:3001/NFT/search?query=${query}`).then(data=>{setData(data.data);setIsLoading(false)})
+    axios.get(`${import.meta.env.VITE_URL}/NFT/search?query=${query}`).then(data=>{setData(data.data);setIsLoading(false)})
   },[query])
 
   return (

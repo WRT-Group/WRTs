@@ -10,7 +10,7 @@ const ChangePassword=()=>{
 
     const navigate=useNavigate();
     const changePassword=async()=>{
-            await axios.put(`http://localhost:3001/user/changePassword/${currentUser._id}`,{password:newPassword},{
+            await axios.put(`${import.meta.env.VITE_URL}/user/changePassword/${currentUser._id}`,{password:newPassword},{
                 headers: {Authorization: currentUser.token}
             })
     }

@@ -15,7 +15,7 @@ const MyNFTs = (props) => {
 
   const fetchData = async () => {
    const res = await axios
-      .get(`http://localhost:3001/NFT/owner/${props.id}`)
+      .get(`${import.meta.env.VITE_URL}/NFT/owner/${props.id}`)
       .catch((err) => console.log(err));
     setUserNFTs(res.data) 
   }
