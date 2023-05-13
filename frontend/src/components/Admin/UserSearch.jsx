@@ -10,7 +10,7 @@ const UserSearch = ({setUsers}) => {
 
   useEffect(()=>{
     setIsLoading(true)
-    axios.get(`http://localhost:3001/user/search?query=${query}`).then(users=>{setUsers(users.data);setIsLoading(false)})
+    axios.get(`${import.meta.env.VITE_URL}/user/search?query=${query}`).then(users=>{setUsers(users.data);setIsLoading(false)})
   },[query])
 
   return (

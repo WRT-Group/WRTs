@@ -32,7 +32,7 @@ function AddNFT() {
     };
 
     await axios
-      .post("http://localhost:3001/NFT/add", newNFT, {
+      .post(`${import.meta.env.VITE_URL}/NFT/add`, newNFT, {
         headers: {
           "Content-Type": "application/json",
           Authorization: currentUser.token,

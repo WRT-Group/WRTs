@@ -15,7 +15,7 @@ const OneNfts = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/user/owner/${props.one.owner}`)
+      .get(`${import.meta.env.VITE_URL}/user/owner/${props.one.owner}`)
       .then((res) => setOwner(res.data));
   }, []);
 
