@@ -38,7 +38,7 @@ const signup = async (req, res) => {
     );
     return res
       .status(201)
-      .json({ token, id: user._id, fName, lName, username, email, NFTs: [], balance: 0 });
+      .json({ token, _id: user._id, fName, lName, username, email, NFTs: [], balance: 0 });
   } catch (err) {
     console.error(err);
     return res.status(500).json(err);
