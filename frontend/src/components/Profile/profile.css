@@ -40,6 +40,8 @@
 
 .profile button:hover{
     background-position: right center;
+    transform: scale(1.015);
+    filter: brightness(1.3);
 }
 
 input{
@@ -53,11 +55,15 @@ input{
     background-color: #54575d;
 }
 
+#title{
+    align-items: flex-end;
+    float: right;
+}
 
 #title h1{
     font-family: "Pixel";
     color: #ed1679;
-    width: 8vw;
+    width: 400px;
 }
 
 .profile-input{
