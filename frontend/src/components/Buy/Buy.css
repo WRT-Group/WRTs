@@ -165,3 +165,44 @@ div.modal-body {
     height: 100%;
     margin: 0;
 }
+
+#others {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#others #title {
+    width: 100%;
+    height: 14vh;
+}
+
+#others #title h1 {
+    width: 100%;
+    margin: 1rem; 
+     background: -webkit-linear-gradient(45deg, #b400ff, #c614c6, #ed1679, #ff0066);
+     background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: left;
+    transition: 0.5s all;
+   
+}
+
+#others #title h1:hover {
+    animation: gradient 1s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+  
