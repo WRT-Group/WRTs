@@ -36,7 +36,7 @@ const Profile=()=>{
 
     const getOneUser=async ()=>{
         setIsLoading(true)
-        const res=await axios.get(`http://localhost:3001/user/getUser/${id}`)
+        const res=await axios.get(`${import.meta.env.VITE_URL}/user/getUser/${id}`)
         setOneUser(res.data)
         setObj(oneUser)
         setIsLoading(false)
@@ -53,7 +53,7 @@ const Profile=()=>{
 
     const editProfile=async()=>{
         setIsLoading(true)
-        const updateUser=await axios.put(`http://localhost:3001/user/updateUser/${id}`,{...obj,image},{
+        const updateUser=await axios.put(`${import.meta.env.VITE_URL}/user/updateUser/${id}`,{...obj,image},{
             headers: {Authorization: currentUser.token}
         })
         setCurrentUser(updateUser.data)

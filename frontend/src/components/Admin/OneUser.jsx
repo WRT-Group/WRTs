@@ -10,7 +10,7 @@ const OneUser = ({id,fName,lName,username,email,isAdmin,isBanned,createdAt}) => 
 
   const ban=async ()=>{
     setIsLoading(true)
-    await axios.put(`http://localhost:3001/user/ban/${id}`,{},{
+    await axios.put(`${import.meta.env.VITE_URL}/user/ban/${id}`,{},{
       headers: {Authorization: currentUser.token}
     })
     window.location.reload()
@@ -19,7 +19,7 @@ const OneUser = ({id,fName,lName,username,email,isAdmin,isBanned,createdAt}) => 
 
   const unban=async ()=>{
     setIsLoading(true)
-    await axios.put(`http://localhost:3001/user/unban/${id}`,{},{
+    await axios.put(`${import.meta.env.VITE_URL}/user/unban/${id}`,{},{
       headers: {Authorization: currentUser.token}
     })
     window.location.reload()
@@ -28,7 +28,7 @@ const OneUser = ({id,fName,lName,username,email,isAdmin,isBanned,createdAt}) => 
 
   const makeAdmin=async ()=>{
     setIsLoading(true)
-    await axios.put(`http://localhost:3001/user/makeAdmin/${id}`,{},{
+    await axios.put(`${import.meta.env.VITE_URL}/user/makeAdmin/${id}`,{},{
       headers: {Authorization: currentUser.token}
     })
     window.location.reload()
@@ -39,7 +39,7 @@ const OneUser = ({id,fName,lName,username,email,isAdmin,isBanned,createdAt}) => 
     console.log(currentUser.token)
     console.log(id)
     setIsLoading(true)
-    await axios.delete(`http://localhost:3001/user/delete/${id}`,{
+    await axios.delete(`${import.meta.env.VITE_URL}/user/delete/${id}`,{
       headers: {Authorization: currentUser.token}
     })
     window.location.reload()

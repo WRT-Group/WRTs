@@ -32,7 +32,7 @@ const UpdateNFT = ({ nft }) => {
     };
 
     await axios
-      .put(`http://localhost:3001/NFT/edit/${nft._id}`, newNFT, {
+      .put(`${import.meta.env.VITE_URL}/NFT/edit/${nft._id}`, newNFT, {
         headers: {
           "Content-Type": "application/json",
           Authorization: currentUser.token,
