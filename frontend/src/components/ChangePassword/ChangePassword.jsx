@@ -10,15 +10,20 @@ const ChangePassword=()=>{
 
     const navigate=useNavigate();
     const changePassword=async()=>{
-        if (confPassword===newPassword){
             await axios.put(`${import.meta.env.VITE_URL}/user/changePassword/${currentUser._id}`,{password:newPassword},{
                 headers: {Authorization: currentUser.token}
             })
+    }
+    const handleSubmit=()=>{
+        if (newPassword.length<8){
+            return alert('you should make a valid password with 8 characters minimum')
         }
-        else{
+        if(confPassword!==newPassword){
             return alert("you should confirm your new password")
         }
-
+        changePassword();
+        logout();
+        navigate('/login')
     }
     return (
         <div className="change">
@@ -27,11 +32,7 @@ const ChangePassword=()=>{
             <h3>Change your password:</h3>
             <input type="password" name="password" placeholder="New password" onChange={(e)=>setNewPassword(e.target.value)} required/>
             <input type="password" name="confPassword" placeholder="confirm new password" onChange={(e)=>setConfPassword(e.target.value)} required/><br/>
-            <button onClick={()=>{
-                changePassword();
-                logout();
-                navigate('/login')
-                }}>Submit</button>
+            <button onClick={()=>handleSubmit()}>Submit</button>
         </div>
     )
     

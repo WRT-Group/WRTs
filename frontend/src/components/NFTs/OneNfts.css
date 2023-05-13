@@ -111,10 +111,10 @@
   margin-right: -20px;
 }
 .nft > .main > .tokenInfo > .creator {
-  display: flex;
+  /* display: flex;
   align-items: center;
   margin-top: 0.2rem;
-  margin-bottom: -0.3rem;
+  margin-bottom: -0.3rem; */
 }
 .nft > .main > .tokenInfo > .creator > ins {
   color: #a89ec9;
@@ -190,7 +190,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: start;
-  margin: 0.3rem;
+  margin: 0.8rem;
 }
 .creator ins {
   color: #a89ec9;
