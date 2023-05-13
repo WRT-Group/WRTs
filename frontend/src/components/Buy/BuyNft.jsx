@@ -10,7 +10,6 @@ import { MDBCol, MDBContainer, MDBRow } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
 
 import './Buy.css'
-import MyNFTs from "../MyNFTs/MyNFTs/MyNFTs";
 import OneNfts from "../NFTs/OneNfts";
 
 
@@ -105,8 +104,9 @@ const BuyNFT = () => {
                   <h1 style={{marginBottom: '2rem', fontFamily: "Pixel"}}>{buyData.nftName}</h1>
                   <p style={{fontFamily: "Maginer", fontSize: "22px", color:"white", width: "43vw", height: "6vh"}}>{buyData.description}</p>
                 </MDBRow>
-                <MDBRow>
+                <MDBRow className="price-duration">
                   <p style={{fontFamily: "Maginer", fontSize: "22px", color:"pink", marginTop: "2rem"}}>⟨ð⟩{buyData.price} ETH</p>
+                  <p style={{fontFamily: "Maginer", fontSize: "22px", color:"pink", marginTop: "2rem"}}>◷{moment(buyData.updatedAt).fromNow()}</p>
                 </MDBRow>
                 <MDBRow className="one-creator">
                   <>
