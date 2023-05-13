@@ -6,7 +6,9 @@ import UpdateNFT from "../MyNFTs/UpdateNFT/UpdateNFT";
 import DeleteNFT from "../MyNFTs/DeleteNFT/DeleteNFT";
 import axios from "axios";
 
+import moment from 'moment'
 const OneNfts = (props) => {
+  
   const { currentUser, setIsLoading } = useContext(Context);
   const [owner, setOwner] = useState(null);
   const navigate = useNavigate()
@@ -50,6 +52,9 @@ const OneNfts = (props) => {
         <div className="tokenInfo">
           <div className="price">
             <ins>◘{props.one.price} ETH</ins>
+          </div>
+          <div className="duration">
+            <ins>◷{moment(props.one.updatedAt).fromNow()}</ins>
           </div>
         </div>
       </div>
