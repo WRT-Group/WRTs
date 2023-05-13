@@ -11,7 +11,7 @@ const ChangePassword=()=>{
     const navigate=useNavigate();
     const changePassword=async()=>{
         if (confPassword===newPassword){
-            await axios.put(`http://localhost:3001/user/changePassword/${currentUser.id}`,{password:newPassword},{
+            await axios.put(`http://localhost:3001/user/changePassword/${currentUser._id}`,{password:newPassword},{
                 headers: {Authorization: currentUser.token}
             })
         }
