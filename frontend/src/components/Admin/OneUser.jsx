@@ -36,8 +36,10 @@ const OneUser = ({id,fName,lName,username,email,isAdmin,isBanned,createdAt}) => 
   }
 
   const removeUser=async ()=>{
+    console.log(currentUser.token)
+    console.log(id)
     setIsLoading(true)
-    await axios.delete(`http://localhost:3001/user/delete/${id}`,{},{
+    await axios.delete(`http://localhost:3001/user/delete/${id}`,{
       headers: {Authorization: currentUser.token}
     })
     window.location.reload()
