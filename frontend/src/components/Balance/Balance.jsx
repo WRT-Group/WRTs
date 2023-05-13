@@ -1,22 +1,28 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from "axios"
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { MDBCol, MDBInput } from "mdb-react-ui-kit";
 import { Context } from '../Context/Context';
 import "./Balance.css"
+import RedAlert from '../Alerts/RedAlert';
+import YellowAlert from '../Alerts/YellowAlert';
+import GreenAlert from '../Alerts/GreenAlert';
 
 const Balance = () => {
 
-  const { currentUser, setIsLoading, setCurrentUser, refreshUser }=useContext(Context)
+  const { currentUser, setIsLoading, setCurrentUser, refreshUser, setIsGreen, setIsYellow, setIsRed }=useContext(Context)
   const [show,setShow]=useState(false)
   const [walletId,setWalletId]=useState("")
   const [security,setSecurity]=useState("")
   const [amount,setAmount]=useState("")
+  const [redAlert,setRedAlert]=useState(false)
+  const [yellowAlert,setYellowAlert]=useState(true)
+  const [greenAlert,setGreenAlert]=useState(false)
 
   const handleSubmit=async ()=>{
-    if(walletId.length!==24 || security.length!==4 || amount<=0){
-      alert("type correct information")
+    if(false){
+      
     }
     else{
       setIsLoading(true)
@@ -32,25 +38,27 @@ const Balance = () => {
       //TODO: NEED TO ADD RED, YELLOW AND GREEN ALERTS TO THESE CONDITIONS!
       setIsLoading(false)
       if(request.data==="fill all fields"){
-        alert("fill all fields")
+        setIsRed(true);
+        setTimeout(() => {setIsRed(false)}, 1500) // red
       }
       else if(request.data==="wallet doesn't exist"){
-        alert("wallet doesn't exist")
+        alert("wallet doesn't exist") // yellow
       }
       else if(request.data==="Invalid Security Key"){
-        alert("invalid security key")
+        alert("invalid security key") // yellow
       }
       else if(request.data==="Insufficient balance in the wallet"){
-        alert("Insufficient balance in the wallet")
+        alert("Insufficient balance in the wallet") // yellow
       }
       else if(request.data.message==="Balance transferred successfully"){
-        alert("Balance Deposited!")
+        setIsGreen(true);
+        setTimeout(() => {setIsGreen(false)}, 1500) // green
         refreshUser(JSON.stringify({...currentUser, balance: +request.data.updatedUser.balance}))
         window.location.reload()
       }
     }
   }
-
+  
   const handleClose=()=>setShow(false)
   const handleShow=()=>setShow(true)
 
@@ -99,6 +107,7 @@ const Balance = () => {
         </form>
       </Modal.Body>
      </Modal>
+
     </>
   );
 };

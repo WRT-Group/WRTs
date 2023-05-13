@@ -39,7 +39,7 @@ function AddNFT() {
         },
       }).then((res) => refreshUser(JSON.stringify({...currentUser, NFTs: res.data.NFTs})))
       setIsGreen(true)
-      setTimeout(()=>{setIsGreen(false);window.location.reload()},2000)
+      setTimeout(()=>{setIsGreen(false);window.location.reload()},1200)
       setIsLoading(false)  
   };
 
