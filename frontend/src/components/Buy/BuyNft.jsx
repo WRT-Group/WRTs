@@ -108,15 +108,11 @@ const BuyNFT = () => {
                   <p style={{fontFamily: "Maginer", fontSize: "22px", color:"white", width: "43vw", height: "6vh"}}>{buyData.description}</p>
                 </MDBRow>
                 <div className="nft-desc">
-                  <MDBCol md={6} order={1}>
-                    <p style={{fontFamily: "Maginer", fontSize: "22px", marginTop: "2rem"}}>⟨ð⟩{buyData.price} ETH</p>
-                  </MDBCol>
-                  <MDBCol md={6} order={2}>
-                    <p>◷{moment(buyData.createdAt).fromNow()}</p>
-                  </MDBCol>
+                    <span id="price" style={{fontFamily: "Maginer", fontSize: "22px"}}>⟨ð⟩{buyData.price} ETH</span>
+                    <span id="date"><span id="clock">◷</span>{moment(buyData.createdAt).fromNow()}</span>
                 </div>
+                <hr/>
                 <MDBRow className="one-creator">
-                  <>
                     <div className="one-wrapper">
                       <img src={owner.image} alt="Creator" />
                     </div>
@@ -126,7 +122,6 @@ const BuyNFT = () => {
                         {owner.username}
                       </Link>
                     </p>
-                  </>
                   <button className="one-buy-btn" onClick={handleSubmit}>Get it Now!</button>
                 </MDBRow>
               </MDBCol>
