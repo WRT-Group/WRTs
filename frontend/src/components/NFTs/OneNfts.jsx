@@ -8,8 +8,10 @@ import axios from "axios";
 
 const OneNfts = (props) => {
   const { currentUser, setIsLoading } = useContext(Context);
-  const [owner, setOwner] = useState({image: "", username: "da"});
+  const [owner, setOwner] = useState(null);
   const navigate = useNavigate()
+
+  const fetchData = async () => {}
 
   useEffect(() => {
     axios
