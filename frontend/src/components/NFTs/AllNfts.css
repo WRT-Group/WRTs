@@ -1,5 +1,7 @@
 
 .all{
+    /* left:100px; */
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     user-select:none;
