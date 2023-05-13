@@ -7,14 +7,14 @@ import "./DeleteNFT.css";
 
 const DeleteNFT = ({ id }) => {
   const [clicked, setClicked] = useState(false);
-  const { setIsLoading }=useContext(Context)
+  const { setIsLoading, refreshUser }=useContext(Context)
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const handleDelete = async () => {
     setIsLoading(true)
     await axios
       .delete(`http://localhost:3001/NFT/delete/${id}/${currentUser._id}`, {
         headers: { Authorization: currentUser.token },
-      }).then((res) => window.localStorage.setItem("currentUser", JSON.stringify({...currentUser, NFTs: res.data.NFTs})))
+      }).then((res) => refreshUser(JSON.stringify({...currentUser, NFTs: res.data.NFTs})))
       .catch((err) => console.log(err));
       setIsLoading(false)
       window.location.reload()

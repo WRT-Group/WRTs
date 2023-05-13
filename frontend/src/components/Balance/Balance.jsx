@@ -8,7 +8,7 @@ import "./Balance.css"
 
 const Balance = () => {
 
-  const { currentUser, setIsLoading, setCurrentUser }=useContext(Context)
+  const { currentUser, setIsLoading, setCurrentUser, refreshUser }=useContext(Context)
   const [show,setShow]=useState(false)
   const [walletId,setWalletId]=useState("")
   const [security,setSecurity]=useState("")
@@ -45,7 +45,7 @@ const Balance = () => {
       }
       else if(request.data.message==="Balance transferred successfully"){
         alert("Balance Deposited!")
-        localStorage.setItem("currentUser", JSON.stringify({...currentUser, balance: +request.data.updatedUser.balance}))
+        refreshUser(JSON.stringify({...currentUser, balance: +request.data.updatedUser.balance}))
         window.location.reload()
       }
     }
