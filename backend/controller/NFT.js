@@ -41,7 +41,8 @@ const addNFT = async (req, res) => {
       { $push: { NFTs: newNFT._id.toString() } }
     );
 
-    res.status(201).json({ message: "NFT added successfully" });
+    const updatedUser = await User.findOne({_id : owner})
+    res.status(201).json(updatedUser);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

@@ -29,14 +29,16 @@ const BuyNFT = () => {
   };
   useEffect(() => {
     if(currentUser){
-      console.log(currentUser, id)
       if(currentUser.NFTs.includes(id)){
-        
         navigate("/")
       }
     }
+    window.scrollTo({
+      top:0,
+      behavior: "smooth"
+    })
     getOne()
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (ownerNFTs) {
