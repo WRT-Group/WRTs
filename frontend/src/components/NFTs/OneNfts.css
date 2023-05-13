@@ -100,11 +100,11 @@
 .nft > .main > .tokenInfo > .price > ins {
   margin-left: -0.9rem;
   margin-right: 0.5rem;
-  display: -webkit-box;
+  /* display: -webkit-box;
   max-width: 100%;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  overflow: hidden;
+  overflow: hidden; */
 }
 
 .nft > .main > .tokenInfo > .duration {
@@ -114,12 +114,12 @@
   margin-right: 0.2rem;
 }
 .nft > .main > .tokenInfo > .duration > ins {
-  display: -webkit-box;
+  /* display: -webkit-box;
   max-width: 100%;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  margin: 0.5rem;
+  margin: 0.5rem; */
   margin-bottom: 0.4rem;
   margin-right: -20px;
 }
