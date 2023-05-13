@@ -10,6 +10,8 @@ import { MDBCol, MDBContainer, MDBRow } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
 
 import './Buy.css'
+import MyNFTs from "../MyNFTs/MyNFTs/MyNFTs";
+import OneNfts from "../NFTs/OneNfts";
 
 
 const BuyNFT = () => {
@@ -17,12 +19,11 @@ const BuyNFT = () => {
   const { id } = useParams();
   const navigate=useNavigate()
   const [buyData, setBuyData] = useState(null);
-  const [userNFTs, setUserNFTs] = useState(null);
-  const [owner, setOwner] = useState({});
+  const [ownerNFTs, setOwnerNFTs] = useState(null);
+  const [owner, setOwner] = useState(null);
   const [show, setShow] = useState(false);
 
   const getOne = async () => {
-    console.log("fetching")
      await axios.get(`http://localhost:3001/NFT/getOne/${id}`).then((res) => setBuyData(res.data))
 
   };
@@ -36,22 +37,25 @@ const BuyNFT = () => {
   }, []);
 
   useEffect(() => {
-    setIsLoading(true)
-    if (buyData) {
+    if (ownerNFTs) {
+      setIsLoading(false)
+      console.log(ownerNFTs)
+      return 
+    }
+    if (buyData && !owner) {
       axios
       .get(`http://localhost:3001/user/getUser/${buyData.owner}`)
       .then((res) => {
         setOwner(res.data);
-        setIsLoading(false)
       })
       .catch(err => console.log(err))
     }
     if (owner) {
+      console.log(owner)
       axios
       .get(`http://localhost:3001/NFT/owner/${owner._id}`)
       .then((res) => {
-        setOwner(res.data);
-        setIsLoading(false)
+        setOwnerNFTs(res.data);
       })
       .catch(err => console.log(err))
     }
@@ -114,12 +118,26 @@ const BuyNFT = () => {
               </Modal.Header>
               <Modal.Body><img className="fullscreen-img" src={buyData.image} /></Modal.Body>
             </Modal>
-            {isLoading && <Spinner/>}
+            
           </MDBContainer>
         )}
-        <MDBRow style={{width: "100%", height: "100vh", border: "1px solid red"}}>
-            
-        </MDBRow>
+        {ownerNFTs && (
+          <MDBContainer id="others">
+            <MDBRow >
+                <MDBRow id="title">
+                  <h1>Other NFTs by {owner.username}</h1>
+                </MDBRow>
+                <MDBRow>
+                  {ownerNFTs.filter((e) => e._id !== id).map((e, i) => (
+                    <MDBCol key={i} sm={6} md={6} lg={4}>
+                      <OneNfts one={e} />
+                    </MDBCol>
+                  ))}
+                </MDBRow>
+            </MDBRow>
+          </MDBContainer>
+        )}
+        {isLoading && <Spinner/>}
     </>
   );
 };

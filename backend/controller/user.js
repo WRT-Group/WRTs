@@ -79,7 +79,6 @@ const login = async (req, res) => {
 };
 const getOneUser = async (req, res) => {
   const data = await User.findById({ _id: req.params.id });
-  console.log(data)
   res.json(data);
 };
 
