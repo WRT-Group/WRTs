@@ -154,6 +154,8 @@
 .nft .buy-btn:hover {
   background-position: right center;
   color: whitesmoke;
+  transform: scale(1.015);
+  filter: brightness(1.3);
 }
 
 .nft .buy-btn span {
