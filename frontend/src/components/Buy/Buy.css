@@ -120,6 +120,7 @@ div.column img, div.column-desc img {
     justify-content: space-between;
     margin: 1.5rem;
     margin-left: 1.7rem;
+    bottom: 4.4rem;
 }
 
 .one-creator ins {
