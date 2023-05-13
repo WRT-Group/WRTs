@@ -205,4 +205,9 @@ div.modal-body {
         background-position: 0% 50%;
     }
 }
-  
+
+.price-duration{
+    display:flex;
+    flex-wrap: nowrap;
+    float: left;
+}
