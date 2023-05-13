@@ -15,6 +15,10 @@ export const ContextProvider = ({children}) => {
   useEffect(()=>{
     console.log(currentUser)
   },[])
+
+  const refreshUser = async (updatedUser) => {
+    window.localStorage.setItem("currentUser", updatedUser)
+  }
   
   const logout=()=>{
     setCurrentUser(null)
@@ -22,7 +26,7 @@ export const ContextProvider = ({children}) => {
   }
 
   return (
-    <Context.Provider value={{currentUser,setCurrentUser,logout,data,setData,loginSuccess,setLoginSuccess,isLoading,setIsLoading,isRed,setIsRed,isYellow,setIsYellow,isGreen,setIsGreen}}>
+    <Context.Provider value={{currentUser,setCurrentUser,logout,data,setData,loginSuccess,setLoginSuccess,isLoading,setIsLoading,isRed,setIsRed,isYellow,setIsYellow,isGreen,setIsGreen, refreshUser}}>
       {children}
     </Context.Provider>
   );

@@ -42,7 +42,7 @@ const addNFT = async (req, res) => {
     );
 
     const updatedUser = await User.findOne({_id : owner})
-    res.status(201).json(updatedUser);
+    res.status(201).json({NFTs: updatedUser.NFTs});
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

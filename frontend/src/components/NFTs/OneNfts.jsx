@@ -32,7 +32,7 @@ const OneNfts = (props) => {
         );
       } else {
         return (
-          <button className="buy-btn" onClick={()=>{setIsLoading(true);navigate(`/BuyNFT/${props.one._id}`)}}><span>Purchase</span></button>
+          <button className="buy-btn" onClick={()=>{navigate(`/BuyNFT/${props.one._id}`)}}><span>Purchase</span></button>
         );
       }
     }
