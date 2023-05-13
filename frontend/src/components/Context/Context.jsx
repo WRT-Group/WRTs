@@ -4,7 +4,7 @@ export const Context=createContext()
 
 export const ContextProvider = ({children}) => {
   const [data,setData]=useState([])
-  const user=JSON.parse(localStorage.getItem("currentUser"))
+  const user=JSON.parse(localStorage.getItem("currentUser")) 
   const [currentUser,setCurrentUser]=useState(user || null)
   const [loginSuccess,setLoginSuccess]=useState(false)
   const [isLoading,setIsLoading]=useState(false)

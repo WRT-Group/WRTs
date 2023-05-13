@@ -13,8 +13,6 @@ const OneNfts = (props) => {
   const [owner, setOwner] = useState(null);
   const navigate = useNavigate()
 
-  const fetchData = async () => {}
-
   useEffect(() => {
     axios
       .get(`http://localhost:3001/user/owner/${props.one.owner}`)
