@@ -15,7 +15,7 @@ import OneNfts from "../NFTs/OneNfts";
 
 
 const BuyNFT = () => {
-  const { currentUser, setCurrentUser, isLoading, setIsLoading }=useContext(Context)
+  const { currentUser, isLoading, setIsLoading }=useContext(Context)
   const { id } = useParams();
   const navigate=useNavigate()
   const [buyData, setBuyData] = useState(null);
@@ -25,22 +25,24 @@ const BuyNFT = () => {
 
   const getOne = async () => {
      await axios.get(`http://localhost:3001/NFT/getOne/${id}`).then((res) => setBuyData(res.data))
-
   };
+  
   useEffect(() => {
     if(currentUser){
-      console.log(currentUser, id)
+      console.log(currentUser)
       if(currentUser.NFTs.includes(id)){
-        
         navigate("/")
       }
     }
+    window.scrollTo({
+      top:0,
+      behavior: "smooth"
+    })
     getOne()
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (ownerNFTs) {
-      setIsLoading(false)
       console.log(ownerNFTs)
       return 
     }
@@ -58,27 +60,32 @@ const BuyNFT = () => {
       .get(`http://localhost:3001/NFT/owner/${owner._id}`)
       .then((res) => {
         setOwnerNFTs(res.data);
+        setIsLoading(false)
       })
       .catch(err => console.log(err))
     }
+    setIsLoading(false)
   }, [buyData, owner])
 
 
   const handleSubmit=()=>{
+    console.log(owner)
     const purchaseRequest={
       nftId: buyData._id,
       price: Number(buyData.price),
       sellerid: owner._id,
-      buyerid: currentUser.id
+      buyerid: currentUser._id
     }
-    axios.put("http://localhost:3001/NFT/purchase",purchaseRequest)
+    axios.put("http://localhost:3001/NFT/purchase",purchaseRequest,{
+      headers: {Authorization: currentUser.token}
+    })
     .then(res=>{
       if(res.data==="no funds"){
         alert("no funds")
       }
       else{
         alert("purchase successful")
-        axios.get(`http://localhost:3001/user/getUser/${currentUser.id}`).then(res=>setCurrentUser(res.data))
+        window.localStorage.setItem("currentUser", JSON.stringify({...currentUser, NFTs: res.data.updatedUser.NFTs, balance: res.data.updatedUser.balance}))
         navigate("/")
         window.location.reload()
       }
@@ -113,7 +120,7 @@ const BuyNFT = () => {
                       </Link>
                     </p>
                   </>
-                  <button className="one-buy-btn" onClick={handleSubmit}>Get it N</button>
+                  <button className="one-buy-btn" onClick={handleSubmit}>Get it Now!</button>
                 </MDBRow>
               </MDBCol>
             </MDBRow>
