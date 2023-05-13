@@ -67,7 +67,7 @@ const Signup = () => {
         };
 
         axios
-          .post("http://localhost:3001/user/signup", newUser, {
+          .post(`${import.meta.env.VITE_URL}/user/signup`, newUser, {
             headers: { "Content-Type": "application/json" },
           })
           .then((res) => {
