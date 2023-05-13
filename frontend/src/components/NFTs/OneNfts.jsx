@@ -58,7 +58,7 @@ const OneNfts = (props) => {
       </div>
       {Button()}
       {owner && (
-        <div className="creator">
+        <div className="creator" style={currentUser._id === props.one.owner ? {marginTop: "37px"} : {}}>
           <hr />
           <div className="wrapper">
             <img src={owner.image} alt="Creator" />
