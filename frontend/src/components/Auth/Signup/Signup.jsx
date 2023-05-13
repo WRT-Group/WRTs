@@ -121,7 +121,7 @@ const Signup = () => {
 
   return (
     <MDBContainer fluid>
-      {userExists && <YellowAlert text={"Username Already Exists."} clearInc={clearInc}/>}
+      {userExists && <YellowAlert text={"Username or Email Already Exists."} clearInc={clearInc}/>}
       {infoInc && (
         <YellowAlert
         text={"Please Validate your information before submitting."}

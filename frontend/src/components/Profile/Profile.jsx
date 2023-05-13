@@ -25,6 +25,7 @@ const Profile=()=>{
     const [image,setImage]=useState(null)
     
     useEffect(()=>{
+        setIsYellow(true)
         if(location==="/profile/undefined"){
             navigate("/")
         }
@@ -88,9 +89,10 @@ const Profile=()=>{
  
     return (
         <>
-        {isGreen && <GreenAlert text={"NFT Added Successfully!"}/>}
-        {isRed && <RedAlert/>}
-        {isYellow && <YellowAlert/>}
+        {/* {isGreen && <GreenAlert text={"NFT Added Successfully!"}/>}
+        {isRed && <RedAlert/>} */}
+        <YellowAlert text={"Unknow wallet"} />
+        {/* {isYellow && <YellowAlert/>} */}
             <MDBRow style={{flexWrap: "nowrap"}} id="title"><h1 style={{fontFamily: "Pixel", color: "#B400FF", marginRight: 0}}>My NFTs</h1> <AddNFT /></MDBRow>
             
             <MDBRow id="profile">

@@ -10,7 +10,6 @@ const MyNFTs = (props) => {
   const [userNFTs, setUserNFTs] = useState([]);
 
   useEffect(() => {
-    console.log(id, props.id)
     fetchData()
   }, [props.id]);
 
