@@ -1,10 +1,8 @@
 const router=require("express").Router()
-const { getWallets, add, deposit, buy }=require("../controller/wallet")
+const { deposit }=require("../controller/wallet")
 
-router.get("/getWallets", getWallets)
+const authenticate=require("../middleware/authenticate")
 
-router.post("/add", add)
-
-router.put("/deposit/:userid", deposit)
+router.put("/deposit/:userid", authenticate, deposit)
 
 module.exports=router

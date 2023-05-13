@@ -21,7 +21,7 @@ router.get("/getOne/:id", getOne);
 router.post("/add", authenticate, addNFT);
 
 router.put("/edit/:id", authenticate, edit);
-router.put("/purchase", buy)
+router.put("/purchase", authenticate, buy)
 
 router.delete("/delete/:id/:userId", authenticate, remove);
 

@@ -40,7 +40,6 @@ const BuyNFT = () => {
 
   useEffect(() => {
     if (ownerNFTs) {
-      setIsLoading(false)
       console.log(ownerNFTs)
       return 
     }
@@ -61,6 +60,7 @@ const BuyNFT = () => {
       })
       .catch(err => console.log(err))
     }
+    setIsLoading(false)
   }, [buyData, owner])
 
 
@@ -71,7 +71,9 @@ const BuyNFT = () => {
       sellerid: owner._id,
       buyerid: currentUser.id
     }
-    axios.put("http://localhost:3001/NFT/purchase",purchaseRequest)
+    axios.put("http://localhost:3001/NFT/purchase",purchaseRequest,{
+      headers: {Authorization: currentUser.token}
+    })
     .then(res=>{
       if(res.data==="no funds"){
         alert("no funds")

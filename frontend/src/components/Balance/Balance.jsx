@@ -25,7 +25,9 @@ const Balance = () => {
         securityKey: security,
         amount: Number(amount)
       }
-      const request=await axios.put(`http://localhost:3001/wallet/deposit/${currentUser.id}`,depositRequest)
+      const request=await axios.put(`http://localhost:3001/wallet/deposit/${currentUser.id}`,depositRequest,{
+        headers: {Authorization: currentUser.token}
+      })
       //TODO: NEED TO ADD RED, YELLOW AND GREEN ALERTS TO THESE CONDITIONS!
       setIsLoading(false)
       if(request.data==="fill all fields"){
