@@ -11,7 +11,7 @@ import GreenAlert from '../Alerts/GreenAlert';
 
 const Balance = () => {
 
-  const { currentUser, setIsLoading, setCurrentUser, refreshUser, setIsGreen, setIsYellow, setIsRed }=useContext(Context)
+  const { currentUser, setIsLoading, setCurrentUser, refreshUser, setIsGreen, setIsYellow, setIsRed, setAlertText }=useContext(Context)
   const [show,setShow]=useState(false)
   const [walletId,setWalletId]=useState("")
   const [security,setSecurity]=useState("")
@@ -21,8 +21,10 @@ const Balance = () => {
   const [greenAlert,setGreenAlert]=useState(false)
 
   const handleSubmit=async ()=>{
-    if(false){
-      
+    if(walletId.length!==24 || security.length!==4 || amount<=0){
+      setIsYellow(true);
+      setAlertText("Incorrect information")
+      setTimeout(() => {setIsYellow(false)}, 1500) 
     }
     else{
       setIsLoading(true)
@@ -39,22 +41,31 @@ const Balance = () => {
       setIsLoading(false)
       if(request.data==="fill all fields"){
         setIsRed(true);
-        setTimeout(() => {setIsRed(false)}, 1500) // red
+        setAlertText("Please fill all given fields")
+        setTimeout(() => {setIsRed(false)}, 1500) 
       }
       else if(request.data==="wallet doesn't exist"){
-        alert("wallet doesn't exist") // yellow
+        setIsYellow(true);
+        setAlertText("Unknown wallet id")
+        setTimeout(() => {setIsYellow(false)}, 1500) 
       }
       else if(request.data==="Invalid Security Key"){
-        alert("invalid security key") // yellow
+        setIsYellow(true);
+        setAlertText("Invalid Security Key")
+        setTimeout(() => {setIsYellow(false)}, 1500) 
       }
       else if(request.data==="Insufficient balance in the wallet"){
-        alert("Insufficient balance in the wallet") // yellow
+        setIsYellow(true);
+        setAlertText("Insufficient balance in the wallet")
+        setTimeout(() => {setIsYellow(false)}, 1500)
       }
       else if(request.data.message==="Balance transferred successfully"){
         setIsGreen(true);
-        setTimeout(() => {setIsGreen(false)}, 1500) // green
+        setAlertText("Balance transferred successfully, processing your funds")
+        setShow(false)
+        setTimeout(() => {setIsGreen(false); window.location.reload()}, 1500) // green
         refreshUser(JSON.stringify({...currentUser, balance: +request.data.updatedUser.balance}))
-        window.location.reload()
+        
       }
     }
   }

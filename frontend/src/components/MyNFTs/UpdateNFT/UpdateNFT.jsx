@@ -10,7 +10,7 @@ import "./UpdateNFT.css";
 import { Context } from "../../Context/Context";
 
 const UpdateNFT = ({ nft }) => {
-  const { currentUser, setIsLoading } = useContext(Context);
+  const { currentUser, setIsLoading, setIsGreen, setAlertText } = useContext(Context);
 
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
@@ -38,8 +38,14 @@ const UpdateNFT = ({ nft }) => {
           Authorization: currentUser.token,
         },
       })
+      setIsGreen(true)
+      setAlertText("NFT Updated successfully")
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      })
+      setTimeout(()=>{setIsGreen(false);window.location.reload()},1200)
       setIsLoading(false)
-      window.location.reload()
   };
 
   const onDrop = async (acceptedFiles) => {

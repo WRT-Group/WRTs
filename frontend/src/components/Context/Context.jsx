@@ -11,6 +11,7 @@ export const ContextProvider = ({children}) => {
   const [isRed,setIsRed]=useState(false)
   const [isYellow,setIsYellow]=useState(false)
   const [isGreen,setIsGreen]=useState(false)
+  const [alertText, setAlertText] = useState("")
 
   useEffect(()=>{
     console.log(currentUser)
@@ -26,7 +27,7 @@ export const ContextProvider = ({children}) => {
   }
 
   return (
-    <Context.Provider value={{currentUser,setCurrentUser,logout,data,setData,loginSuccess,setLoginSuccess,isLoading,setIsLoading,isRed,setIsRed,isYellow,setIsYellow,isGreen,setIsGreen, refreshUser}}>
+    <Context.Provider value={{currentUser,setCurrentUser,logout,data,setData,loginSuccess,setLoginSuccess,isLoading,setIsLoading,isRed,setIsRed,isYellow,setIsYellow,isGreen,setIsGreen, refreshUser, alertText, setAlertText}}>
       {children}
     </Context.Provider>
   );

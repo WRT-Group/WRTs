@@ -19,7 +19,7 @@ import YellowAlert from "../../Alerts/YellowAlert";
 import Spinner from "../../Spinner/Spinner";
 
 const Signup = () => {
-  const { currentUser, setCurrentUser, isLoading, setIsLoading } = useContext(Context);
+  const { currentUser, setCurrentUser, isLoading, setIsLoading,  } = useContext(Context);
 
   const regexFullName = /[a-z]/gi;
   const regexpUsername = /^.{4,}$/;
