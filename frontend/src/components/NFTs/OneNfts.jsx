@@ -44,8 +44,8 @@ const OneNfts = (props) => {
     <div className="nft" >
       <div className="main" onClick={currentUser ? ()=>navigate(`/BuyNFT/${props.one._id}`) : ()=>navigate(`/login`)}>
         <img className="tokenImage" src={props.one.image} alt="NFT" />
-        <h2>{props.one.nftName}</h2>
-        <p className="description">{props.one.description}</p>
+        <h2 className="nftName">{props.one.nftName}</h2>
+        <p className="description" style={{height:"39px"}}>{props.one.description}</p>
         <hr />
         <div className="tokenInfo">
           <div className="price">
@@ -57,18 +57,13 @@ const OneNfts = (props) => {
         </div>
       </div>
       {Button()}
-      <hr />
       {owner && (
         <div className="creator">
+          <hr />
           <div className="wrapper">
             <img src={owner.image} alt="Creator" />
           </div>
-          <p>
-            <ins>Creation of</ins>
-            <Link to={`/profile/${owner._id}`} className="nav-link">
-              {owner.username}
-            </Link>
-          </p>
+          <p><ins>Creation of</ins><Link to={`/profile/${owner._id}`} className="nav-link">{owner.username}</Link></p>
         </div>
       )}
     </div>
