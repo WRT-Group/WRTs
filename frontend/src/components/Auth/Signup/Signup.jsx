@@ -83,7 +83,7 @@ const Signup = () => {
                 JSON.stringify(res.data)
               );
               navigate("/");
-              setIsLoading(false)
+              setIsLoading(false) 
             }
           })
           .catch((err) => {
