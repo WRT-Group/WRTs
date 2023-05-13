@@ -9,7 +9,7 @@ const PFP = () => {
 
   return (
     <div>
-      {currentUser && <Link to={`/profile/${currentUser.id}`}>
+      {currentUser && <Link to={`/profile/${currentUser._id}`}>
         <img src={currentUser.image ? currentUser.image : 'https://thumbs.dreamstime.com/b/nft-non-fungible-token-tokens-icon-covering-concept-high-tech-technology-symbol-logo-vector-225921227.jpg'} alt='profile' className='pr' />
       </Link>}
     </div>

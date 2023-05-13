@@ -44,8 +44,8 @@ const Login = () => {
           navigate("/banned")
         }
         else{
-          setCurrentUser(user.data)
           localStorage.setItem("currentUser",JSON.stringify(user.data))
+          setCurrentUser(user.data)
           navigate("/")
           setLoginSuccess(true)
         }

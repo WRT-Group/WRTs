@@ -106,11 +106,11 @@ const Profile=()=>{
                         <h4>E-mail: <br></br>{oneUser.email}</h4>
                         <br/>
                         <br/>
-                        {currentUser && currentUser.id===id && <button onClick={()=>{
+                        {currentUser && currentUser._id===id && <button onClick={()=>{
                             setObj(oneUser)
                             setShow(!show)}}>Edit Profile</button>}<br/>
                         <br/>
-                        {currentUser && currentUser.id===id && <button className="btnChangePassword" onClick={()=>navigate("/changePassword")}>Change Password</button>}
+                        {currentUser && currentUser._id===id && <button className="btnChangePassword" onClick={()=>navigate("/changePassword")}>Change Password</button>}
                         <br/>
                         {show && <motion.div  initial={{y: -40, opacity: 0}} animate={{y:0, opacity: 1}} exit={{y: -40, opacity: 0}} transition={{duration: 0.4}}>
                             <input type="text" name="fName" className="profile-input" value={obj.fName} placeholder="First Name" onChange={handleChange}/><br/>

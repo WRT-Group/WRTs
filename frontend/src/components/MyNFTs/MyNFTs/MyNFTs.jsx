@@ -10,12 +10,13 @@ const MyNFTs = (props) => {
   const [userNFTs, setUserNFTs] = useState([]);
 
   useEffect(() => {
+    console.log(id, props.id)
     fetchData()
   }, [props.id]);
 
   const fetchData = async () => {
    const res = await axios
-      .get(`http://localhost:3001/NFT/owner/${id}`)
+      .get(`http://localhost:3001/NFT/owner/${props.id}`)
       .catch((err) => console.log(err));
     setUserNFTs(res.data) 
   }

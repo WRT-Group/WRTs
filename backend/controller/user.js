@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 const cloudinary = require("cloudinary").v2;
 
 const signup = async (req, res) => {
-  console.log("signing up")
   try {
     const { fName, lName, username, email, password, image } = req.body;
     const imageUrl = await cloudinary.uploader.upload(image);
@@ -37,10 +36,9 @@ const signup = async (req, res) => {
       { userId: user._id, username: user.username },
       process.env.token
     );
-    console.log("finished signing up")
     return res
       .status(201)
-      .json({ token, id: user._id, fName, lName, username, email, NFTs: [] });
+      .json({ token, id: user._id, fName, lName, username, email, NFTs: [], balance: 0 });
   } catch (err) {
     console.error(err);
     return res.status(500).json(err);
@@ -57,7 +55,7 @@ const login = async (req, res) => {
       const token = jwt.sign({ id: loggedUser._id }, process.env.token);
       res.send({
         token: token,
-        id: loggedUser._id,
+        _id: loggedUser._id,
         fName: loggedUser.fName,
         lName: loggedUser.lName,
         username: loggedUser.username,

@@ -25,6 +25,7 @@ const Balance = () => {
         securityKey: security,
         amount: Number(amount)
       }
+      
       const request=await axios.put(`http://localhost:3001/wallet/deposit/${currentUser.id}`,depositRequest,{
         headers: {Authorization: currentUser.token}
       })
@@ -42,9 +43,9 @@ const Balance = () => {
       else if(request.data==="Insufficient balance in the wallet"){
         alert("Insufficient balance in the wallet")
       }
-      else if(request.data==="Balance transferred successfully"){
+      else if(request.data.message==="Balance transferred successfully"){
         alert("Balance Deposited!")
-        axios.get(`http://localhost:3001/user/getUser/${currentUser.id}`).then(res=>setCurrentUser(res.data))
+        localStorage.setItem("currentUser", JSON.stringify({...currentUser, balance: +request.data.updatedUser.balance}))
         window.location.reload()
       }
     }

@@ -28,7 +28,7 @@ function AddNFT() {
       price,
       image,
       description,
-      owner: currentUser.id,
+      owner: currentUser._id,
     };
 
     await axios
@@ -37,7 +37,7 @@ function AddNFT() {
           "Content-Type": "application/json",
           Authorization: currentUser.token,
         },
-      })
+      }).then((res) => window.localStorage.setItem("currentUser", JSON.stringify(res.data)))
       setIsGreen(true)
       setTimeout(()=>{setIsGreen(false);window.location.reload()},2000)
       setIsLoading(false)  
