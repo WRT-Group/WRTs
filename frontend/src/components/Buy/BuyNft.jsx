@@ -109,7 +109,7 @@ const BuyNFT = () => {
                 </MDBRow>
                 <div className="nft-desc">
                     <span id="price" style={{fontFamily: "Maginer", fontSize: "22px"}}>⟨ð⟩{buyData.price} ETH</span>
-                    <span id="date"><span id="clock">◷</span>{moment(buyData.createdAt).fromNow()}</span>
+                    <span id="date"><span id="clock">◷ </span>{moment(buyData.createdAt).fromNow()}</span>
                 </div>
                 <hr/>
                 <MDBRow className="one-creator">
