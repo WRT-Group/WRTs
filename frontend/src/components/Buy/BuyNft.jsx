@@ -15,7 +15,7 @@ import OneNfts from "../NFTs/OneNfts";
 
 
 const BuyNFT = () => {
-  const { currentUser, setCurrentUser, isLoading, setIsLoading }=useContext(Context)
+  const { currentUser, isLoading, setIsLoading }=useContext(Context)
   const { id } = useParams();
   const navigate=useNavigate()
   const [buyData, setBuyData] = useState(null);
@@ -25,10 +25,11 @@ const BuyNFT = () => {
 
   const getOne = async () => {
      await axios.get(`http://localhost:3001/NFT/getOne/${id}`).then((res) => setBuyData(res.data))
-
   };
+  
   useEffect(() => {
     if(currentUser){
+      console.log(currentUser)
       if(currentUser.NFTs.includes(id)){
         navigate("/")
       }
@@ -42,7 +43,6 @@ const BuyNFT = () => {
 
   useEffect(() => {
     if (ownerNFTs) {
-      setIsLoading(false)
       console.log(ownerNFTs)
       return 
     }
@@ -60,6 +60,7 @@ const BuyNFT = () => {
       .get(`http://localhost:3001/NFT/owner/${owner._id}`)
       .then((res) => {
         setOwnerNFTs(res.data);
+        setIsLoading(false)
       })
       .catch(err => console.log(err))
     }
@@ -67,11 +68,12 @@ const BuyNFT = () => {
 
 
   const handleSubmit=()=>{
+    console.log(owner)
     const purchaseRequest={
       nftId: buyData._id,
       price: Number(buyData.price),
       sellerid: owner._id,
-      buyerid: currentUser.id
+      buyerid: currentUser._id
     }
     axios.put("http://localhost:3001/NFT/purchase",purchaseRequest)
     .then(res=>{
@@ -80,7 +82,7 @@ const BuyNFT = () => {
       }
       else{
         alert("purchase successful")
-        axios.get(`http://localhost:3001/user/getUser/${currentUser.id}`).then(res=>setCurrentUser(res.data))
+        window.localStorage.setItem("currentUser", JSON.stringify({...currentUser, NFTs: res.data.updatedUser.NFTs, balance: res.data.updatedUser.balance}))
         navigate("/")
         window.location.reload()
       }

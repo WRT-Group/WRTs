@@ -46,7 +46,8 @@ module.exports={
       const updatedUserBalance=userBalance+amount;
       await user.findByIdAndUpdate(userid, { balance: updatedUserBalance })
   
-      return res.send("Balance transferred successfully")
+      const updatedUser = await user.findOne({_id: userid})
+      return res.json({message: "Balance transferred successfully", updatedUser: {balance: updatedUser.balance}})
     }
       catch (error) {
         return res.status(500).json({ error: "Internal server error" })

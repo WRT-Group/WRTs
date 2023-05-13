@@ -28,7 +28,7 @@ function AddNFT() {
       price,
       image,
       description,
-      owner: currentUser.id,
+      owner: currentUser._id,
     };
 
     await axios
