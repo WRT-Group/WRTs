@@ -28,5 +28,5 @@ app.use("/user", userRouter);
 app.use("/wallet", walletRouter)
 
 app.listen(port, () => {
-  console.log(`Server listening at ${import.meta.env.VITE_URL}:${port}`);
+  console.log(`Server listening at http://localhost:${port}`);
 });
