@@ -87,7 +87,9 @@ function AddNFT() {
               <MDBTextArea
                 className="mb-2 nft-input"
                 onChange={(e) => setDescription(e.target.value)}
+                maxLength={82}
               />
+              {description.length>80 && <p style={{color:"red" , opacity:0.6}}>The description is very long</p>}
               <label className="add-nft-label">NFT Price</label>
               <MDBInput
                 className="mb-2 nft-input"

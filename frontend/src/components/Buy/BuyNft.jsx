@@ -64,6 +64,7 @@ const BuyNFT = () => {
       })
       .catch(err => console.log(err))
     }
+    setIsLoading(false)
   }, [buyData, owner])
 
 
@@ -75,7 +76,9 @@ const BuyNFT = () => {
       sellerid: owner._id,
       buyerid: currentUser._id
     }
-    axios.put("http://localhost:3001/NFT/purchase",purchaseRequest)
+    axios.put("http://localhost:3001/NFT/purchase",purchaseRequest,{
+      headers: {Authorization: currentUser.token}
+    })
     .then(res=>{
       if(res.data==="no funds"){
         alert("no funds")
@@ -100,10 +103,10 @@ const BuyNFT = () => {
               <MDBCol className="column-desc" md={7}>
                 <MDBRow id="info">
                   <h1 style={{marginBottom: '2rem', fontFamily: "Pixel"}}>{buyData.nftName}</h1>
-                  <p style={{fontFamily: "Maginer", fontSize: "22px", color:"white", width: "23vw", height: "6vh"}}>{buyData.description}</p>
+                  <p style={{fontFamily: "Maginer", fontSize: "22px", color:"white", width: "43vw", height: "6vh"}}>{buyData.description}</p>
                 </MDBRow>
                 <MDBRow>
-                  <p style={{fontFamily: "Maginer", fontSize: "22px", color:"pink", marginTop: "4rem"}}>⟨ð⟩{buyData.price} ETH</p>
+                  <p style={{fontFamily: "Maginer", fontSize: "22px", color:"pink", marginTop: "2rem"}}>⟨ð⟩{buyData.price} ETH</p>
                 </MDBRow>
                 <MDBRow className="one-creator">
                   <>
@@ -117,7 +120,7 @@ const BuyNFT = () => {
                       </Link>
                     </p>
                   </>
-                  <button className="one-buy-btn" onClick={handleSubmit}>Get this NFT now!</button>
+                  <button className="one-buy-btn" onClick={handleSubmit}>Get it Now!</button>
                 </MDBRow>
               </MDBCol>
             </MDBRow>
