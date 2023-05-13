@@ -77,15 +77,21 @@ div.column-desc {
     height: 55vh;
     padding: 0;
     margin: 1.3rem;
+    box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.3);
+    z-index: 3;
     border-radius: 15px;
     border: double 1px transparent;
-    background-image: linear-gradient(135deg, #3f3f3f, #5a5a5a), radial-gradient(circle at top left,#b400ff, #c614c6, #ed1679, #ff0066);
+    background-image: linear-gradient(90deg,rgb(48, 48, 48) 0%, #3f3f3f 53%, #5a5a5a 100%), radial-gradient(circle at top left,#b400ff, #c614c6, #ed1679, #ff0066);
     background-origin: border-box;
     background-clip: padding-box, border-box;
+    transition: 2s;
 }
 
 div.column-desc:hover {
-    background-image: linear-gradient(45deg, #5a5a5a, #3f3f3f), radial-gradient(circle at top left,#b400ff, #c614c6, #ed1679, #ff0066);
+    box-shadow: none;
+    scale: 1.04;
+    z-index: 0;
+    /* background-image: linear-gradient(#5a5a5a, #3f3f3f), radial-gradient(circle at top left,#b400ff, #c614c6, #ed1679, #ff0066); */
 }
 
 div.column img, div.column-desc img {
@@ -210,4 +216,14 @@ div.modal-body {
     display:flex;
     flex-wrap: nowrap;
     float: left;
+}
+
+div.nft-desc {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid red;
 }

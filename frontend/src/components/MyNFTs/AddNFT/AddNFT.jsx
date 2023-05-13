@@ -37,7 +37,7 @@ function AddNFT() {
           "Content-Type": "application/json",
           Authorization: currentUser.token,
         },
-      }).then((res) => refreshUser(JSON.stringify({currentUser, NFTs: currentUser.NFTs})))
+      }).then((res) => refreshUser(JSON.stringify({...currentUser, NFTs: res.data.NFTs})))
       setIsGreen(true)
       setTimeout(()=>{setIsGreen(false);window.location.reload()},2000)
       setIsLoading(false)  

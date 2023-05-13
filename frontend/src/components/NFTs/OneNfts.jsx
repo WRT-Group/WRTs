@@ -53,9 +53,7 @@ const OneNfts = (props) => {
           <div className="price">
             <ins>◘{props.one.price} ETH</ins>
           </div>
-          <div className="duration">
-            <ins>◷{moment(props.one.updatedAt).fromNow()}</ins>
-          </div>
+          
         </div>
       </div>
       {Button()}

@@ -19,7 +19,7 @@
     height: 200px;
     border-radius: 100%;
     overflow: hidden;
-    background-color: blue;
+    background-color: transparent;
 }
 
 .profile button {
