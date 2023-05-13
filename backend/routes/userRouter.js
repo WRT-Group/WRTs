@@ -23,13 +23,13 @@ router.get("/owner/:id", getUserByOwner);
 router.post("/signup", signup);
 router.post("/login", login);
 
-router.put("/updateUser/:id", update);
-router.put("/ban/:id", banUser);
-router.put("/unban/:id", unbanUser);
-router.put("/makeAdmin/:id", makeAdmin);
-//change password route
-router.put("/changePassword/:id",changePassword)
+router.put("/updateUser/:id", authenticate, update);
+router.put("/ban/:id", authenticate, banUser);
+router.put("/unban/:id", authenticate, unbanUser);
+router.put("/makeAdmin/:id", authenticate, makeAdmin);
 
-router.delete("/delete/:id", removeUser);
+router.put("/changePassword/:id", authenticate, changePassword)
+
+router.delete("/delete/:id", authenticate, removeUser);
 
 module.exports = router;

@@ -99,13 +99,13 @@ const update = async (req, res) => {
   await User.findByIdAndUpdate(id,updateData)
   User.findById(id).then(user=>res.send(user))
 };
-//function to change password
+
 const changePassword=async(req,res)=>{
   const hash=await bcrypt.hash(req.body.password,10);
   await User.updateOne({_id:req.params.id},{password:hash})
   res.json("upassword changed")
 }
-//
+
 const getUsers = async (req, res) => {
   const data = await User.find({}).lean();
   res.json(data);
