@@ -8,7 +8,7 @@ import "./Balance.css"
 
 const Balance = () => {
 
-  const { currentUser, setIsLoading, setIsGreen, setIsYellow, setIsRed, setAlertText }=useContext(Context)
+  const { currentUser, refreshUser, setIsLoading, setIsGreen, setIsYellow, setIsRed, setAlertText }=useContext(Context)
   const [show,setShow]=useState(false)
   const [walletId,setWalletId]=useState("")
   const [security,setSecurity]=useState("")
