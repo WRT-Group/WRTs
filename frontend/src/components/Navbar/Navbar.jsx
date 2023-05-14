@@ -30,7 +30,7 @@ const Navbar = () => {
               </li>
               </>}
               <li className="nav-item">
-                <Link className={`nav-link ${location === "/contact" ? 'active' : ''} `} to="/contact">Contact Us</Link>
+                <Link className={`nav-link ${location === "/contact" ? 'active' : ''} `} to={currentUser ? "/contact" : "/login"}>Contact Us</Link>
               </li>
               {currentUser && <Balance/>}
             </ul>
