@@ -23,6 +23,8 @@ const ChangePassword = () => {
   const navigate = useNavigate();
 
   const changePassword = async () => {
+    setAlertText("Password updated successfully!");
+    setIsGreen(true);
     await axios.put(
       `${import.meta.env.VITE_URL}/user/changePassword/${currentUser._id}`,
       { password: newPassword },
@@ -30,8 +32,6 @@ const ChangePassword = () => {
         headers: { Authorization: currentUser.token },
       }
     );
-    setAlertText("Password updated successfully!");
-    setIsGreen(true);
     setTimeout(() => {
       setIsGreen(false);
       logout();
