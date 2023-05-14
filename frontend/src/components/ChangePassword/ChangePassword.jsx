@@ -36,7 +36,7 @@ const ChangePassword = () => {
       setIsGreen(false);
       logout();
       navigate("/login");
-    });
+    }, 1200);
   };
 
   const handleSubmit = () => {
