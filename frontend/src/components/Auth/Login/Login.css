@@ -11,6 +11,7 @@ body {
   border: 1px solid;
   border-image: linear-gradient(135deg, #b400ff, #c614c6, #ed1679, #ff0066) 1;
   color: rgb(199, 197, 197);
+  margin-left: 60px;
 }
 
 .login button{
