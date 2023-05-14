@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from "axios"
-
-import Logo from '../Logo/Logo';
 import { useNavigate } from 'react-router-dom';
-import OneUser from './OneUser';
+
 import { Context } from '../Context/Context';
+import Logo from '../Logo/Logo';
+import OneUser from './OneUser';
 import UserSearch from './UserSearch';
 import Spinner from '../Spinner/Spinner';
 

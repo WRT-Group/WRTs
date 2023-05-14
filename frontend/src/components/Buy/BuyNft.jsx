@@ -12,7 +12,6 @@ import GreenAlert from '../Alerts/GreenAlert';
 import RedAlert from '../Alerts/RedAlert';
 
 import './Buy.css'
-import MyNFTs from "../MyNFTs/MyNFTs/MyNFTs";
 import OneNfts from "../NFTs/OneNfts";
 
 

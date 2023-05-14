@@ -5,20 +5,14 @@ import Modal from "react-bootstrap/Modal";
 import { MDBCol, MDBInput } from "mdb-react-ui-kit";
 import { Context } from '../Context/Context';
 import "./Balance.css"
-import RedAlert from '../Alerts/RedAlert';
-import YellowAlert from '../Alerts/YellowAlert';
-import GreenAlert from '../Alerts/GreenAlert';
 
 const Balance = () => {
 
-  const { currentUser, setIsLoading, setCurrentUser, refreshUser, setIsGreen, setIsYellow, setIsRed, setAlertText }=useContext(Context)
+  const { currentUser, setIsLoading, setIsGreen, setIsYellow, setIsRed, setAlertText }=useContext(Context)
   const [show,setShow]=useState(false)
   const [walletId,setWalletId]=useState("")
   const [security,setSecurity]=useState("")
   const [amount,setAmount]=useState("")
-  const [redAlert,setRedAlert]=useState(false)
-  const [yellowAlert,setYellowAlert]=useState(true)
-  const [greenAlert,setGreenAlert]=useState(false)
 
   const handleSubmit=async ()=>{
     if(walletId.length!==24 || security.length!==4 || amount<=0){
@@ -37,7 +31,7 @@ const Balance = () => {
       const request=await axios.put(`${import.meta.env.VITE_URL}/wallet/deposit/${currentUser._id}`,depositRequest,{
         headers: {Authorization: currentUser.token}
       })
-      //TODO: NEED TO ADD RED, YELLOW AND GREEN ALERTS TO THESE CONDITIONS!
+
       setIsLoading(false)
       if(request.data==="fill all fields"){
         setIsRed(true);
