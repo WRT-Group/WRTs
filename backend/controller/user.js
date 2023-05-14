@@ -100,7 +100,7 @@ const update = async (req, res) => {
 
 const changePassword=async(req,res)=>{
   const hash=await bcrypt.hash(req.body.password,10);
-  await User.updateOne({_id:req.params.id},{password:hash})
+  await User.updateOne({_id:req.params.id},{$set:{password:hash}})
   res.json("upassword changed")
 }
 
