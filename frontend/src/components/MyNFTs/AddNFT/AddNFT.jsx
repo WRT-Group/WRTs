@@ -71,7 +71,7 @@ function AddNFT() {
   return (
     <>
       <Button onClick={handleShow} id="addNFT">
-        <img src="../../../../assets/plus.png" width={50} height={50} />
+        <img src="https://res.cloudinary.com/dszx3pd6j/image/upload/v1684024640/plus_u3lx8x.png" width={50} height={50} />
       </Button>
 
       <Modal show={show} onHide={handleClose} id="modal">
