@@ -10,7 +10,6 @@ import Spinner from "../Spinner/Spinner";
 import './profile.css'
 import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 import AddNFT from "../MyNFTs/AddNFT/AddNFT";
-import RedAlert from "../Alerts/RedAlert"
 import GreenAlert from "../Alerts/GreenAlert"
 import YellowAlert from "../Alerts/YellowAlert"
 
