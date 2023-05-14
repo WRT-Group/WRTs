@@ -1,10 +1,11 @@
 
 .all{
     /* left:100px; */
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     user-select:none;
+    justify-content: center;
     font-family:"Maginer";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -17,4 +18,10 @@ h1{
     font-family:"Maginer";
     color: #eee;
     text-align: center;
+}
+
+.container {
+    width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
 }
