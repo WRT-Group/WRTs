@@ -36,7 +36,6 @@ const Signup = () => {
   const [confInc, setConfInc] = useState(false);
   const [userExists,setUserExists]=useState(false)
   const [image, setImage] = useState(null);
-  console.log(checkbox)
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -30,7 +30,6 @@ const BuyNFT = () => {
   
   useEffect(() => {
     if(currentUser){
-      console.log(currentUser)
       if(currentUser.NFTs.includes(id)){
         navigate("/")
       }
@@ -44,11 +43,9 @@ const BuyNFT = () => {
 
   useEffect(() => {
     if (ownerNFTs) {
-      console.log(ownerNFTs)
       return 
     }
     if (buyData && !owner) {
-      console.log(buyData.owner)
       axios
       .get(`${import.meta.env.VITE_URL}/user/getUser/${buyData.owner}`)
       .then((res) => {
@@ -57,7 +54,6 @@ const BuyNFT = () => {
       .catch(err => console.log(err))
     }
     if (owner) {
-      console.log(owner)
       axios
       .get(`${import.meta.env.VITE_URL}/NFT/owner/${owner._id}`)
       .then((res) => {
@@ -71,14 +67,12 @@ const BuyNFT = () => {
 
 
   const handleSubmit=()=>{
-    console.log(owner)
     const purchaseRequest={
       nftId: buyData._id,
       price: Number(buyData.price),
       sellerid: owner._id,
       buyerid: currentUser._id
     }
-    console.log(currentUser)
     axios.put(`${import.meta.env.VITE_URL}/NFT/purchase`,purchaseRequest,{
       headers: {"Authorization": currentUser.token}
     })

@@ -36,8 +36,6 @@ const OneUser = ({id,fName,lName,username,email,isAdmin,isBanned,createdAt}) => 
   }
 
   const removeUser=async ()=>{
-    console.log(currentUser.token)
-    console.log(id)
     setIsLoading(true)
     await axios.delete(`${import.meta.env.VITE_URL}/user/delete/${id}`,{
       headers: {Authorization: currentUser.token}
