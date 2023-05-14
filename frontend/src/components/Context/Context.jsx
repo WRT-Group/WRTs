@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const Context=createContext()
 
@@ -12,10 +12,6 @@ export const ContextProvider = ({children}) => {
   const [isYellow,setIsYellow]=useState(false)
   const [isGreen,setIsGreen]=useState(false)
   const [alertText, setAlertText] = useState("")
-
-  useEffect(()=>{
-    console.log(currentUser)
-  },[])
 
   const refreshUser = async (updatedUser) => {
     window.localStorage.setItem("currentUser", updatedUser)
