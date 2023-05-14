@@ -24,8 +24,6 @@ const ChangePassword=()=>{
                 logout();
                 navigate('/login');
             })
-        }
-        else{
             setAlertText("You should confirm your new password")
             setIsRed(true)
             setTimeout(() => {
