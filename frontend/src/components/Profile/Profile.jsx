@@ -104,7 +104,7 @@ const Profile=()=>{
         <>
         {isGreen && <GreenAlert text={alertText}/>}
         {isYellow && <YellowAlert text={alertText}/>}
-            <MDBRow style={{flexWrap: "nowrap"}} id="title">{currentUser._id===id && <AddNFT  />}<h1 style={{fontFamily: "Pixel", color: "#B400FF", marginRight: "30rem"}}>My NFTs</h1></MDBRow>
+            
             
             <MDBRow id="profile">
                 <MDBCol md={4} className="myprofile">
@@ -145,7 +145,10 @@ const Profile=()=>{
                     </div>}
                     <br/>
               </MDBCol>
-              <MDBCol><MyNFTs id={id}/></MDBCol>
+              <MDBCol id="nft-container">
+                <MDBRow style={{flexWrap: "nowrap"}} id="title">{currentUser._id===id && <AddNFT  />}<h1 style={{fontFamily: "Pixel", color: "#B400FF", marginRight: "30rem"}}>My NFTs</h1></MDBRow>
+                <MyNFTs id={id}/>
+              </MDBCol>
             {isLoading && <Spinner/>}
             </MDBRow>
         </>

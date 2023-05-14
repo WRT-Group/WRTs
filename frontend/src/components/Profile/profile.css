@@ -3,7 +3,7 @@
     /* padding: 20px; */
     width: 410px;
     color: aliceblue;
-    /* margin: 30px; */
+    margin: 2rem;
     border: 1px solid #ffffff22;
     background-color: #282c34;
     background: linear-gradient(0deg, rgba(40,44,52,1) 0%, rgba(17,0,32,.5) 100%);
@@ -11,6 +11,11 @@
     border-radius: .7rem;
     overflow: hidden;
     transition: .5s all;
+}
+
+#nft-container {
+    margin-top: 2rem;
+    margin-left: 2rem;
 }
 
 .profile img{
@@ -56,14 +61,18 @@ input{
 }
 
 #title{
-    align-items: flex-end;
-    float: right;
+    width: 62vw;
+    position: relative;
+    align-items: center;
+    justify-content: flex-start;
+    float: left;
 }
 
 #title h1{
+    margin-left: 0;
     font-family: "Pixel";
     color: #ed1679;
-    width: 400px;
+    width: 350px;
 }
 
 .profile-input{
@@ -75,6 +84,7 @@ input{
 }
 
 #profile {
+    margin-top: 4rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
