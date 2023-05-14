@@ -50,6 +50,7 @@
   font-size: 18px;
   background-size: 200% auto;
   transition: 0.3s;
+  margin-bottom: 25px;
 }
 
 #wallet-submit:hover {
