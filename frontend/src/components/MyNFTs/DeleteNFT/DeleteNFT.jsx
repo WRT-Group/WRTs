@@ -23,7 +23,7 @@ const DeleteNFT = ({ id }) => {
     <>
       {!clicked ? (
         <Button className="delete" onClick={() => setClicked(true)}>
-          <img src="../../../../assets/trash.png" width={25} height={25} />
+          <img src="https://res.cloudinary.com/dszx3pd6j/image/upload/v1684024640/trash_qi7wx0.png" width={25} height={25} />
         </Button>
       ) : (
         <Button className="delete" onClick={handleDelete}>
