@@ -27,6 +27,13 @@ const BuyNFT = () => {
   const getOne = async () => {
      await axios.get(`${import.meta.env.VITE_URL}/NFT/getOne/${id}`).then((res) => setBuyData(res.data))
   };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+    })
+  }
   
   useEffect(() => {
     if(currentUser){
@@ -35,10 +42,7 @@ const BuyNFT = () => {
         navigate("/")
       }
     }
-    window.scrollTo({
-      top:0,
-      behavior: "smooth"
-    })
+    scrollToTop()
     getOne()
   }, [id]);
 
@@ -86,6 +90,7 @@ const BuyNFT = () => {
       if(res.data==="no funds"){
         setAlertText("Insufficient funds.")
         setIsRed(true)
+        scrollToTop()
         setTimeout(() => {
           setIsRed(false)
         }, 2000)
@@ -93,10 +98,7 @@ const BuyNFT = () => {
       else{
         setAlertText("Purchase successful. Redirecting...")
         setIsGreen(true) 
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        })
+        scrollToTop()
         refreshUser(JSON.stringify({...currentUser, NFTs: res.data.updatedUser.NFTs, balance: res.data.updatedUser.balance}))
         setTimeout(() => {
           setIsGreen(false)
