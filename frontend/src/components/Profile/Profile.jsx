@@ -104,7 +104,7 @@ const Profile=()=>{
         <>
         {isGreen && <GreenAlert text={alertText}/>}
         {isYellow && <YellowAlert text={alertText}/>}
-            <MDBRow style={{flexWrap: "nowrap"}} id="title"><h1 style={{fontFamily: "Pixel", color: "#B400FF", marginRight: 0}}>My NFTs</h1> <AddNFT /></MDBRow>
+            <MDBRow style={{flexWrap: "nowrap"}} id="title">{currentUser._id===id && <AddNFT  />}<h1 style={{fontFamily: "Pixel", color: "#B400FF", marginRight: "30rem"}}>My NFTs</h1></MDBRow>
             
             <MDBRow id="profile">
                 <MDBCol md={4} className="myprofile">
