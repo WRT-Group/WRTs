@@ -8,7 +8,7 @@ import "./Balance.css"
 
 const Balance = () => {
 
-  const { currentUser, setIsLoading, setIsGreen, setIsYellow, setIsRed, setAlertText }=useContext(Context)
+  const { currentUser, setIsLoading, setIsGreen, setIsYellow, setIsRed, setAlertText, refreshUser }=useContext(Context)
   const [show,setShow]=useState(false)
   const [walletId,setWalletId]=useState("")
   const [security,setSecurity]=useState("")
@@ -58,7 +58,8 @@ const Balance = () => {
         setAlertText("Balance transferred successfully, processing your funds")
         setShow(false)
         setTimeout(() => {setIsGreen(false); window.location.reload()}, 1500) // green
-        refreshUser(JSON.stringify({...currentUser, balance: +request.data.updatedUser.balance}))
+        console.log(request.data.updatedUser, currentUser.balance)
+        refreshUser(JSON.stringify({...currentUser, balance: request.data.updatedUser.balance}))
         
       }
     }
